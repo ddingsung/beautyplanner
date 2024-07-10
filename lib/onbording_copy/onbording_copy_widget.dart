@@ -233,11 +233,13 @@ class _OnbordingCopyWidgetState extends State<OnbordingCopyWidget>
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Container(
-                    width: 360.0,
-                    height: 800.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).electricBlue2,
+                  Expanded(
+                    child: Container(
+                      width: 360.0,
+                      height: 800.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).electricBlue2,
+                      ),
                     ),
                   ),
                 ],

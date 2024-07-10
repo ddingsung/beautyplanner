@@ -30,3 +30,5 @@ export '/beauty_planner/product_list/product_list_widget.dart'
 export '/product_detail/product_detail_widget.dart' show ProductDetailWidget;
 export '/onbording_copy/onbording_copy_widget.dart' show OnbordingCopyWidget;
 export '/lottie_test/lottie_test_widget.dart' show LottieTestWidget;
+export '/onbording_copy_copy2/onbording_copy_copy2_widget.dart'
+    show OnbordingCopyCopy2Widget;

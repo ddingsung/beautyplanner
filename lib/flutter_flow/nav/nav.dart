@@ -76,13 +76,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const OnbordingCopyWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const OnbordingCopyCopy2Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const OnbordingCopyWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? const NavBarPage()
+              : const OnbordingCopyCopy2Widget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -204,6 +205,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'lottieTest',
           path: '/lottieTest',
           builder: (context, params) => const LottieTestWidget(),
+        ),
+        FFRoute(
+          name: 'onbordingCopyCopy2',
+          path: '/onbordingCopyCopy2',
+          builder: (context, params) => const OnbordingCopyCopy2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -375,7 +381,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/onbordingCopy';
+            return '/onbordingCopyCopy2';
           }
           return null;
         },

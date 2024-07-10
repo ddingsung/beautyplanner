@@ -333,7 +333,7 @@ class _CreateIDWidgetState extends State<CreateIDWidget>
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              context.goNamed('onbordingCopy');
+                              context.goNamed('onbordingCopyCopy2');
                             },
                             text: '온보딩',
                             options: FFButtonOptions(

@@ -56,7 +56,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: Colors.white,
         body: SafeArea(
           top: true,
           child: Container(

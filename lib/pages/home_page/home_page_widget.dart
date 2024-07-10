@@ -67,7 +67,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               await authManager.signOut();
               GoRouter.of(context).clearRedirectLocation();
 
-              context.goNamedAuth('onbordingCopy', context.mounted);
+              context.goNamedAuth('onbordingCopyCopy2', context.mounted);
             },
           ),
           title: Text(
