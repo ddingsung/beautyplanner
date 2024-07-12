@@ -210,22 +210,18 @@ class _OrderHistoryDetailWidgetState extends State<OrderHistoryDetailWidget> {
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 12.0),
-                                                child: Container(
-                                                  key: const ValueKey(
-                                                      'orderHistoryDetailWidget_ra91'),
-                                                  child:
-                                                      OrderHistoryDetailWidgetWidget(
-                                                    key: Key(
-                                                        'Key01u_${listIndex}_of_${list.length}'),
-                                                    productName: listItem,
-                                                    productPrice:
-                                                        containerOrderHistoryRow
-                                                            .price[listIndex],
-                                                    quantity:
-                                                        containerOrderHistoryRow
-                                                                .quantity[
-                                                            listIndex],
-                                                  ),
+                                                child:
+                                                    OrderHistoryDetailWidgetWidget(
+                                                  key: Key(
+                                                      'Key01u_${listIndex}_of_${list.length}'),
+                                                  productName: listItem,
+                                                  productPrice:
+                                                      containerOrderHistoryRow
+                                                          .price[listIndex],
+                                                  quantity:
+                                                      containerOrderHistoryRow
+                                                              .quantity[
+                                                          listIndex],
                                                 ),
                                               ),
                                             );

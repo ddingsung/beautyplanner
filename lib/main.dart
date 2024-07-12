@@ -29,7 +29,7 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key, this.entryPage});
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -37,8 +37,6 @@ class MyApp extends StatefulWidget {
 
   static _MyAppState of(BuildContext context) =>
       context.findAncestorStateOfType<_MyAppState>()!;
-
-  final Widget? entryPage;
 }
 
 class _MyAppState extends State<MyApp> {
@@ -54,7 +52,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     _appStateNotifier = AppStateNotifier.instance;
-    _router = createRouter(_appStateNotifier, widget.entryPage);
+    _router = createRouter(_appStateNotifier);
     userStream = figmatestSupabaseUserStream()
       ..listen((user) {
         _appStateNotifier.update(user);
