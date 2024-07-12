@@ -35,8 +35,6 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
   late FlutterFlowDynamicModels<ProductItemsListModel> productItemsListModels1;
   // Model for banner_card component.
   late BannerCardModel bannerCardModel;
-  // Model for product_items_list component.
-  late ProductItemsListModel productItemsListModel2;
 
   @override
   void initState(BuildContext context) {
@@ -57,8 +55,6 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
     productItemsListModels1 =
         FlutterFlowDynamicModels(() => ProductItemsListModel());
     bannerCardModel = createModel(context, () => BannerCardModel());
-    productItemsListModel2 =
-        createModel(context, () => ProductItemsListModel());
   }
 
   @override
@@ -76,6 +72,5 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
     productListChoiceChipsModel7.dispose();
     productItemsListModels1.dispose();
     bannerCardModel.dispose();
-    productItemsListModel2.dispose();
   }
 }

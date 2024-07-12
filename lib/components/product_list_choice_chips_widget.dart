@@ -47,7 +47,7 @@ class _ProductListChoiceChipsWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70.0,
+      width: 60.0,
       height: 40.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,

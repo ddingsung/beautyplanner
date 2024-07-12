@@ -47,7 +47,7 @@ class _BannerCardWidgetState extends State<BannerCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 360.0,
+      width: double.infinity,
       height: 78.0,
       decoration: BoxDecoration(
         color: valueOrDefault<Color>(

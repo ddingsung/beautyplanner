@@ -42,4 +42,7 @@ class OrderHistoryRow extends SupabaseDataRow {
 
   List<int> get quantity => getListField<int>('quantity');
   set quantity(List<int> value) => setListField<int>('quantity', value);
+
+  List<int> get price => getListField<int>('price');
+  set price(List<int>? value) => setListField<int>('price', value);
 }

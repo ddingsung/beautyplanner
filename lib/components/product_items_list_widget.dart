@@ -208,7 +208,11 @@ class _ProductItemsListWidgetState extends State<ProductItemsListWidget> {
                 children: [
                   Text(
                     valueOrDefault<String>(
-                      widget.originalPrice?.toString(),
+                      formatNumber(
+                        widget.originalPrice,
+                        formatType: FormatType.decimal,
+                        decimalType: DecimalType.automatic,
+                      ),
                       '1',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -266,7 +270,11 @@ class _ProductItemsListWidgetState extends State<ProductItemsListWidget> {
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget.price?.toString(),
+                    formatNumber(
+                      widget.price,
+                      formatType: FormatType.decimal,
+                      decimalType: DecimalType.automatic,
+                    ),
                     '1',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(

@@ -106,15 +106,12 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                 automaticallyImplyLeading: false,
                 actions: const [],
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: wrapWithModel(
-                      model: _model.appBar1Model,
-                      updateCallback: () => setState(() {}),
-                      child: AppBar1Widget(
-                        parameter1: _model.productList?.first.productMaker,
-                        parameter2: _model.productList?.first.productName,
-                      ),
+                  title: wrapWithModel(
+                    model: _model.appBar1Model,
+                    updateCallback: () => setState(() {}),
+                    child: AppBar1Widget(
+                      parameter1: _model.productList?.first.productMaker,
+                      parameter2: _model.productList?.first.productName,
                     ),
                   ),
                   centerTitle: true,

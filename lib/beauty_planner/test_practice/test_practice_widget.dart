@@ -352,7 +352,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
@@ -383,24 +383,33 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                 ),
                               ),
                             ),
-                            Container(
-                              width: 93.0,
-                              height: 169.0,
-                              decoration: const BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0x00FFFFFF),
-                                    Color(0x9F61E5FA)
-                                  ],
-                                  stops: [0.0, 0.9],
-                                  begin: AlignmentDirectional(0.0, -1.0),
-                                  end: AlignmentDirectional(0, 1.0),
-                                ),
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(16.0),
-                                  bottomRight: Radius.circular(16.0),
-                                  topLeft: Radius.circular(16.0),
-                                  topRight: Radius.circular(60.0),
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('product_list');
+                              },
+                              child: Container(
+                                width: 93.0,
+                                height: 169.0,
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0x00FFFFFF),
+                                      Color(0x9F61E5FA)
+                                    ],
+                                    stops: [0.0, 0.9],
+                                    begin: AlignmentDirectional(0.0, -1.0),
+                                    end: AlignmentDirectional(0, 1.0),
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(16.0),
+                                    bottomRight: Radius.circular(16.0),
+                                    topLeft: Radius.circular(16.0),
+                                    topRight: Radius.circular(60.0),
+                                  ),
                                 ),
                               ),
                             ),

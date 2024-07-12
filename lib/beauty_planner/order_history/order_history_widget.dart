@@ -44,231 +44,243 @@ class _OrderHistoryWidgetState extends State<OrderHistoryWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(55.0),
-          child: AppBar(
-            backgroundColor: Colors.white,
-            automaticallyImplyLeading: false,
-            actions: const [],
-            flexibleSpace: FlexibleSpaceBar(
-              title: wrapWithModel(
-                model: _model.appBar2Model,
-                updateCallback: () => setState(() {}),
-                child: const AppBar2Widget(
-                  parameter1: '주문 내역',
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, _) => [
+            SliverAppBar(
+              pinned: true,
+              floating: false,
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: false,
+              actions: const [],
+              flexibleSpace: FlexibleSpaceBar(
+                title: wrapWithModel(
+                  model: _model.appBar2Model,
+                  updateCallback: () => setState(() {}),
+                  child: const AppBar2Widget(
+                    parameter1: '주문 내역',
+                  ),
                 ),
+                centerTitle: false,
+                expandedTitleScale: 1.0,
               ),
-              centerTitle: false,
-              expandedTitleScale: 1.0,
-            ),
-            elevation: 4.0,
-          ),
-        ),
-        body: SafeArea(
-          top: true,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                SingleChildScrollView(
+              elevation: 4.0,
+            )
+          ],
+          body: Builder(
+            builder: (context) {
+              return SafeArea(
+                top: false,
+                child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 9.0, 0.0, 8.0),
-                        child: Row(
+                      SingleChildScrollView(
+                        child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              width: 60.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(6.0),
-                                border: Border.all(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                '최근 3일',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'noto sans',
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 9.0, 0.0, 8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 60.0,
+                                    height: 32.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(6.0),
+                                      border: Border.all(
+                                        color: Colors.black,
+                                      ),
                                     ),
-                              ),
-                            ),
-                            Container(
-                              width: 60.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(6.0),
-                                border: Border.all(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                '최근 한달',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'noto sans',
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      '최근 3일',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'noto sans',
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: false,
+                                          ),
                                     ),
-                              ),
-                            ),
-                            Container(
-                              width: 60.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(6.0),
-                                border: Border.all(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                '3개월',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'noto sans',
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
-                            ),
-                            Container(
-                              width: 60.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(6.0),
-                                border: Border.all(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                '1년',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'noto sans',
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
-                            ),
-                            Container(
-                              width: 60.0,
-                              height: 32.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(6.0),
-                                border: Border.all(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                '3년',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'noto sans',
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
-                            ),
-                          ].divide(const SizedBox(width: 8.0)),
-                        ),
-                      ),
-                      FutureBuilder<List<OrderHistoryRow>>(
-                        future: OrderHistoryTable().queryRows(
-                          queryFn: (q) => q
-                              .eq(
-                                'user_id',
-                                currentUserUid,
-                              )
-                              .order('created_at'),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
                                   ),
-                                ),
+                                  Container(
+                                    width: 60.0,
+                                    height: 32.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(6.0),
+                                      border: Border.all(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      '최근 한달',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'noto sans',
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 60.0,
+                                    height: 32.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(6.0),
+                                      border: Border.all(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      '3개월',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'noto sans',
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 60.0,
+                                    height: 32.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(6.0),
+                                      border: Border.all(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      '1년',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'noto sans',
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 60.0,
+                                    height: 32.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(6.0),
+                                      border: Border.all(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      '3년',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'noto sans',
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                  ),
+                                ].divide(const SizedBox(width: 8.0)),
                               ),
-                            );
-                          }
-                          List<OrderHistoryRow> columnOrderHistoryRowList =
-                              snapshot.data!;
+                            ),
+                            FutureBuilder<List<OrderHistoryRow>>(
+                              future: OrderHistoryTable().queryRows(
+                                queryFn: (q) => q
+                                    .eq(
+                                      'user_id',
+                                      currentUserUid,
+                                    )
+                                    .order('created_at'),
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<OrderHistoryRow>
+                                    columnOrderHistoryRowList = snapshot.data!;
 
-                          return SingleChildScrollView(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: List.generate(
-                                  columnOrderHistoryRowList.length,
-                                  (columnIndex) {
-                                final columnOrderHistoryRow =
-                                    columnOrderHistoryRowList[columnIndex];
-                                return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 5.0),
-                                  child: OrderHistoryWidgetWidget(
-                                    key: Key(
-                                        'Keycps_${columnIndex}_of_${columnOrderHistoryRowList.length}'),
-                                    productName: columnOrderHistoryRow
-                                        .productName
-                                        .take(1)
-                                        .toList()
-                                        .first,
-                                    orderId: columnOrderHistoryRow.orderId,
-                                    payment: columnOrderHistoryRow.payment!,
-                                    totalPrice:
-                                        columnOrderHistoryRow.totalprice!,
-                                    shippingStatus:
-                                        columnOrderHistoryRow.shippingStatus!,
-                                    day: columnOrderHistoryRow.createdAt,
+                                return SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: List.generate(
+                                        columnOrderHistoryRowList.length,
+                                        (columnIndex) {
+                                      final columnOrderHistoryRow =
+                                          columnOrderHistoryRowList[
+                                              columnIndex];
+                                      return Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 5.0),
+                                        child: OrderHistoryWidgetWidget(
+                                          key: Key(
+                                              'Keycps_${columnIndex}_of_${columnOrderHistoryRowList.length}'),
+                                          productName: columnOrderHistoryRow
+                                              .productName
+                                              .take(1)
+                                              .toList()
+                                              .first,
+                                          orderId:
+                                              columnOrderHistoryRow.orderId,
+                                          payment:
+                                              columnOrderHistoryRow.payment!,
+                                          totalPrice:
+                                              columnOrderHistoryRow.totalprice!,
+                                          shippingStatus: columnOrderHistoryRow
+                                              .shippingStatus!,
+                                          day: columnOrderHistoryRow.createdAt,
+                                        ),
+                                      );
+                                    }),
                                   ),
                                 );
-                              }),
+                              },
                             ),
-                          );
-                        },
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
+              );
+            },
           ),
         ),
       ),

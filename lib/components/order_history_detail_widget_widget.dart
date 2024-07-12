@@ -8,9 +8,9 @@ export 'order_history_detail_widget_model.dart';
 class OrderHistoryDetailWidgetWidget extends StatefulWidget {
   const OrderHistoryDetailWidgetWidget({
     super.key,
-    required this.productName,
-    required this.productPrice,
-    required this.quantity,
+    this.productName,
+    this.productPrice,
+    this.quantity,
   });
 
   final String? productName;
