@@ -173,7 +173,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'mypage',
           path: '/mypage',
-          builder: (context, params) => const MypageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'mypage')
+              : const MypageWidget(),
         ),
         FFRoute(
           name: 'order_history',

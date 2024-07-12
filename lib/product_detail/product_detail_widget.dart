@@ -180,7 +180,10 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                             model: _model.customCarouselModel,
                                             updateCallback: () =>
                                                 setState(() {}),
-                                            child: const CustomCarouselWidget(),
+                                            child: const CustomCarouselWidget(
+                                              imgUrl:
+                                                  'https://images.pexels.com/photos/1377034/pexels-photo-1377034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                            ),
                                           ),
                                         ],
                                       ),

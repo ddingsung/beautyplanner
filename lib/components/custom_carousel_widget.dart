@@ -8,9 +8,11 @@ class CustomCarouselWidget extends StatefulWidget {
   const CustomCarouselWidget({
     super.key,
     int? imgIndex,
+    required this.imgUrl,
   }) : imgIndex = imgIndex ?? 1;
 
   final int imgIndex;
+  final String? imgUrl;
 
   @override
   State<CustomCarouselWidget> createState() => _CustomCarouselWidgetState();
@@ -57,7 +59,7 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(0.0),
                 child: Image.network(
-                  'https://images.unsplash.com/photo-1447933601403-0c6688de566e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwzfHxjb2ZmZWV8ZW58MHx8fHwxNzIwMTI3MzIwfDA&ixlib=rb-4.0.3&q=80&w=1080',
+                  'https://images.pexels.com/photos/1377034/pexels-photo-1377034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                   width: 360.0,
                   height: 284.0,
                   fit: BoxFit.cover,

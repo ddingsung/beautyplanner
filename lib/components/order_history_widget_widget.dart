@@ -56,7 +56,7 @@ class _OrderHistoryWidgetWidgetState extends State<OrderHistoryWidgetWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 180.0,
+      height: 185.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
@@ -348,14 +348,9 @@ class _OrderHistoryWidgetWidgetState extends State<OrderHistoryWidgetWidget> {
               ),
             ],
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(0.0),
-            child: SvgPicture.asset(
-              'assets/images/Gap.svg',
-              width: double.infinity,
-              height: 8.0,
-              fit: BoxFit.cover,
-            ),
+          const Divider(
+            thickness: 8.0,
+            color: Color(0xFFF4F4F5),
           ),
         ],
       ),

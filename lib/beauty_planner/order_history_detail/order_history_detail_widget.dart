@@ -59,11 +59,14 @@ class _OrderHistoryDetailWidgetState extends State<OrderHistoryDetailWidget> {
               automaticallyImplyLeading: false,
               actions: const [],
               flexibleSpace: FlexibleSpaceBar(
-                title: wrapWithModel(
-                  model: _model.appBar2Model,
-                  updateCallback: () => setState(() {}),
-                  child: const AppBar2Widget(
-                    parameter1: '주문 내역',
+                title: Align(
+                  alignment: const AlignmentDirectional(0.0, 1.0),
+                  child: wrapWithModel(
+                    model: _model.appBar2Model,
+                    updateCallback: () => setState(() {}),
+                    child: const AppBar2Widget(
+                      parameter1: '주문 내역',
+                    ),
                   ),
                 ),
                 centerTitle: false,

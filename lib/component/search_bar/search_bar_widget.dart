@@ -64,7 +64,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                   child: TextFormField(
                     controller: _model.textController,
                     focusNode: _model.textFieldFocusNode,
-                    autofocus: true,
+                    autofocus: false,
                     obscureText: false,
                     decoration: InputDecoration(
                       labelStyle:

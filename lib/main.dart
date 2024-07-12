@@ -120,6 +120,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'user_plan_result': const UserPlanResultWidget(),
       'user_plan_result_detail': const UserPlanResultDetailWidget(),
       'user_plan_set_day': const UserPlanSetDayWidget(),
+      'mypage': const MypageWidget(),
       'order_history': const OrderHistoryWidget(),
       'product_list': const ProductListWidget(),
     };
@@ -195,6 +196,14 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.seventeen_mp_outlined,
+              size: 24.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
               size: 24.0,
             ),
             label: 'Home',
