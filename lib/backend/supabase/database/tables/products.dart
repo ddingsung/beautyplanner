@@ -78,4 +78,7 @@ class ProductsRow extends SupabaseDataRow {
 
   double? get discount => getField<double>('discount');
   set discount(double? value) => setField<double>('discount', value);
+
+  String? get productMaker => getField<String>('product_maker');
+  set productMaker(String? value) => setField<String>('product_maker', value);
 }

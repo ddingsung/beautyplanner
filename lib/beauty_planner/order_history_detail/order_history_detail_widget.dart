@@ -1,12 +1,20 @@
+import '/backend/supabase/supabase.dart';
+import '/components/app_bar2_widget.dart';
+import '/components/order_history_detail_widget_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'order_history_detail_model.dart';
 export 'order_history_detail_model.dart';
 
 class OrderHistoryDetailWidget extends StatefulWidget {
-  const OrderHistoryDetailWidget({super.key});
+  const OrderHistoryDetailWidget({
+    super.key,
+    int? orderId,
+  }) : orderId = orderId ?? 1;
+
+  final int orderId;
 
   @override
   State<OrderHistoryDetailWidget> createState() =>
@@ -22,6 +30,25 @@ class _OrderHistoryDetailWidgetState extends State<OrderHistoryDetailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OrderHistoryDetailModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.orderId = await OrderHistoryTable().queryRows(
+        queryFn: (q) => q.eq(
+          'order_id',
+          widget.orderId,
+        ),
+      );
+      _model.productN = await ProductsTable().queryRows(
+        queryFn: (q) => q.eq(
+          'product_name',
+          valueOrDefault<String>(
+            _model.orderId?.first.productName.first,
+            'product',
+          ),
+        ),
+      );
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -41,289 +68,142 @@ class _OrderHistoryDetailWidgetState extends State<OrderHistoryDetailWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(55.0),
           child: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
             actions: const [],
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                'Page Title',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'noto sans',
-                      color: Colors.black,
-                      fontSize: 22.0,
-                      letterSpacing: 0.0,
-                      useGoogleFonts: false,
-                    ),
+              title: wrapWithModel(
+                model: _model.appBar2Model,
+                updateCallback: () => setState(() {}),
+                child: const AppBar2Widget(
+                  parameter1: '주문 내역',
+                ),
               ),
               centerTitle: false,
               expandedTitleScale: 1.0,
             ),
-            elevation: 0.0,
+            elevation: 4.0,
           ),
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Container(
-              width: 360.0,
-              height: 500.0,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Color(0x00FFFFFF),
+                  ),
+                  child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 28.0, 0.0, 16.0),
-                        child: Text(
-                          '주문 상세 내역',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 28.0, 0.0, 16.0),
+                            child: Text(
+                              '주문 상세 내역',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     fontFamily: 'noto sans',
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),
-                        ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 12.0, 0.0, 12.0),
+                              child: Text(
+                                '전체 ${_model.orderId?.first.productName.length.toString()}개',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'noto sans',
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: false,
+                                    ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 12.0, 20.0, 12.0),
+                              child: Text(
+                                dateTimeFormat(
+                                    'yMd', _model.orderId!.first.createdAt),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'noto sans',
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: false,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Builder(
+                        builder: (context) {
+                          final productList = _model.orderId
+                                  ?.map((e) => e.productName.first)
+                                  .toList()
+                                  .toList() ??
+                              [];
+
+                          return SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: List.generate(productList.length,
+                                  (productListIndex) {
+                                final productListItem =
+                                    productList[productListIndex];
+                                return Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 12.0),
+                                  child: OrderHistoryDetailWidgetWidget(
+                                    key: Key(
+                                        'Key01u_${productListIndex}_of_${productList.length}'),
+                                    productName: productListItem,
+                                    productPrice: 1,
+                                    quantity: 1,
+                                  ),
+                                );
+                              }),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 12.0, 0.0, 12.0),
-                                child: Text(
-                                  '전체 []개',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'noto sans',
-                                        fontSize: 12.0,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: false,
-                                      ),
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: const AlignmentDirectional(1.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 12.0, 20.0, 12.0),
-                                child: Text(
-                                  'yyyy.mm.dd.요일',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'noto sans',
-                                        fontSize: 12.0,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: false,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          width: 360.0,
-                          height: 116.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(16.0),
-                                child: Image.network(
-                                  'https://picsum.photos/seed/712/600',
-                                  width: 100.0,
-                                  height: 116.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          'product_name',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'noto sans',
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          '[price]원',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'noto sans',
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 8.0, 0.0, 0.0),
-                                          child: Text(
-                                            '수량 : []개',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'noto sans',
-                                                  fontSize: 10.0,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: false,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 8.0, 0.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () {
-                                              print('Button pressed ...');
-                                            },
-                                            text: '삭제',
-                                            options: FFButtonOptions(
-                                              width: 94.0,
-                                              height: 32.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: Colors.white,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'noto sans',
-                                                        color:
-                                                            const Color(0xFF90929D),
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        useGoogleFonts: false,
-                                                      ),
-                                              elevation: 0.0,
-                                              borderSide: const BorderSide(
-                                                color: Color(0xFFC6C7CD),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 0.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () {
-                                              print('Button pressed ...');
-                                            },
-                                            text: '담기',
-                                            icon: const Icon(
-                                              Icons.shopping_cart_outlined,
-                                              size: 15.0,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: 94.0,
-                                              height: 32.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: Colors.white,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'noto sans',
-                                                        color:
-                                                            const Color(0xFF08CEED),
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        useGoogleFonts: false,
-                                                      ),
-                                              elevation: 0.0,
-                                              borderSide: const BorderSide(
-                                                color: Color(0xFF08CEED),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

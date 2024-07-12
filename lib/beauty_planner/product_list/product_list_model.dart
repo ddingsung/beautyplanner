@@ -6,6 +6,10 @@ import 'product_list_widget.dart' show ProductListWidget;
 import 'package:flutter/material.dart';
 
 class ProductListModel extends FlutterFlowModel<ProductListWidget> {
+  ///  Local state fields for this page.
+
+  String? selectedProduct;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -27,8 +31,8 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
   late ProductListChoiceChipsModel productListChoiceChipsModel6;
   // Model for product_list_choiceChips component.
   late ProductListChoiceChipsModel productListChoiceChipsModel7;
-  // Model for product_items_list component.
-  late ProductItemsListModel productItemsListModel1;
+  // Models for product_items_list dynamic component.
+  late FlutterFlowDynamicModels<ProductItemsListModel> productItemsListModels1;
   // Model for banner_card component.
   late BannerCardModel bannerCardModel;
   // Model for product_items_list component.
@@ -50,8 +54,8 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
         createModel(context, () => ProductListChoiceChipsModel());
     productListChoiceChipsModel7 =
         createModel(context, () => ProductListChoiceChipsModel());
-    productItemsListModel1 =
-        createModel(context, () => ProductItemsListModel());
+    productItemsListModels1 =
+        FlutterFlowDynamicModels(() => ProductItemsListModel());
     bannerCardModel = createModel(context, () => BannerCardModel());
     productItemsListModel2 =
         createModel(context, () => ProductItemsListModel());
@@ -70,7 +74,7 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
     productListChoiceChipsModel5.dispose();
     productListChoiceChipsModel6.dispose();
     productListChoiceChipsModel7.dispose();
-    productItemsListModel1.dispose();
+    productItemsListModels1.dispose();
     bannerCardModel.dispose();
     productItemsListModel2.dispose();
   }

@@ -6,7 +6,18 @@ import 'button335x56_model.dart';
 export 'button335x56_model.dart';
 
 class Button335x56Widget extends StatefulWidget {
-  const Button335x56Widget({super.key});
+  const Button335x56Widget({
+    super.key,
+    required this.text,
+    this.fillColor,
+    this.borderColor,
+    this.textColor,
+  });
+
+  final String? text;
+  final Color? fillColor;
+  final Color? borderColor;
+  final Color? textColor;
 
   @override
   State<Button335x56Widget> createState() => _Button335x56WidgetState();
@@ -42,23 +53,26 @@ class _Button335x56WidgetState extends State<Button335x56Widget> {
       onPressed: () {
         print('Button pressed ...');
       },
-      text: '선택 완료',
+      text: widget.text!,
       options: FFButtonOptions(
         width: 335.0,
         height: 56.0,
         padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
         iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-        color: FlutterFlowTheme.of(context).electricBlue2,
+        color: widget.fillColor,
         textStyle: FlutterFlowTheme.of(context).titleSmall.override(
               fontFamily: 'noto sans',
-              color: Colors.white,
+              color: widget.textColor,
               fontSize: 16.0,
               letterSpacing: 0.0,
               useGoogleFonts: false,
             ),
         elevation: 0.0,
         borderSide: BorderSide(
-          color: FlutterFlowTheme.of(context).electricBlue2,
+          color: valueOrDefault<Color>(
+            widget.borderColor,
+            FlutterFlowTheme.of(context).electricBlue2,
+          ),
           width: 1.0,
         ),
         borderRadius: BorderRadius.circular(16.0),

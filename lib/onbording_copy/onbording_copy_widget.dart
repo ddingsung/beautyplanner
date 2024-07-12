@@ -1,3 +1,4 @@
+import '/components/beaury_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -71,7 +72,7 @@ class _OnbordingCopyWidgetState extends State<OnbordingCopyWidget>
     });
 
     animationsMap.addAll({
-      'imageOnPageLoadAnimation1': AnimationInfo(
+      'imageOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           ScaleEffect(
@@ -179,26 +180,6 @@ class _OnbordingCopyWidgetState extends State<OnbordingCopyWidget>
           ),
         ],
       ),
-      'imageOnPageLoadAnimation2': AnimationInfo(
-        loop: true,
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, -18.0),
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 600.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 18.0),
-          ),
-        ],
-      ),
     });
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -257,7 +238,7 @@ class _OnbordingCopyWidgetState extends State<OnbordingCopyWidget>
                       fit: BoxFit.cover,
                     ),
                   ).animateOnPageLoad(
-                      animationsMap['imageOnPageLoadAnimation1']!),
+                      animationsMap['imageOnPageLoadAnimation']!),
                 ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(54.0, 305.0, 0.0, 0.0),
@@ -443,46 +424,10 @@ class _OnbordingCopyWidgetState extends State<OnbordingCopyWidget>
                               ),
                             ],
                           ),
-                          Stack(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: SvgPicture.asset(
-                                  'assets/images/Background_character.svg',
-                                  width: 196.0,
-                                  height: 175.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 50.0, 0.0, 0.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    'assets/images/beuply__2.png',
-                                    width: 150.0,
-                                    height: 189.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ).animateOnPageLoad(animationsMap[
-                                    'imageOnPageLoadAnimation2']!),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 260.0, 0.0, 0.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/Ellipse_509.svg',
-                                    width: 98.0,
-                                    height: 13.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          wrapWithModel(
+                            model: _model.beauryModel,
+                            updateCallback: () => setState(() {}),
+                            child: const BeauryWidget(),
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(

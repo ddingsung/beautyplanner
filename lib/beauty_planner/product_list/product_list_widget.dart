@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/components/banner_card_widget.dart';
 import '/components/product_items_list_widget.dart';
 import '/components/product_list_choice_chips_widget.dart';
@@ -57,6 +58,143 @@ class _ProductListWidgetState extends State<ProductListWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(44.0),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+            actions: const [],
+            flexibleSpace: FlexibleSpaceBar(
+              title: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pop();
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: Color(0xFF1C1B1F),
+                      size: 24.0,
+                    ),
+                  ),
+                  const Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                    child: Icon(
+                      Icons.add_a_photo_sharp,
+                      color: Color(0xFF90929D),
+                      size: 24.0,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                    child: Container(
+                      width: 202.0,
+                      height: 28.0,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFF4F4F5),
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        child: TextFormField(
+                          controller: _model.textController,
+                          focusNode: _model.textFieldFocusNode,
+                          autofocus: true,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: '뷰리픽 다이어트 꿀템',
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'noto sans',
+                                  color: const Color(0xFFABACB5),
+                                  fontSize: 10.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: false,
+                                ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'noto sans',
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: false,
+                                ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'noto sans',
+                                    fontSize: 10.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                          validator: _model.textControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(0.0),
+                    child: SvgPicture.asset(
+                      'assets/images/Button_Search.svg',
+                      width: 34.0,
+                      height: 28.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                    child: Icon(
+                      Icons.favorite_border,
+                      color: Color(0xFF1C1B1F),
+                      size: 24.0,
+                    ),
+                  ),
+                ],
+              ),
+              centerTitle: false,
+              expandedTitleScale: 1.0,
+            ),
+            elevation: 0.0,
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Container(
@@ -67,107 +205,6 @@ class _ProductListWidgetState extends State<ProductListWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
-                        child: Icon(
-                          Icons.settings_outlined,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 8.0),
-                          child: SizedBox(
-                            width: 244.0,
-                            child: TextFormField(
-                              controller: _model.textController,
-                              focusNode: _model.textFieldFocusNode,
-                              autofocus: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Label here...',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'noto sans',
-                                      fontSize: 10.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
-                                    ),
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'noto sans',
-                                      fontSize: 10.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
-                                    ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0.0),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0.0),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0.0),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0.0),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'noto sans',
-                                    fontSize: 10.0,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: false,
-                                  ),
-                              validator: _model.textControllerValidator
-                                  .asValidator(context),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: SvgPicture.asset(
-                          'assets/images/Button_Search.svg',
-                          width: 34.0,
-                          height: 28.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Icon(
-                        Icons.favorite_border,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
-                      ),
-                    ],
-                  ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -332,34 +369,93 @@ class _ProductListWidgetState extends State<ProductListWidget> {
                           ),
                         ],
                       ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            wrapWithModel(
-                              model: _model.productItemsListModel1,
-                              updateCallback: () => setState(() {}),
-                              child: const ProductItemsListWidget(
-                                productName: '1',
-                                discount: 1,
-                                originalPrice: 1,
-                                price: 1,
-                                liked: 1,
-                              ),
-                            ),
-                          ],
+                      FutureBuilder<List<ProductsRow>>(
+                        future: ProductsTable().queryRows(
+                          queryFn: (q) => q.order('id', ascending: true),
                         ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<ProductsRow> rowProductsRowList = snapshot.data!;
+
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: List.generate(rowProductsRowList.length,
+                                  (rowIndex) {
+                                final rowProductsRow =
+                                    rowProductsRowList[rowIndex];
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'product_detail',
+                                      queryParameters: {
+                                        'productUid': serializeParam(
+                                          rowProductsRow.productUid,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: wrapWithModel(
+                                    model:
+                                        _model.productItemsListModels1.getModel(
+                                      rowProductsRow.id.toString(),
+                                      rowIndex,
+                                    ),
+                                    updateCallback: () => setState(() {}),
+                                    child: ProductItemsListWidget(
+                                      key: Key(
+                                        'Keydxr_${rowProductsRow.id.toString()}',
+                                      ),
+                                      productName: rowProductsRow.productName!,
+                                      discount: rowProductsRow.discount!,
+                                      originalPrice:
+                                          rowProductsRow.productPrice!,
+                                      price: (rowProductsRow.productPrice!) -
+                                          ((rowProductsRow.productPrice!) *
+                                              ((rowProductsRow.discount!) /
+                                                  100)),
+                                      liked: rowProductsRow.like!,
+                                    ),
+                                  ),
+                                );
+                              }),
+                            ),
+                          );
+                        },
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          wrapWithModel(
-                            model: _model.bannerCardModel,
-                            updateCallback: () => setState(() {}),
-                            child: const BannerCardWidget(),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 17.0, 0.0, 17.0),
+                            child: wrapWithModel(
+                              model: _model.bannerCardModel,
+                              updateCallback: () => setState(() {}),
+                              child: const BannerCardWidget(),
+                            ),
                           ),
                         ],
                       ),
@@ -371,9 +467,9 @@ class _ProductListWidgetState extends State<ProductListWidget> {
                             updateCallback: () => setState(() {}),
                             child: const ProductItemsListWidget(
                               productName: '1',
-                              discount: 1,
+                              discount: 1.0,
                               originalPrice: 1,
-                              price: 1,
+                              price: 1.0,
                               liked: 1,
                             ),
                           ),

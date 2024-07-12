@@ -20,14 +20,14 @@ class ReviewsRow extends SupabaseDataRow {
   DateTime get createdAt => getField<DateTime>('created_at')!;
   set createdAt(DateTime value) => setField<DateTime>('created_at', value);
 
-  int? get productUid => getField<int>('product_uid');
-  set productUid(int? value) => setField<int>('product_uid', value);
+  String? get productUid => getField<String>('product_uid');
+  set productUid(String? value) => setField<String>('product_uid', value);
 
   String? get userId => getField<String>('user_id');
   set userId(String? value) => setField<String>('user_id', value);
 
-  String? get title => getField<String>('title');
-  set title(String? value) => setField<String>('title', value);
+  String? get userName => getField<String>('user_name');
+  set userName(String? value) => setField<String>('user_name', value);
 
   String? get comment => getField<String>('comment');
   set comment(String? value) => setField<String>('comment', value);

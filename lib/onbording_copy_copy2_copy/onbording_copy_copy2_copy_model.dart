@@ -1,9 +1,10 @@
-import '/components/beaury_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'onbording_copy_widget.dart' show OnbordingCopyWidget;
+import 'onbording_copy_copy2_copy_widget.dart'
+    show OnbordingCopyCopy2CopyWidget;
 import 'package:flutter/material.dart';
 
-class OnbordingCopyModel extends FlutterFlowModel<OnbordingCopyWidget> {
+class OnbordingCopyCopy2CopyModel
+    extends FlutterFlowModel<OnbordingCopyCopy2CopyWidget> {
   ///  Local state fields for this page.
 
   bool firstImg = true;
@@ -22,20 +23,17 @@ class OnbordingCopyModel extends FlutterFlowModel<OnbordingCopyWidget> {
 
   bool page2 = true;
 
+  Color? bgColor = const Color(0xff61e5fa);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for beaury component.
-  late BeauryModel beauryModel;
 
   @override
-  void initState(BuildContext context) {
-    beauryModel = createModel(context, () => BeauryModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    beauryModel.dispose();
   }
 }

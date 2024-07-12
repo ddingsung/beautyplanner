@@ -33,6 +33,13 @@ class OrderHistoryRow extends SupabaseDataRow {
   double? get totalprice => getField<double>('totalprice');
   set totalprice(double? value) => setField<double>('totalprice', value);
 
-  String? get status => getField<String>('status');
-  set status(String? value) => setField<String>('status', value);
+  String? get shippingStatus => getField<String>('shipping_status');
+  set shippingStatus(String? value) =>
+      setField<String>('shipping_status', value);
+
+  String? get userId => getField<String>('user_id');
+  set userId(String? value) => setField<String>('user_id', value);
+
+  List<int> get quantity => getListField<int>('quantity');
+  set quantity(List<int> value) => setListField<int>('quantity', value);
 }

@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -333,7 +334,7 @@ class _CreateIDWidgetState extends State<CreateIDWidget>
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              context.goNamed('onbordingCopyCopy2');
+                              context.goNamed('onbordingCopyCopy2Copy');
                             },
                             text: '온보딩',
                             options: FFButtonOptions(
@@ -384,9 +385,20 @@ class _CreateIDWidgetState extends State<CreateIDWidget>
                                 return;
                               }
 
+                              await UsersTable().insert({
+                                'created_at': supaSerialize<DateTime>(
+                                    getCurrentTimestamp),
+                                'updated_at': supaSerialize<DateTime>(
+                                    getCurrentTimestamp),
+                                'email': _model.emailTextController1.text,
+                                'password': _model.passwordTextController1.text,
+                                'user_id': currentUserUid,
+                                'name': 'test',
+                              });
+
                               context.goNamedAuth('HomePage', context.mounted);
                             },
-                            text: '로그인',
+                            text: '회원가입',
                             options: FFButtonOptions(
                               height: 40.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(

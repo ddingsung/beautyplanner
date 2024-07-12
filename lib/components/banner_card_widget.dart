@@ -50,7 +50,10 @@ class _BannerCardWidgetState extends State<BannerCardWidget> {
       width: 360.0,
       height: 78.0,
       decoration: BoxDecoration(
-        color: widget.color,
+        color: valueOrDefault<Color>(
+          widget.color,
+          const Color(0xFFFFF9C7),
+        ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,

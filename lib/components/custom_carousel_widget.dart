@@ -50,22 +50,20 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(0.0),
-                  child: Image.network(
-                    'https://images.unsplash.com/photo-1447933601403-0c6688de566e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwzfHxjb2ZmZWV8ZW58MHx8fHwxNzIwMTI3MzIwfDA&ixlib=rb-4.0.3&q=80&w=1080',
-                    width: 360.0,
-                    height: 284.0,
-                    fit: BoxFit.cover,
-                  ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(0.0),
+                child: Image.network(
+                  'https://images.unsplash.com/photo-1447933601403-0c6688de566e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwzfHxjb2ZmZWV8ZW58MHx8fHwxNzIwMTI3MzIwfDA&ixlib=rb-4.0.3&q=80&w=1080',
+                  width: 360.0,
+                  height: 284.0,
+                  fit: BoxFit.cover,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         Padding(

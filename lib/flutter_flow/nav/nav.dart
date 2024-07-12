@@ -75,15 +75,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const OnbordingCopyCopy2Widget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? const NavBarPage()
+          : const OnbordingCopyCopy2CopyWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
               ? const NavBarPage()
-              : const OnbordingCopyCopy2Widget(),
+              : const OnbordingCopyCopy2CopyWidget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -177,12 +178,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'order_history',
           path: '/orderHistory',
-          builder: (context, params) => const OrderHistoryWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'order_history')
+              : const OrderHistoryWidget(),
         ),
         FFRoute(
           name: 'order_history_detail',
           path: '/orderHistoryDetail',
-          builder: (context, params) => const OrderHistoryDetailWidget(),
+          builder: (context, params) => OrderHistoryDetailWidget(
+            orderId: params.getParam(
+              'orderId',
+              ParamType.int,
+            ),
+          ),
         ),
         FFRoute(
           name: 'product_list',
@@ -194,7 +202,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'product_detail',
           path: '/productDetail',
-          builder: (context, params) => const ProductDetailWidget(),
+          builder: (context, params) => ProductDetailWidget(
+            productUid: params.getParam(
+              'productUid',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'onbordingCopy',
@@ -210,6 +223,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'onbordingCopyCopy2',
           path: '/onbordingCopyCopy2',
           builder: (context, params) => const OnbordingCopyCopy2Widget(),
+        ),
+        FFRoute(
+          name: 'onbordingCopyCopy2Copy',
+          path: '/onbordingCopyCopy2Copy',
+          builder: (context, params) => const OnbordingCopyCopy2CopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -381,7 +399,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/onbordingCopyCopy2';
+            return '/onbordingCopyCopy2Copy';
           }
           return null;
         },

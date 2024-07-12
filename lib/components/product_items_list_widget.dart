@@ -16,9 +16,9 @@ class ProductItemsListWidget extends StatefulWidget {
   }) : productName = productName ?? 'dd';
 
   final String productName;
-  final int? discount;
+  final double? discount;
   final int? originalPrice;
-  final int? price;
+  final double? price;
   final int? liked;
 
   @override

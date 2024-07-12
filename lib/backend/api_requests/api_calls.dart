@@ -105,6 +105,27 @@ class GetItemCall {
       ));
 }
 
+class GetOrderIdToProductListCallCall {
+  static Future<ApiCallResponse> call({
+    int? id,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetOrderIdToProductListCall',
+      apiUrl:
+          'https://mfrdiyqsjilugquaxyed.supabase.co/rest/v1/order_histor?order_id=eq.$id',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
