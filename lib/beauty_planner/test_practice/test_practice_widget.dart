@@ -3,9 +3,9 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -114,6 +114,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'noto sans',
+                                    fontSize: functions.setFontSize(16.0),
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),
@@ -167,6 +168,8 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'noto sans',
+                                            fontSize:
+                                                functions.setFontSize(16.0),
                                             letterSpacing: 0.0,
                                             useGoogleFonts: false,
                                           ),
@@ -252,6 +255,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                         .override(
                                           fontFamily: 'noto sans',
                                           color: Colors.white,
+                                          fontSize: functions.setFontSize(12.0),
                                           letterSpacing: 0.0,
                                           useGoogleFonts: false,
                                         ),
@@ -271,6 +275,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                         .override(
                                           fontFamily: 'noto sans',
                                           color: const Color(0xFFABACB5),
+                                          fontSize: functions.setFontSize(12.0),
                                           letterSpacing: 0.0,
                                           useGoogleFonts: false,
                                         ),
@@ -327,8 +332,9 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                         fontFamily: 'noto sans',
                                         color: FlutterFlowTheme.of(context)
                                             .electricBlue2,
+                                        fontSize: functions.setFontSize(16.0),
                                         letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
+                                        fontWeight: FontWeight.w600,
                                         useGoogleFonts: false,
                                       ),
                                   elevation: 0.0,
@@ -681,6 +687,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                   '나만을 위한\n뷰티 플래너',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'bookkmyungjo',
+                        fontSize: functions.setFontSize(24.0),
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w100,
                         useGoogleFonts: false,
@@ -714,44 +721,6 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                         height: 26.92,
                         fit: BoxFit.cover,
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              const Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 18.0, 0.0),
-                    child: FlutterFlowVideoPlayer(
-                      path:
-                          'assets/videos/mixkit-forest-stream-in-the-sunlight-529-large.mp4',
-                      videoType: VideoType.asset,
-                      width: 155.0,
-                      height: 122.0,
-                      autoPlay: false,
-                      looping: true,
-                      showControls: true,
-                      allowFullScreen: true,
-                      allowPlaybackSpeedMenu: false,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 22.0, 0.0, 0.0),
-                    child: FlutterFlowVideoPlayer(
-                      path:
-                          'assets/videos/mixkit-forest-stream-in-the-sunlight-529-large.mp4',
-                      videoType: VideoType.asset,
-                      width: 155.0,
-                      height: 122.0,
-                      autoPlay: false,
-                      looping: true,
-                      showControls: true,
-                      allowFullScreen: true,
-                      allowPlaybackSpeedMenu: false,
                     ),
                   ),
                 ],
