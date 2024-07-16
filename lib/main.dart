@@ -115,7 +115,6 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': const HomePageWidget(),
       'Details12SocialPost': const Details12SocialPostWidget(),
-      'TestPractice': const TestPracticeWidget(),
       'recommended_plan_page': const RecommendedPlanPageWidget(),
       'user_plan_result': const UserPlanResultWidget(),
       'user_plan_result_detail': const UserPlanResultDetailWidget(),
@@ -148,14 +147,6 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             activeIcon: Icon(
               Icons.home,
-              size: 24.0,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
               size: 24.0,
             ),
             label: 'Home',

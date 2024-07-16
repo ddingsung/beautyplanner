@@ -5,11 +5,13 @@ import '/components/banner_card_widget.dart';
 import '/components/custom_carousel_widget.dart';
 import '/components/product_items_list_widget.dart';
 import '/components/product_list_choice_chips_widget.dart';
+import '/components/product_q_n_a_widget.dart';
 import '/components/review_bottomsheet_widget.dart';
 import '/components/review_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -160,7 +162,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                               alignment: const AlignmentDirectional(0.0, 1.0),
                               children: [
                                 Container(
-                                  width: 360.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   decoration: const BoxDecoration(
                                     color: Colors.white,
                                   ),
@@ -180,15 +182,18 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                             model: _model.customCarouselModel,
                                             updateCallback: () =>
                                                 setState(() {}),
-                                            child: const CustomCarouselWidget(
+                                            child: CustomCarouselWidget(
                                               imgUrl:
-                                                  'https://images.pexels.com/photos/1377034/pexels-photo-1377034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                                                  columnProductsRow?.productImg,
+                                              productUid: widget.productUid,
                                             ),
                                           ),
                                         ],
                                       ),
                                       Container(
-                                        width: 360.0,
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
                                         decoration: const BoxDecoration(),
                                         child: SingleChildScrollView(
                                           child: Column(
@@ -227,7 +232,9 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'noto sans',
-                                                                fontSize: 12.0,
+                                                                fontSize: functions
+                                                                    .setFontSize(
+                                                                        12.0),
                                                                 letterSpacing:
                                                                     0.0,
                                                                 useGoogleFonts:
@@ -266,6 +273,9 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                 .override(
                                                                   fontFamily:
                                                                       'noto sans',
+                                                                  fontSize: functions
+                                                                      .setFontSize(
+                                                                          16.0),
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -300,26 +310,29 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                               DecimalType
                                                                   .automatic,
                                                         )}원',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'noto sans',
-                                                              color: const Color(
-                                                                  0xFFABACB5),
-                                                              fontSize: 12.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .lineThrough,
-                                                              useGoogleFonts:
-                                                                  false,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'noto sans',
+                                                                  color: const Color(
+                                                                      0xFFABACB5),
+                                                                  fontSize: functions
+                                                                      .setFontSize(
+                                                                          12.0),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .lineThrough,
+                                                                  useGoogleFonts:
+                                                                      false,
+                                                                ),
                                                       ),
                                                     ),
                                                   ],
@@ -350,8 +363,9 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .electricBlue2,
-                                                                  fontSize:
-                                                                      18.0,
+                                                                  fontSize: functions
+                                                                      .setFontSize(
+                                                                          18.0),
                                                                   letterSpacing:
                                                                       0.0,
                                                                   useGoogleFonts:
@@ -373,21 +387,24 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                               DecimalType
                                                                   .automatic,
                                                         )}원',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'noto sans',
-                                                              fontSize: 20.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              useGoogleFonts:
-                                                                  false,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'noto sans',
+                                                                  fontSize: functions
+                                                                      .setFontSize(
+                                                                          20.0),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts:
+                                                                      false,
+                                                                ),
                                                       ),
                                                     ].divide(
                                                         const SizedBox(width: 12.0)),
@@ -423,7 +440,11 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                             text: '쿠폰 받기',
                                                             options:
                                                                 FFButtonOptions(
-                                                              width: 336.0,
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  0.9,
                                                               height: 40.0,
                                                               padding:
                                                                   const EdgeInsetsDirectional
@@ -451,7 +472,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .electricBlue2,
                                                                         fontSize:
-                                                                            12.0,
+                                                                            functions.setFontSize(12.0),
                                                                         letterSpacing:
                                                                             0.0,
                                                                         useGoogleFonts:
@@ -578,7 +599,10 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Container(
-                                                    width: 336.0,
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.9,
                                                     height: 166.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
@@ -1179,8 +1203,6 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                     false,
                                                                 enableDrag:
                                                                     false,
-                                                                useSafeArea:
-                                                                    true,
                                                                 context:
                                                                     context,
                                                                 builder:
@@ -1537,6 +1559,83 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                           ),
                                                         ],
                                                       ),
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Text(
+                                                              '자주 묻는 질문',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'noto sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts:
+                                                                        false,
+                                                                  ),
+                                                            ),
+                                                            Text(
+                                                              '전체보기',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'noto sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts:
+                                                                        false,
+                                                                  ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            wrapWithModel(
+                                                              model: _model
+                                                                  .productQNAModel1,
+                                                              updateCallback:
+                                                                  () => setState(
+                                                                      () {}),
+                                                              child:
+                                                                  ProductQNAWidget(
+                                                                isSolved: false,
+                                                                userId: '1',
+                                                                content:
+                                                                    'ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ',
+                                                                createdAt:
+                                                                    getCurrentTimestamp,
+                                                              ),
+                                                            ),
+                                                            wrapWithModel(
+                                                              model: _model
+                                                                  .productQNAModel2,
+                                                              updateCallback:
+                                                                  () => setState(
+                                                                      () {}),
+                                                              child:
+                                                                  ProductQNAWidget(
+                                                                isSolved: false,
+                                                                userId: '1',
+                                                                content: '1',
+                                                                createdAt:
+                                                                    getCurrentTimestamp,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ],
                                                 ),
                                               ),

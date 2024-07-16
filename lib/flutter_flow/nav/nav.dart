@@ -128,9 +128,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TestPractice',
           path: '/testPractice',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'TestPractice')
-              : const TestPracticeWidget(),
+          builder: (context, params) => const TestPracticeWidget(),
         ),
         FFRoute(
           name: 'recommended_plan_page',

@@ -1,3 +1,4 @@
+import '/beauty_planner/nav_bar1/nav_bar1_widget.dart';
 import '/component/search_bar/search_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -28,14 +29,19 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
   CarouselController? carouselController2;
   int carouselCurrentIndex2 = 1;
 
+  // Model for NavBar1 component.
+  late NavBar1Model navBar1Model;
+
   @override
   void initState(BuildContext context) {
     searchBarModel = createModel(context, () => SearchBarModel());
+    navBar1Model = createModel(context, () => NavBar1Model());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
     searchBarModel.dispose();
+    navBar1Model.dispose();
   }
 }

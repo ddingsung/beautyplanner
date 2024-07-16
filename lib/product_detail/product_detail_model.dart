@@ -5,6 +5,7 @@ import '/components/banner_card_widget.dart';
 import '/components/custom_carousel_widget.dart';
 import '/components/product_items_list_widget.dart';
 import '/components/product_list_choice_chips_widget.dart';
+import '/components/product_q_n_a_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'product_detail_widget.dart' show ProductDetailWidget;
 import 'package:flutter/material.dart';
@@ -39,6 +40,10 @@ class ProductDetailModel extends FlutterFlowModel<ProductDetailWidget> {
   late ProductItemsListModel productItemsListModel1;
   // Model for product_items_list component.
   late ProductItemsListModel productItemsListModel2;
+  // Model for product_QNA component.
+  late ProductQNAModel productQNAModel1;
+  // Model for product_QNA component.
+  late ProductQNAModel productQNAModel2;
   // Model for search_bar component.
   late SearchBarModel searchBarModel;
 
@@ -59,6 +64,8 @@ class ProductDetailModel extends FlutterFlowModel<ProductDetailWidget> {
         createModel(context, () => ProductItemsListModel());
     productItemsListModel2 =
         createModel(context, () => ProductItemsListModel());
+    productQNAModel1 = createModel(context, () => ProductQNAModel());
+    productQNAModel2 = createModel(context, () => ProductQNAModel());
     searchBarModel = createModel(context, () => SearchBarModel());
   }
 
@@ -74,6 +81,8 @@ class ProductDetailModel extends FlutterFlowModel<ProductDetailWidget> {
     productListChoiceChipsModel4.dispose();
     productItemsListModel1.dispose();
     productItemsListModel2.dispose();
+    productQNAModel1.dispose();
+    productQNAModel2.dispose();
     searchBarModel.dispose();
   }
 }

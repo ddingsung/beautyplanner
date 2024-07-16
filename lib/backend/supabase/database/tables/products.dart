@@ -82,4 +82,7 @@ class ProductsRow extends SupabaseDataRow {
 
   String? get productMaker => getField<String>('product_maker');
   set productMaker(String? value) => setField<String>('product_maker', value);
+
+  List<String> get option => getListField<String>('option');
+  set option(List<String>? value) => setListField<String>('option', value);
 }
