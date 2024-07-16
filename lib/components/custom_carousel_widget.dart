@@ -113,7 +113,7 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
                             carouselController: _model.carouselController ??=
                                 CarouselController(),
                             options: CarouselOptions(
-                              initialPage: max(0, min(1, imgurl.length - 1)),
+                              initialPage: max(0, min(0, imgurl.length - 1)),
                               viewportFraction: 1.0,
                               disableCenter: true,
                               enlargeCenterPage: false,
@@ -147,10 +147,7 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${valueOrDefault<String>(
-                            _model.imgIndex.toString(),
-                            '1',
-                          )}/${stackProductsRow?.productImg.length.toString()}',
+                          '${(_model.carouselCurrentIndex + 1).toString()}/${stackProductsRow?.productImg.length.toString()}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'noto sans',

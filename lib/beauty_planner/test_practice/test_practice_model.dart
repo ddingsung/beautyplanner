@@ -1,5 +1,6 @@
 import '/beauty_planner/nav_bar1/nav_bar1_widget.dart';
 import '/component/search_bar/search_bar_widget.dart';
+import '/components/main_carousel_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'test_practice_widget.dart' show TestPracticeWidget;
@@ -21,6 +22,8 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
   List<String>? get choiceChipsValues => choiceChipsValueController?.value;
   set choiceChipsValues(List<String>? val) =>
       choiceChipsValueController?.value = val;
+  // Model for main_carousel component.
+  late MainCarouselModel mainCarouselModel;
   // State field(s) for Carousel widget.
   CarouselController? carouselController1;
   int carouselCurrentIndex1 = 1;
@@ -35,6 +38,7 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
   @override
   void initState(BuildContext context) {
     searchBarModel = createModel(context, () => SearchBarModel());
+    mainCarouselModel = createModel(context, () => MainCarouselModel());
     navBar1Model = createModel(context, () => NavBar1Model());
   }
 
@@ -42,6 +46,7 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
   void dispose() {
     unfocusNode.dispose();
     searchBarModel.dispose();
+    mainCarouselModel.dispose();
     navBar1Model.dispose();
   }
 }
