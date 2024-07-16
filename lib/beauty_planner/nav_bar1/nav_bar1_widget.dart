@@ -110,13 +110,22 @@ class _NavBar1WidgetState extends State<NavBar1Widget> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(0.0),
-                    child: SvgPicture.asset(
-                      'assets/images/Property_1=False_(1).svg',
-                      width: 63.0,
-                      height: 59.0,
-                      fit: BoxFit.cover,
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed('recommended_plan_page');
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(0.0),
+                      child: Image.asset(
+                        'assets/images/Property_1=False_(1).png',
+                        width: 63.0,
+                        height: 59.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ],
