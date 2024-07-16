@@ -9,7 +9,6 @@ import '/backend/schema/structs/index.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
-import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -76,22 +75,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const NavBarPage()
+          ? const TestPracticeWidget()
           : const OnbordingCopyCopy2CopyWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? const NavBarPage()
+              ? const TestPracticeWidget()
               : const OnbordingCopyCopy2CopyWidget(),
         ),
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'HomePage')
-              : const HomePageWidget(),
+          builder: (context, params) => const HomePageWidget(),
         ),
         FFRoute(
           name: 'createID',
@@ -106,9 +103,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Details12SocialPost',
           path: '/details12SocialPost',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Details12SocialPost')
-              : const Details12SocialPostWidget(),
+          builder: (context, params) => const Details12SocialPostWidget(),
         ),
         FFRoute(
           name: 'Details13PropertyHouse',
@@ -133,30 +128,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'recommended_plan_page',
           path: '/recommendedPlanPage',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'recommended_plan_page')
-              : const RecommendedPlanPageWidget(),
+          builder: (context, params) => const RecommendedPlanPageWidget(),
         ),
         FFRoute(
           name: 'user_plan_result',
           path: '/userPlanResult',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'user_plan_result')
-              : const UserPlanResultWidget(),
+          builder: (context, params) => const UserPlanResultWidget(),
         ),
         FFRoute(
           name: 'user_plan_result_detail',
           path: '/userPlanResultDetail',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'user_plan_result_detail')
-              : const UserPlanResultDetailWidget(),
+          builder: (context, params) => const UserPlanResultDetailWidget(),
         ),
         FFRoute(
           name: 'user_plan_set_day',
           path: '/userPlanSetDay',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'user_plan_set_day')
-              : const UserPlanSetDayWidget(),
+          builder: (context, params) => const UserPlanSetDayWidget(),
         ),
         FFRoute(
           name: 'dasd',
@@ -171,16 +158,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'mypage',
           path: '/mypage',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'mypage')
-              : const MypageWidget(),
+          builder: (context, params) => const MypageWidget(),
         ),
         FFRoute(
           name: 'order_history',
           path: '/orderHistory',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'order_history')
-              : const OrderHistoryWidget(),
+          builder: (context, params) => const OrderHistoryWidget(),
         ),
         FFRoute(
           name: 'order_history_detail',
@@ -195,9 +178,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'product_list',
           path: '/productList',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'product_list')
-              : const ProductListWidget(),
+          builder: (context, params) => const ProductListWidget(),
         ),
         FFRoute(
           name: 'product_detail',
