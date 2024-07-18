@@ -34,3 +34,4 @@ export '/onbording_copy_copy2/onbording_copy_copy2_widget.dart'
     show OnbordingCopyCopy2Widget;
 export '/onbording_copy_copy2_copy/onbording_copy_copy2_copy_widget.dart'
     show OnbordingCopyCopy2CopyWidget;
+export '/cart/cart_widget.dart' show CartWidget;

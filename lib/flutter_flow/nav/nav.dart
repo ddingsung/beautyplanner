@@ -209,6 +209,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'onbordingCopyCopy2Copy',
           path: '/onbordingCopyCopy2Copy',
           builder: (context, params) => const OnbordingCopyCopy2CopyWidget(),
+        ),
+        FFRoute(
+          name: 'cart',
+          path: '/cart',
+          builder: (context, params) => const CartWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

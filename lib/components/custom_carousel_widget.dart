@@ -103,7 +103,7 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
                             itemBuilder: (context, imgurlIndex, _) {
                               final imgurlItem = imgurl[imgurlIndex];
                               return ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(0.0),
                                 child: Image.network(
                                   imgurlItem,
                                   fit: BoxFit.fill,
