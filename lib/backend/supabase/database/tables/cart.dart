@@ -23,15 +23,18 @@ class CartRow extends SupabaseDataRow {
   DateTime? get updatedAt => getField<DateTime>('updated_at');
   set updatedAt(DateTime? value) => setField<DateTime>('updated_at', value);
 
-  int? get userId => getField<int>('user_id');
-  set userId(int? value) => setField<int>('user_id', value);
-
   String? get productUid => getField<String>('product_uid');
   set productUid(String? value) => setField<String>('product_uid', value);
 
-  int? get quantity => getField<int>('quantity');
-  set quantity(int? value) => setField<int>('quantity', value);
-
   double? get totalPrice => getField<double>('total_price');
   set totalPrice(double? value) => setField<double>('total_price', value);
+
+  String? get userUid => getField<String>('user_uid');
+  set userUid(String? value) => setField<String>('user_uid', value);
+
+  String? get status => getField<String>('status');
+  set status(String? value) => setField<String>('status', value);
+
+  int? get quantity => getField<int>('quantity');
+  set quantity(int? value) => setField<int>('quantity', value);
 }

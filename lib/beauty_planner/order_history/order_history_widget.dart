@@ -1,7 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
-import '/components/app_bar2_widget.dart';
-import '/components/order_history_widget_widget.dart';
+import '/component/app_bar2/app_bar2_widget.dart';
+import '/component/order_history_widget/order_history_widget_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';

@@ -68,4 +68,7 @@ class UsersRow extends SupabaseDataRow {
 
   String get userId => getField<String>('user_id')!;
   set userId(String value) => setField<String>('user_id', value);
+
+  int? get zipcode => getField<int>('zipcode');
+  set zipcode(int? value) => setField<int>('zipcode', value);
 }

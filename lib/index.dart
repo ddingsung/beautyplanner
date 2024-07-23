@@ -6,7 +6,8 @@ export '/pages/details12_social_post/details12_social_post_widget.dart'
     show Details12SocialPostWidget;
 export '/pages/details13_property_house/details13_property_house_widget.dart'
     show Details13PropertyHouseWidget;
-export '/list05_products/list05_products_widget.dart' show List05ProductsWidget;
+export '/beauty_planner/list05_products/list05_products_widget.dart'
+    show List05ProductsWidget;
 export '/beauty_planner/test_practice/test_practice_widget.dart'
     show TestPracticeWidget;
 export '/beauty_planner/recommended_plan_page/recommended_plan_page_widget.dart'
@@ -27,11 +28,18 @@ export '/beauty_planner/order_history_detail/order_history_detail_widget.dart'
     show OrderHistoryDetailWidget;
 export '/beauty_planner/product_list/product_list_widget.dart'
     show ProductListWidget;
-export '/product_detail/product_detail_widget.dart' show ProductDetailWidget;
-export '/onbording_copy/onbording_copy_widget.dart' show OnbordingCopyWidget;
-export '/lottie_test/lottie_test_widget.dart' show LottieTestWidget;
-export '/onbording_copy_copy2/onbording_copy_copy2_widget.dart'
+export '/beauty_planner/product_detail/product_detail_widget.dart'
+    show ProductDetailWidget;
+export '/beauty_planner/onbording_copy/onbording_copy_widget.dart'
+    show OnbordingCopyWidget;
+export '/beauty_planner/lottie_test/lottie_test_widget.dart'
+    show LottieTestWidget;
+export '/beauty_planner/onbording_copy_copy2/onbording_copy_copy2_widget.dart'
     show OnbordingCopyCopy2Widget;
-export '/onbording_copy_copy2_copy/onbording_copy_copy2_copy_widget.dart'
+export '/beauty_planner/onbording_copy_copy2_copy/onbording_copy_copy2_copy_widget.dart'
     show OnbordingCopyCopy2CopyWidget;
-export '/cart/cart_widget.dart' show CartWidget;
+export '/beauty_planner/cart/cart_widget.dart' show CartWidget;
+export '/beauty_planner/alliance_detail/alliance_detail_widget.dart'
+    show AllianceDetailWidget;
+export '/beauty_planner/customer_support/customer_support_widget.dart'
+    show CustomerSupportWidget;

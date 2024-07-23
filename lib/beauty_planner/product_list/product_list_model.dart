@@ -1,6 +1,7 @@
-import '/components/banner_card_widget.dart';
-import '/components/product_items_list_widget.dart';
-import '/components/product_list_choice_chips_widget.dart';
+import '/component/banner_card/banner_card_widget.dart';
+import '/component/nav_bar1/nav_bar1_widget.dart';
+import '/component/product_items_list/product_items_list_widget.dart';
+import '/component/product_list_choice_chips/product_list_choice_chips_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'product_list_widget.dart' show ProductListWidget;
 import 'package:flutter/material.dart';
@@ -35,6 +36,8 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
   late FlutterFlowDynamicModels<ProductItemsListModel> productItemsListModels1;
   // Model for banner_card component.
   late BannerCardModel bannerCardModel;
+  // Model for NavBar1 component.
+  late NavBar1Model navBar1Model;
 
   @override
   void initState(BuildContext context) {
@@ -55,6 +58,7 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
     productItemsListModels1 =
         FlutterFlowDynamicModels(() => ProductItemsListModel());
     bannerCardModel = createModel(context, () => BannerCardModel());
+    navBar1Model = createModel(context, () => NavBar1Model());
   }
 
   @override
@@ -72,5 +76,6 @@ class ProductListModel extends FlutterFlowModel<ProductListWidget> {
     productListChoiceChipsModel7.dispose();
     productItemsListModels1.dispose();
     bannerCardModel.dispose();
+    navBar1Model.dispose();
   }
 }

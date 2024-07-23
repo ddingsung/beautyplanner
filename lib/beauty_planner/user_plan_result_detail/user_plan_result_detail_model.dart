@@ -1,4 +1,4 @@
-import '/components/recommend_plan_list_widget.dart';
+import '/component/recommend_plan_list/recommend_plan_list_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'user_plan_result_detail_widget.dart' show UserPlanResultDetailWidget;
 import 'package:flutter/material.dart';

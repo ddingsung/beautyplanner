@@ -85,4 +85,7 @@ class ProductsRow extends SupabaseDataRow {
 
   List<String> get option => getListField<String>('option');
   set option(List<String>? value) => setListField<String>('option', value);
+
+  int? get companyId => getField<int>('company_id');
+  set companyId(int? value) => setField<int>('company_id', value);
 }

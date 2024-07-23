@@ -1,7 +1,7 @@
-import '/beauty_planner/nav_bar1/nav_bar1_widget.dart';
+import '/component/main_beaury_chat/main_beaury_chat_widget.dart';
+import '/component/main_carousel/main_carousel_widget.dart';
+import '/component/nav_bar1/nav_bar1_widget.dart';
 import '/component/search_bar/search_bar_widget.dart';
-import '/components/main_beaury_chat_widget.dart';
-import '/components/main_carousel_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -548,14 +548,14 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    68.0, 8.0, 9.0, 9.0),
+                                                    65.0, 12.0, 10.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/279/600',
-                                                width: 16.0,
-                                                height: 31.0,
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.asset(
+                                                'assets/images/u8uhe_.png',
+                                                width: 24.0,
+                                                height: 24.0,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -572,6 +572,8 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                                       .override(
                                                         fontFamily: 'noto sans',
                                                         color: Colors.white,
+                                                        fontSize: functions
+                                                            .setFontSize(16.0),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -600,7 +602,8 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                                       .bodySmall
                                                       .override(
                                                         fontFamily: 'noto sans',
-                                                        fontSize: 10.0,
+                                                        fontSize: functions
+                                                            .setFontSize(10.0),
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: false,
                                                       ),
@@ -641,28 +644,39 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            width: 93.0,
-                                            height: 169.0,
-                                            decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0x00FFFFFF),
-                                                  Color(0x9F61E5FA)
-                                                ],
-                                                stops: [0.0, 0.9],
-                                                begin: AlignmentDirectional(
-                                                    0.0, -1.0),
-                                                end: AlignmentDirectional(
-                                                    0, 1.0),
-                                              ),
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(16.0),
-                                                bottomRight:
-                                                    Radius.circular(16.0),
-                                                topLeft: Radius.circular(16.0),
-                                                topRight: Radius.circular(60.0),
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed('product_list');
+                                            },
+                                            child: Container(
+                                              width: 93.0,
+                                              height: 169.0,
+                                              decoration: const BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    Color(0x00FFFFFF),
+                                                    Color(0x9F61E5FA)
+                                                  ],
+                                                  stops: [0.0, 0.9],
+                                                  begin: AlignmentDirectional(
+                                                      0.0, -1.0),
+                                                  end: AlignmentDirectional(
+                                                      0, 1.0),
+                                                ),
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(16.0),
+                                                  bottomRight:
+                                                      Radius.circular(16.0),
+                                                  topLeft:
+                                                      Radius.circular(16.0),
+                                                  topRight:
+                                                      Radius.circular(60.0),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -684,68 +698,93 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    68.0, 8.0, 9.0, 9.0),
+                                                    65.0, 12.0, 10.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/279/600',
-                                                width: 16.0,
-                                                height: 31.0,
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.asset(
+                                                'assets/images/nbje8_.png',
+                                                width: 24.0,
+                                                height: 24.0,
                                                 fit: BoxFit.cover,
                                               ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 93.0, 40.0, 52.0),
+                                            child: Text(
+                                              '소개',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'noto sans',
+                                                        color: Colors.white,
+                                                        fontSize: functions
+                                                            .setFontSize(16.0),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: false,
+                                                      ),
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    67.0, 95.0, 14.22, 54.0),
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                              size: 22.0,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 117.0, 15.0, 28.0),
+                                            child: Text(
+                                              'AI 뷰티 플래너\n뷰플리 소개',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily: 'noto sans',
+                                                        fontSize: functions
+                                                            .setFontSize(10.0),
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 99.0,
-                                    height: 177.0,
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          width: 93.0,
-                                          height: 169.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: Image.network(
-                                                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwzfHxiZWF1dGlmdWwlMjBvY2VhbnxlbnwwfHx8fDE3MTkzMzU4Njl8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                              ).image,
-                                            ),
-                                            borderRadius: const BorderRadius.only(
-                                              bottomLeft: Radius.circular(16.0),
-                                              bottomRight:
-                                                  Radius.circular(16.0),
-                                              topLeft: Radius.circular(16.0),
-                                              topRight: Radius.circular(60.0),
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 6.0, 0.0),
-                                          child: Container(
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 18.0, 0.0),
+                                    child: SizedBox(
+                                      width: 99.0,
+                                      height: 177.0,
+                                      child: Stack(
+                                        children: [
+                                          Container(
                                             width: 93.0,
                                             height: 169.0,
-                                            decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0x00FFFFFF),
-                                                  Color(0x9F61E5FA)
-                                                ],
-                                                stops: [0.0, 0.9],
-                                                begin: AlignmentDirectional(
-                                                    0.0, -1.0),
-                                                end: AlignmentDirectional(
-                                                    0, 1.0),
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: Image.network(
+                                                  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwzfHxiZWF1dGlmdWwlMjBvY2VhbnxlbnwwfHx8fDE3MTkzMzU4Njl8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                                ).image,
                                               ),
-                                              borderRadius: BorderRadius.only(
+                                              borderRadius: const BorderRadius.only(
                                                 bottomLeft:
                                                     Radius.circular(16.0),
                                                 bottomRight:
@@ -755,38 +794,124 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  52.0, 0.0, 0.0, 0.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: SvgPicture.asset(
-                                              'assets/images/Frame_971.svg',
-                                              width: 47.0,
-                                              height: 48.0,
-                                              fit: BoxFit.cover,
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context
+                                                  .pushNamed('alliance_detail');
+                                            },
+                                            child: Container(
+                                              width: 93.0,
+                                              height: 169.0,
+                                              decoration: const BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    Color(0x00FFFFFF),
+                                                    Color(0x9F61E5FA)
+                                                  ],
+                                                  stops: [0.0, 0.9],
+                                                  begin: AlignmentDirectional(
+                                                      0.0, -1.0),
+                                                  end: AlignmentDirectional(
+                                                      0, 1.0),
+                                                ),
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(16.0),
+                                                  bottomRight:
+                                                      Radius.circular(16.0),
+                                                  topLeft:
+                                                      Radius.circular(16.0),
+                                                  topRight:
+                                                      Radius.circular(60.0),
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  68.0, 8.0, 9.0, 9.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              'https://picsum.photos/seed/279/600',
-                                              width: 16.0,
-                                              height: 31.0,
-                                              fit: BoxFit.cover,
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    52.0, 0.0, 0.0, 0.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: SvgPicture.asset(
+                                                'assets/images/Frame_971.svg',
+                                                width: 47.0,
+                                                height: 48.0,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    65.0, 12.0, 10.0, 0.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.asset(
+                                                'assets/images/tyxex_.png',
+                                                width: 24.0,
+                                                height: 24.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 93.0, 40.0, 52.0),
+                                            child: Text(
+                                              '제휴',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'noto sans',
+                                                        color: Colors.white,
+                                                        fontSize: functions
+                                                            .setFontSize(16.0),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: false,
+                                                      ),
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    67.0, 95.0, 14.22, 54.0),
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                              size: 22.0,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 117.0, 15.0, 28.0),
+                                            child: Text(
+                                              '나도 사장님이\n될 수 있다!',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily: 'noto sans',
+                                                        fontSize: functions
+                                                            .setFontSize(10.0),
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],

@@ -112,7 +112,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   height: 400.0,
                   decoration: const BoxDecoration(),
                   child: FutureBuilder<ApiCallResponse>(
-                    future: GetProductImgCall.call(),
+                    future: GetProductInfoCall.call(),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -120,12 +120,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           '',
                         );
                       }
-                      final pageViewGetProductImgResponse = snapshot.data!;
+                      final pageViewGetProductInfoResponse = snapshot.data!;
 
                       return Builder(
                         builder: (context) {
                           final img = getJsonField(
-                            pageViewGetProductImgResponse.jsonBody,
+                            pageViewGetProductInfoResponse.jsonBody,
                             r'''$''',
                           ).toList();
 

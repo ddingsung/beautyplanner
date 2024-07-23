@@ -32,8 +32,8 @@ class ReviewsRow extends SupabaseDataRow {
   String? get comment => getField<String>('comment');
   set comment(String? value) => setField<String>('comment', value);
 
-  String? get img => getField<String>('img');
-  set img(String? value) => setField<String>('img', value);
+  List<String> get img => getListField<String>('img');
+  set img(List<String>? value) => setListField<String>('img', value);
 
   int? get like => getField<int>('like');
   set like(int? value) => setField<int>('like', value);

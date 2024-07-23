@@ -1,6 +1,6 @@
-import '/beauty_planner/nav_bar1/nav_bar1_widget.dart';
+import '/component/main_carousel/main_carousel_widget.dart';
+import '/component/nav_bar1/nav_bar1_widget.dart';
 import '/component/search_bar/search_bar_widget.dart';
-import '/components/main_carousel_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'test_practice_widget.dart' show TestPracticeWidget;

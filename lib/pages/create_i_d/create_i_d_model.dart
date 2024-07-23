@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class CreateIDModel extends FlutterFlowModel<CreateIDWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -44,6 +45,7 @@ class CreateIDModel extends FlutterFlowModel<CreateIDWidget> {
 
   @override
   void dispose() {
+    unfocusNode.dispose();
     tabBarController?.dispose();
     textFieldFocusNode1?.dispose();
     emailTextController1?.dispose();

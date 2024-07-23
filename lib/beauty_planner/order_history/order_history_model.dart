@@ -1,4 +1,4 @@
-import '/components/app_bar2_widget.dart';
+import '/component/app_bar2/app_bar2_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'order_history_widget.dart' show OrderHistoryWidget;
 import 'package:flutter/material.dart';

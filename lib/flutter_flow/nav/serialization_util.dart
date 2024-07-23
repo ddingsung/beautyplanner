@@ -244,6 +244,8 @@ dynamic deserializeParam<T>(
             return UserRecommendationsRow(data);
           case UserPlansRow:
             return UserPlansRow(data);
+          case ProductCompaniesRow:
+            return ProductCompaniesRow(data);
           case PlansRow:
             return PlansRow(data);
           case PurchaseHistoryRow:
@@ -254,6 +256,8 @@ dynamic deserializeParam<T>(
             return FaqBoardRow(data);
           case UsersRow:
             return UsersRow(data);
+          case ProductQuestionsRow:
+            return ProductQuestionsRow(data);
           case ReviewsRow:
             return ReviewsRow(data);
           case NotificationsRow:

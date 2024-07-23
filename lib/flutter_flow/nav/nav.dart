@@ -213,7 +213,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'cart',
           path: '/cart',
-          builder: (context, params) => const CartWidget(),
+          builder: (context, params) => CartWidget(
+            userUid: params.getParam(
+              'userUid',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'alliance_detail',
+          path: '/allianceDetail',
+          builder: (context, params) => const AllianceDetailWidget(),
+        ),
+        FFRoute(
+          name: 'customer_support',
+          path: '/customerSupport',
+          builder: (context, params) => const CustomerSupportWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
