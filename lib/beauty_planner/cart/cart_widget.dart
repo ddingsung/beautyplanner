@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -91,17 +92,66 @@ class _CartWidgetState extends State<CartWidget> {
               child: AppBar(
                 backgroundColor: Colors.transparent,
                 automaticallyImplyLeading: false,
-                actions: const [],
+                leading: FlutterFlowIconButton(
+                  borderColor: Colors.white,
+                  borderRadius: 0.0,
+                  borderWidth: 0.0,
+                  buttonSize: 40.0,
+                  fillColor: const Color(0x4CFFFFFF),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                  onPressed: () {
+                    print('IconButton pressed ...');
+                  },
+                ),
+                actions: [
+                  FlutterFlowIconButton(
+                    borderRadius: 0.0,
+                    borderWidth: 0.0,
+                    buttonSize: 40.0,
+                    icon: Icon(
+                      Icons.search_sharp,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                    onPressed: () {
+                      print('IconButton pressed ...');
+                    },
+                  ),
+                  FlutterFlowIconButton(
+                    borderRadius: 0.0,
+                    borderWidth: 0.0,
+                    buttonSize: 40.0,
+                    icon: Icon(
+                      Icons.notifications_none,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                    onPressed: () {
+                      print('IconButton pressed ...');
+                    },
+                  ),
+                ],
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Text(
-                    'Page Title',
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'noto sans',
-                          color: Colors.black,
-                          fontSize: 22.0,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: false,
-                        ),
+                  title: Align(
+                    alignment: const AlignmentDirectional(0.0, 1.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                      child: Text(
+                        '장바구니',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'noto sans',
+                              fontSize: functions.setFontSize(16.0),
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                              useGoogleFonts: false,
+                            ),
+                      ),
+                    ),
                   ),
                   centerTitle: false,
                   expandedTitleScale: 1.0,
@@ -177,17 +227,17 @@ class _CartWidgetState extends State<CartWidget> {
                                   ),
                                   Builder(
                                     builder: (context) {
-                                      final cartItem = getJsonField(
-                                        cartGetUserCartResponse.jsonBody,
-                                        r'''$.cart_uid''',
-                                      ).toList();
+                                      final cartList = GetUserCartCall.cartId(
+                                            cartGetUserCartResponse.jsonBody,
+                                          )?.toList() ??
+                                          [];
 
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        children: List.generate(cartItem.length,
-                                            (cartItemIndex) {
-                                          final cartItemItem =
-                                              cartItem[cartItemIndex];
+                                        children: List.generate(cartList.length,
+                                            (cartListIndex) {
+                                          final cartListItem =
+                                              cartList[cartListIndex];
                                           return Container(
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
@@ -251,7 +301,7 @@ class _CartWidgetState extends State<CartWidget> {
                                                                         .productName(
                                                                       cartGetUserCartResponse
                                                                           .jsonBody,
-                                                                    ),
+                                                                    )?.first,
                                                                     '1',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -329,19 +379,10 @@ class _CartWidgetState extends State<CartWidget> {
                                                                     .min,
                                                             children: [
                                                               Text(
-                                                                '${formatNumber(
-                                                                  GetUserCartCall
-                                                                      .productPrice(
-                                                                    cartGetUserCartResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .automatic,
-                                                                )}원',
+                                                                '${GetUserCartCall.productPrice(
+                                                                  cartGetUserCartResponse
+                                                                      .jsonBody,
+                                                                )?.first.toString()}원',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -377,10 +418,11 @@ class _CartWidgetState extends State<CartWidget> {
                                                               Text(
                                                                 formatNumber(
                                                                   GetUserCartCall
-                                                                      .productDiscount(
+                                                                          .productDiscount(
                                                                     cartGetUserCartResponse
                                                                         .jsonBody,
-                                                                  ),
+                                                                  )!
+                                                                      .first,
                                                                   formatType:
                                                                       FormatType
                                                                           .percent,
@@ -404,19 +446,20 @@ class _CartWidgetState extends State<CartWidget> {
                                                               ),
                                                               Text(
                                                                 formatNumber(
-                                                                  (GetUserCartCall
-                                                                          .productPrice(
+                                                                  GetUserCartCall
+                                                                              .productPrice(
                                                                         cartGetUserCartResponse
                                                                             .jsonBody,
-                                                                      )!) *
-                                                                      ((GetUserCartCall
-                                                                              .productPrice(
+                                                                      )!
+                                                                          .first -
+                                                                      (GetUserCartCall.productPrice(
                                                                             cartGetUserCartResponse.jsonBody,
-                                                                          )!) /
+                                                                          )!
+                                                                              .first *
                                                                           (GetUserCartCall.productDiscount(
                                                                                 cartGetUserCartResponse.jsonBody,
                                                                               )!
-                                                                                  .toDouble() *
+                                                                                  .first /
                                                                               100)),
                                                                   formatType:
                                                                       FormatType

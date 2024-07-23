@@ -222,54 +222,129 @@ class GetUserCartCall {
     );
   }
 
-  static String? userUid(dynamic response) => castToType<String>(getJsonField(
+  static List? uesrAddress(dynamic response) => getJsonField(
+        response,
+        r'''$[:].user_address''',
+        true,
+      ) as List?;
+  static List? userPhone(dynamic response) => getJsonField(
+        response,
+        r'''$[:].user_phone''',
+        true,
+      ) as List?;
+  static List<String>? cartStatus(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].cart_status''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? userZipcode(dynamic response) => getJsonField(
+        response,
+        r'''$[:].user_zipcode''',
+        true,
+      ) as List?;
+  static List<String>? userUidInput(dynamic response) => (getJsonField(
         response,
         r'''$[:].user_uid_input''',
-      ));
-  static String? userName(dynamic response) => castToType<String>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? userName(dynamic response) => (getJsonField(
         response,
         r'''$[:].user_name''',
-      ));
-  static int? cartId(dynamic response) => castToType<int>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? cartId(dynamic response) => (getJsonField(
         response,
         r'''$[:].cart_id''',
-      ));
-  static String? cartCreatedAt(dynamic response) =>
-      castToType<String>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? cartCreatedAt(dynamic response) => (getJsonField(
         response,
         r'''$[:].cart_crated_at''',
-      ));
-  static String? cartUpdatedAt(dynamic response) =>
-      castToType<String>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? cartUpdatedAt(dynamic response) => (getJsonField(
         response,
         r'''$[:].cart_updated_at''',
-      ));
-  static String? cartProductUid(dynamic response) =>
-      castToType<String>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? cartProductUid(dynamic response) => (getJsonField(
         response,
         r'''$[:].cart_product_uid''',
-      ));
-  static int? cartTotalPrice(dynamic response) => castToType<int>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<double>? cartTotalPrice(dynamic response) => (getJsonField(
         response,
         r'''$[:].cart_total_price''',
-      ));
-  static int? cartQuantity(dynamic response) => castToType<int>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? cartQuantity(dynamic response) => (getJsonField(
         response,
         r'''$[:].cart_quantity''',
-      ));
-  static String? productName(dynamic response) =>
-      castToType<String>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productName(dynamic response) => (getJsonField(
         response,
         r'''$[:].product_name''',
-      ));
-  static int? productPrice(dynamic response) => castToType<int>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productPrice(dynamic response) => (getJsonField(
         response,
         r'''$[:].product_price''',
-      ));
-  static int? productDiscount(dynamic response) => castToType<int>(getJsonField(
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<double>? productDiscount(dynamic response) => (getJsonField(
         response,
         r'''$[:].product_discount''',
-      ));
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
 }
 
 class GetItemCall {

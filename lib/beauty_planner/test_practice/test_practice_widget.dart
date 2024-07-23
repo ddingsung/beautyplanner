@@ -35,7 +35,8 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await showDialog(
+      showDialog(
+        barrierColor: const Color(0x00FFFFFF),
         context: context,
         builder: (dialogContext) {
           return Dialog(
@@ -48,7 +49,10 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
               onTap: () => _model.unfocusNode.canRequestFocus
                   ? FocusScope.of(context).requestFocus(_model.unfocusNode)
                   : FocusScope.of(context).unfocus(),
-              child: const MainBeauryChatWidget(),
+              child: const SizedBox(
+                height: 120.0,
+                child: MainBeauryChatWidget(),
+              ),
             ),
           );
         },
