@@ -1,7 +1,6 @@
 import '/component/main_beaury_chat/main_beaury_chat_widget.dart';
 import '/component/main_carousel/main_carousel_widget.dart';
 import '/component/nav_bar1/nav_bar1_widget.dart';
-import '/component/search_bar/search_bar_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -107,8 +106,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                       size: 24.0,
                     ),
                     onPressed: () async {
-                      _model.searchBar = !_model.searchBar;
-                      setState(() {});
+                      context.pushNamed('search_page');
                     },
                   ),
                   FlutterFlowIconButton(
@@ -120,8 +118,8 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                       size: 24.0,
                     ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
+                    onPressed: () async {
+                      context.pushNamed('dasd');
                     },
                   ),
                 ],
@@ -163,12 +161,6 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                     ),
                                   ],
                                 ),
-                                if (!_model.searchBar)
-                                  wrapWithModel(
-                                    model: _model.searchBarModel,
-                                    updateCallback: () => setState(() {}),
-                                    child: const SearchBarWidget(),
-                                  ),
                               ],
                             ),
                             Column(
@@ -1000,17 +992,17 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                           children: [
                                             Text(
                                               '요즘 뜨는 상품',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'noto sans',
-                                                        color:
-                                                            const Color(0xFF08CEED),
-                                                        fontSize: 18.0,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: false,
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'noto sans',
+                                                    color: const Color(0xFF08CEED),
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    useGoogleFonts: false,
+                                                  ),
                                             ),
                                             const Icon(
                                               Icons.arrow_forward_ios,
@@ -1111,6 +1103,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                           color: const Color(0xFF08CEED),
                                           fontSize: 18.0,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
                                           useGoogleFonts: false,
                                         ),
                                   ),
@@ -1122,75 +1115,95 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                 ],
                               ),
                             ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: SizedBox(
-                                    width: double.infinity,
-                                    height: 180.0,
-                                    child: CarouselSlider(
-                                      items: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/373/600',
-                                            width: 300.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 80.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
+                                      height: 71.0,
+                                      child: CarouselSlider(
+                                        items: [
+                                          Container(
+                                            width: 173.0,
+                                            height: 71.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      '',
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'noto sans',
+                                                            color: const Color(
+                                                                0xFF2E2E33),
+                                                            fontSize: functions
+                                                                .setFontSize(
+                                                                    12.0),
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                false,
+                                                          ),
+                                                    ),
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0),
+                                                      child: Image.network(
+                                                        'https://picsum.photos/seed/304/600',
+                                                        width: 67.0,
+                                                        height: 71.0,
+                                                        fit: BoxFit.contain,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
+                                        ],
+                                        carouselController:
+                                            _model.carouselController2 ??=
+                                                CarouselController(),
+                                        options: CarouselOptions(
+                                          initialPage: 0,
+                                          viewportFraction: 0.5,
+                                          disableCenter: true,
+                                          enlargeCenterPage: true,
+                                          enlargeFactor: 0.25,
+                                          enableInfiniteScroll: true,
+                                          scrollDirection: Axis.horizontal,
+                                          autoPlay: false,
+                                          onPageChanged: (index, _) => _model
+                                              .carouselCurrentIndex2 = index,
                                         ),
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/490/600',
-                                            width: 300.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/799/600',
-                                            width: 300.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://picsum.photos/seed/22/600',
-                                            width: 300.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ],
-                                      carouselController:
-                                          _model.carouselController2 ??=
-                                              CarouselController(),
-                                      options: CarouselOptions(
-                                        initialPage: 1,
-                                        viewportFraction: 0.5,
-                                        disableCenter: true,
-                                        enlargeCenterPage: true,
-                                        enlargeFactor: 0.25,
-                                        enableInfiniteScroll: true,
-                                        scrollDirection: Axis.horizontal,
-                                        autoPlay: false,
-                                        onPageChanged: (index, _) => _model
-                                            .carouselCurrentIndex2 = index,
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),

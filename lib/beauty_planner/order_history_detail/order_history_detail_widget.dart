@@ -113,6 +113,7 @@ class _OrderHistoryDetailWidgetState extends State<OrderHistoryDetailWidget> {
                               containerOrderHistoryRowList.isNotEmpty
                                   ? containerOrderHistoryRowList.first
                                   : null;
+
                           return Container(
                             width: double.infinity,
                             decoration: const BoxDecoration(

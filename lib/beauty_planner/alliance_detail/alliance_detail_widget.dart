@@ -1,4 +1,5 @@
 import '/component/nav_bar1/nav_bar1_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -45,24 +46,66 @@ class _AllianceDetailWidgetState extends State<AllianceDetailWidget> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(55.0),
           child: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
-            actions: const [],
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 55.0,
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFF1C1B1F),
+                size: 24.0,
+              ),
+              onPressed: () async {
+                context.pop();
+              },
+            ),
+            actions: [
+              FlutterFlowIconButton(
+                borderRadius: 0.0,
+                borderWidth: 1.0,
+                buttonSize: 40.0,
+                icon: Icon(
+                  Icons.search_sharp,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
+                onPressed: () {
+                  print('IconButton pressed ...');
+                },
+              ),
+              FlutterFlowIconButton(
+                borderRadius: 0.0,
+                borderWidth: 1.0,
+                buttonSize: 40.0,
+                icon: Icon(
+                  Icons.notifications_none,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
+                onPressed: () {
+                  print('IconButton pressed ...');
+                },
+              ),
+            ],
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                'Page Title',
+                '제휴',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'noto sans',
-                      color: Colors.black,
-                      fontSize: 22.0,
+                      color: const Color(0xFF1C1B1F),
+                      fontSize: functions.setFontSize(16.0),
                       letterSpacing: 0.0,
+                      fontWeight: FontWeight.w600,
                       useGoogleFonts: false,
                     ),
               ),
-              centerTitle: false,
+              centerTitle: true,
               expandedTitleScale: 1.0,
             ),
-            elevation: 0.0,
+            elevation: 3.0,
           ),
         ),
         body: SafeArea(

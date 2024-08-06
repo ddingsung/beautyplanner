@@ -15,6 +15,7 @@ export 'tables/uesr_preference.dart';
 export 'tables/category.dart';
 export 'tables/user_interactions.dart';
 export 'tables/returns_exchanges.dart';
+export 'tables/magazine.dart';
 export 'tables/products.dart';
 export 'tables/order_history.dart';
 export 'tables/user_recommendations.dart';

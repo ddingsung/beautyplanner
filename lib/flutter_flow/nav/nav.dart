@@ -133,7 +133,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'user_plan_result',
           path: '/userPlanResult',
-          builder: (context, params) => const UserPlanResultWidget(),
+          builder: (context, params) => UserPlanResultWidget(
+            userSelectedList: params.getParam<String>(
+              'userSelectedList',
+              ParamType.String,
+              isList: true,
+            ),
+          ),
         ),
         FFRoute(
           name: 'user_plan_result_detail',
@@ -229,6 +235,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'customer_support',
           path: '/customerSupport',
           builder: (context, params) => const CustomerSupportWidget(),
+        ),
+        FFRoute(
+          name: 'search_image',
+          path: '/searchImage',
+          builder: (context, params) => const SearchImageWidget(),
+        ),
+        FFRoute(
+          name: 'product_qna',
+          path: '/productQna',
+          builder: (context, params) => const ProductQnaWidget(),
+        ),
+        FFRoute(
+          name: 'product_qna_write',
+          path: '/productQnaWrite',
+          builder: (context, params) => const ProductQnaWriteWidget(),
+        ),
+        FFRoute(
+          name: 'search_page',
+          path: '/searchPage',
+          builder: (context, params) => const SearchPageWidget(),
+        ),
+        FFRoute(
+          name: 'product_qna_result',
+          path: '/productQnaResult',
+          builder: (context, params) => const ProductQnaResultWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -88,4 +88,12 @@ class ProductsRow extends SupabaseDataRow {
 
   int? get companyId => getField<int>('company_id');
   set companyId(int? value) => setField<int>('company_id', value);
+
+  List<String> get nameWords => getListField<String>('name_words');
+  set nameWords(List<String>? value) =>
+      setListField<String>('name_words', value);
+
+  String? get productDetailImg => getField<String>('product_detail_img');
+  set productDetailImg(String? value) =>
+      setField<String>('product_detail_img', value);
 }

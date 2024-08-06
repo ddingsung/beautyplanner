@@ -17,14 +17,29 @@ class ReviewBottomsheetModel extends FlutterFlowModel<ReviewBottomsheetWidget> {
   void updateImgUrlsAtIndex(int index, Function(String) updateFn) =>
       imgUrls[index] = updateFn(imgUrls[index]);
 
+  List<String> imgListCount = [];
+  void addToImgListCount(String item) => imgListCount.add(item);
+  void removeFromImgListCount(String item) => imgListCount.remove(item);
+  void removeAtIndexFromImgListCount(int index) => imgListCount.removeAt(index);
+  void insertAtIndexInImgListCount(int index, String item) =>
+      imgListCount.insert(index, item);
+  void updateImgListCountAtIndex(int index, Function(String) updateFn) =>
+      imgListCount[index] = updateFn(imgListCount[index]);
+
+  int? index = 0;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for RatingBar widget.
   double? ratingBarValue;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
+  String uploadedFileUrl1 = '';
+
+  bool isDataUploading2 = false;
+  List<FFUploadedFile> uploadedLocalFiles2 = [];
+  List<String> uploadedFileUrls2 = [];
 
   // State field(s) for content widget.
   FocusNode? contentFocusNode;

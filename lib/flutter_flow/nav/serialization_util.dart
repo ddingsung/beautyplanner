@@ -236,6 +236,8 @@ dynamic deserializeParam<T>(
             return UserInteractionsRow(data);
           case ReturnsExchangesRow:
             return ReturnsExchangesRow(data);
+          case MagazineRow:
+            return MagazineRow(data);
           case ProductsRow:
             return ProductsRow(data);
           case OrderHistoryRow:

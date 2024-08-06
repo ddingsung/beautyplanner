@@ -1,3 +1,4 @@
+import '/component/nav_bar1/nav_bar1_widget.dart';
 import '/component/plan_check/plan_check_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'recommended_plan_page_widget.dart' show RecommendedPlanPageWidget;
@@ -54,6 +55,8 @@ class RecommendedPlanPageModel
   late PlanCheckModel planCheckModel5;
   // Model for planCheck component.
   late PlanCheckModel planCheckModel6;
+  // Model for NavBar1 component.
+  late NavBar1Model navBar1Model;
 
   @override
   void initState(BuildContext context) {
@@ -63,6 +66,7 @@ class RecommendedPlanPageModel
     planCheckModel4 = createModel(context, () => PlanCheckModel());
     planCheckModel5 = createModel(context, () => PlanCheckModel());
     planCheckModel6 = createModel(context, () => PlanCheckModel());
+    navBar1Model = createModel(context, () => NavBar1Model());
   }
 
   @override
@@ -74,5 +78,6 @@ class RecommendedPlanPageModel
     planCheckModel4.dispose();
     planCheckModel5.dispose();
     planCheckModel6.dispose();
+    navBar1Model.dispose();
   }
 }

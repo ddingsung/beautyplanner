@@ -10,11 +10,9 @@ export 'custom_carousel_model.dart';
 class CustomCarouselWidget extends StatefulWidget {
   const CustomCarouselWidget({
     super.key,
-    this.imgUrl,
     this.productUid,
   });
 
-  final List<String>? imgUrl;
   final String? productUid;
 
   @override
@@ -73,6 +71,7 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
 
         final stackProductsRow =
             stackProductsRowList.isNotEmpty ? stackProductsRowList.first : null;
+
         return SizedBox(
           width: MediaQuery.sizeOf(context).width * 1.0,
           height: 284.0,
@@ -121,8 +120,11 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
                               enableInfiniteScroll: true,
                               scrollDirection: Axis.horizontal,
                               autoPlay: false,
-                              onPageChanged: (index, _) =>
-                                  _model.carouselCurrentIndex = index,
+                              onPageChanged: (index, _) async {
+                                _model.carouselCurrentIndex = index;
+
+                                setState(() {});
+                              },
                             ),
                           ),
                         );
@@ -147,7 +149,17 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${(_model.carouselCurrentIndex + 1).toString()}/${stackProductsRow?.productImg.length.toString()}',
+                          (_model.carouselCurrentIndex + 1).toString(),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'noto sans',
+                                    fontSize: 10.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                        ),
+                        Text(
+                          '/${stackProductsRow?.productImg.length.toString()}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'noto sans',
@@ -177,13 +189,6 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
                         );
                       }(),
                     );
-                    if (_model.imgIndex == 1 ? true : false) {
-                      _model.imgIndex = stackProductsRow!.productImg.length;
-                      setState(() {});
-                    } else {
-                      _model.imgIndex = _model.imgIndex + -1;
-                      setState(() {});
-                    }
                   },
                   child: const Icon(
                     Icons.arrow_back_ios,
@@ -210,16 +215,8 @@ class _CustomCarouselWidgetState extends State<CustomCarouselWidget> {
                           );
                         }(),
                       );
-                      if (_model.imgIndex ==
-                              stackProductsRow?.productImg.length
-                          ? true
-                          : false) {
-                        _model.imgIndex = 1;
-                        setState(() {});
-                      } else {
-                        _model.imgIndex = _model.imgIndex + 1;
-                        setState(() {});
-                      }
+
+                      setState(() {});
                     },
                     child: const Icon(
                       Icons.arrow_forward_ios,

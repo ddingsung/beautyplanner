@@ -20,7 +20,7 @@ class ReviewWidget extends StatefulWidget {
 
   final String? name;
   final double? rating;
-  final DateTime? createdAt;
+  final String? createdAt;
   final String? productName;
   final String? option;
   final String? content;
@@ -108,7 +108,7 @@ class _ReviewWidgetState extends State<ReviewWidget> {
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget.createdAt?.toString(),
+                          widget.createdAt,
                           '1',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(

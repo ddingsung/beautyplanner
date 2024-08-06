@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CustomCountingBoxModel extends FlutterFlowModel<CustomCountingBoxWidget> {
   ///  Local state fields for this component.
 
-  int count = 0;
+  int count = 1;
 
   @override
   void initState(BuildContext context) {}

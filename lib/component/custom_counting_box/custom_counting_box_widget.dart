@@ -68,7 +68,7 @@ class _CustomCountingBoxWidgetState extends State<CustomCountingBoxWidget> {
             ),
             onPressed: () async {
               _model.count = _model.count + -1;
-              setState(() {});
+              _model.updatePage(() {});
             },
           ),
           Text(
@@ -97,7 +97,7 @@ class _CustomCountingBoxWidgetState extends State<CustomCountingBoxWidget> {
             ),
             onPressed: () async {
               _model.count = _model.count + 1;
-              setState(() {});
+              _model.updatePage(() {});
             },
           ),
         ],

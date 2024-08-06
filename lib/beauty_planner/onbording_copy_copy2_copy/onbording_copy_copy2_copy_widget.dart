@@ -360,23 +360,41 @@ class _OnbordingCopyCopy2CopyWidgetState
                     Stack(
                       children: [
                         Container(
-                          width: 360.0,
-                          height: 800.0,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
                           decoration: const BoxDecoration(
                             color: Color(0x00FFFFFF),
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 103.0, 0.0, 0.0),
-                                child: Row(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 103.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '오직 나만을 위한',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'noto sans',
+                                              fontSize: 20.0,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: false,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      '오직 나만을 위한',
+                                      'AI 뷰티플래너',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -388,144 +406,131 @@ class _OnbordingCopyCopy2CopyWidgetState
                                     ),
                                   ],
                                 ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'AI 뷰티플래너',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'noto sans',
-                                          fontSize: 20.0,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts: false,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 20.0, 0.0, 0.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: SvgPicture.asset(
-                                        'assets/images/Logo_Header.svg',
-                                        width: 182.0,
-                                        height: 66.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Stack(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: SvgPicture.asset(
-                                      'assets/images/Background_character.svg',
-                                      width: 196.0,
-                                      height: 175.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 50.0, 0.0, 0.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/images/beuply__2.png',
-                                        width: 150.0,
-                                        height: 189.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'imageOnPageLoadAnimation2']!),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 260.0, 0.0, 0.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: SvgPicture.asset(
-                                        'assets/images/Ellipse_509.svg',
-                                        width: 98.0,
-                                        height: 13.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 43.0, 0.0, 0.0),
-                                child: Column(
+                                Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(16.0),
-                                      child: SvgPicture.asset(
-                                        'assets/images/Property=kakao.svg',
-                                        width: 335.0,
-                                        height: 48.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 0.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
-                                        child: Image.asset(
-                                          'assets/images/Property=Default_stroke.png',
-                                          width: 335.0,
-                                          height: 48.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.goNamed('createID');
-                                        },
-                                        child: Text(
-                                          '이메일로 로그인',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'noto sans',
-                                                color: const Color(0xFF90929D),
-                                                fontSize: 10.0,
-                                                letterSpacing: 0.0,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                useGoogleFonts: false,
-                                              ),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: SvgPicture.asset(
+                                          'assets/images/Logo_Header.svg',
+                                          width: 182.0,
+                                          height: 66.0,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
+                                Stack(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: SvgPicture.asset(
+                                        'assets/images/Background_character.svg',
+                                        width: 196.0,
+                                        height: 175.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 50.0, 0.0, 0.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/beuply__2.png',
+                                          width: 150.0,
+                                          height: 189.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'imageOnPageLoadAnimation2']!),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 260.0, 0.0, 0.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: SvgPicture.asset(
+                                          'assets/images/Ellipse_509.svg',
+                                          width: 98.0,
+                                          height: 13.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 43.0, 0.0, 0.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                        child: SvgPicture.asset(
+                                          'assets/images/Property=kakao.svg',
+                                          width: 335.0,
+                                          height: 48.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 12.0, 0.0, 0.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
+                                          child: Image.asset(
+                                            'assets/images/Property=Default_stroke.png',
+                                            width: 335.0,
+                                            height: 48.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 20.0, 0.0, 0.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.goNamed('createID');
+                                          },
+                                          child: Text(
+                                            '이메일로 로그인',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'noto sans',
+                                                  color: const Color(0xFF90929D),
+                                                  fontSize: 10.0,
+                                                  letterSpacing: 0.0,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],

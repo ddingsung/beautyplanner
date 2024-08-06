@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -99,12 +100,12 @@ class _PlanCardComponentWidgetState extends State<PlanCardComponentWidget>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 296.0,
+      width: MediaQuery.sizeOf(context).width * 0.74,
       height: 431.0,
       child: Stack(
         children: [
           Container(
-            width: 296.0,
+            width: MediaQuery.sizeOf(context).width * 0.74,
             height: 431.0,
             decoration: BoxDecoration(
               color: const Color(0xFFF6C200),
@@ -115,6 +116,7 @@ class _PlanCardComponentWidgetState extends State<PlanCardComponentWidget>
                   const EdgeInsetsDirectional.fromSTEB(136.0, 299.0, 136.0, 108.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Transform.rotate(
                     angle: 90.0 * (math.pi / 180),
@@ -129,15 +131,19 @@ class _PlanCardComponentWidgetState extends State<PlanCardComponentWidget>
             ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(118.0, 32.0, 118.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'TEST',
+                  '다이어트',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'noto sans',
+                        color: Colors.white,
+                        fontSize: functions.setFontSize(16.0),
                         letterSpacing: 0.0,
+                        fontWeight: FontWeight.w600,
                         useGoogleFonts: false,
                       ),
                 ),
@@ -148,12 +154,16 @@ class _PlanCardComponentWidgetState extends State<PlanCardComponentWidget>
             padding: const EdgeInsetsDirectional.fromSTEB(29.0, 68.0, 29.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Hello WorldTEST',
+                  '나의 다이어트 플랜은?',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'noto sans',
+                        color: Colors.white,
+                        fontSize: functions.setFontSize(24.0),
                         letterSpacing: 0.0,
+                        fontWeight: FontWeight.w600,
                         useGoogleFonts: false,
                       ),
                 ),
@@ -167,7 +177,7 @@ class _PlanCardComponentWidgetState extends State<PlanCardComponentWidget>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 224.0,
+                  width: MediaQuery.sizeOf(context).width * 0.56,
                   height: 171.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,

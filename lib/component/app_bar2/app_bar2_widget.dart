@@ -100,7 +100,7 @@ class _AppBar2WidgetState extends State<AppBar2Widget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    FFAppState().searchBar = !FFAppState().searchBar;
+                    FFAppState().searchBar = !(FFAppState().searchBar ?? true);
                     setState(() {});
                   },
                   child: const Icon(

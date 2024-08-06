@@ -7,6 +7,14 @@ class CustomerSupportModel extends FlutterFlowModel<CustomerSupportWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for PageView widget.
+  PageController? pageViewController;
+
+  int get pageViewCurrentIndex => pageViewController != null &&
+          pageViewController!.hasClients &&
+          pageViewController!.page != null
+      ? pageViewController!.page!.round()
+      : 0;
   // Model for NavBar1 component.
   late NavBar1Model navBar1Model;
 

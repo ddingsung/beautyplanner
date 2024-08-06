@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/component/app_bar1/app_bar1_widget.dart';
 import '/component/banner_card/banner_card_widget.dart';
 import '/component/custom_carousel/custom_carousel_widget.dart';
@@ -14,6 +15,22 @@ class ProductDetailModel extends FlutterFlowModel<ProductDetailWidget> {
 
   String selectedTab = '상품정보';
 
+  String reviewTab = 'recent';
+
+  ProductAllStruct? product;
+  void updateProductStruct(Function(ProductAllStruct) updateFn) {
+    updateFn(product ??= ProductAllStruct());
+  }
+
+  List<ReviewStruct> review = [];
+  void addToReview(ReviewStruct item) => review.add(item);
+  void removeFromReview(ReviewStruct item) => review.remove(item);
+  void removeAtIndexFromReview(int index) => review.removeAt(index);
+  void insertAtIndexInReview(int index, ReviewStruct item) =>
+      review.insert(index, item);
+  void updateReviewAtIndex(int index, Function(ReviewStruct) updateFn) =>
+      review[index] = updateFn(review[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -21,8 +38,6 @@ class ProductDetailModel extends FlutterFlowModel<ProductDetailWidget> {
   late AppBar1Model appBar1Model;
   // Model for custom_carousel component.
   late CustomCarouselModel customCarouselModel;
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue;
   // Model for banner_card component.
   late BannerCardModel bannerCardModel;
   // Model for product_list_choiceChips component.

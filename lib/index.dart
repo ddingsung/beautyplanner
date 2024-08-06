@@ -43,3 +43,11 @@ export '/beauty_planner/alliance_detail/alliance_detail_widget.dart'
     show AllianceDetailWidget;
 export '/beauty_planner/customer_support/customer_support_widget.dart'
     show CustomerSupportWidget;
+export '/search_image/search_image_widget.dart' show SearchImageWidget;
+export '/beauty_planner/product_qna/product_qna_widget.dart'
+    show ProductQnaWidget;
+export '/product_qna_write/product_qna_write_widget.dart'
+    show ProductQnaWriteWidget;
+export '/search_page/search_page_widget.dart' show SearchPageWidget;
+export '/product_qna_result/product_qna_result_widget.dart'
+    show ProductQnaResultWidget;

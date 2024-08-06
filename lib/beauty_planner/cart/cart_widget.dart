@@ -9,7 +9,9 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'cart_model.dart';
 export 'cart_model.dart';
 
@@ -34,6 +36,32 @@ class _CartWidgetState extends State<CartWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CartModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.apiResulth7a = await GetUserCartCall.call(
+        userUidInputParam: widget.userUid,
+      );
+
+      if ((_model.apiResulth7a?.succeeded ?? true)) {
+        _model.cartList = getJsonField(
+          (_model.apiResulth7a?.jsonBody ?? ''),
+          r'''$''',
+          true,
+        )!
+            .toList()
+            .cast<dynamic>();
+        setState(() {});
+        _model.count = getJsonField(
+          (_model.apiResulth7a?.jsonBody ?? ''),
+          r'''$.cart_quantity''',
+          true,
+        )!
+            .toList()
+            .cast<int>();
+        setState(() {});
+      }
+    });
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
@@ -90,27 +118,26 @@ class _CartWidgetState extends State<CartWidget> {
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(55.0),
               child: AppBar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.white,
                 automaticallyImplyLeading: false,
                 leading: FlutterFlowIconButton(
-                  borderColor: Colors.white,
-                  borderRadius: 0.0,
-                  borderWidth: 0.0,
-                  buttonSize: 40.0,
-                  fillColor: const Color(0x4CFFFFFF),
-                  icon: Icon(
+                  borderColor: Colors.transparent,
+                  borderRadius: 30.0,
+                  borderWidth: 1.0,
+                  buttonSize: 55.0,
+                  icon: const Icon(
                     Icons.arrow_back_ios,
-                    color: FlutterFlowTheme.of(context).primaryText,
+                    color: Colors.black,
                     size: 24.0,
                   ),
-                  onPressed: () {
-                    print('IconButton pressed ...');
+                  onPressed: () async {
+                    context.pop();
                   },
                 ),
                 actions: [
                   FlutterFlowIconButton(
                     borderRadius: 0.0,
-                    borderWidth: 0.0,
+                    borderWidth: 1.0,
                     buttonSize: 40.0,
                     icon: Icon(
                       Icons.search_sharp,
@@ -123,7 +150,7 @@ class _CartWidgetState extends State<CartWidget> {
                   ),
                   FlutterFlowIconButton(
                     borderRadius: 0.0,
-                    borderWidth: 0.0,
+                    borderWidth: 1.0,
                     buttonSize: 40.0,
                     icon: Icon(
                       Icons.notifications_none,
@@ -138,22 +165,18 @@ class _CartWidgetState extends State<CartWidget> {
                 flexibleSpace: FlexibleSpaceBar(
                   title: Align(
                     alignment: const AlignmentDirectional(0.0, 1.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
-                      child: Text(
-                        '장바구니',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'noto sans',
-                              fontSize: functions.setFontSize(16.0),
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: false,
-                            ),
-                      ),
+                    child: Text(
+                      '장바구니',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'noto sans',
+                            fontSize: functions.setFontSize(16.0),
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
+                            useGoogleFonts: false,
+                          ),
                     ),
                   ),
-                  centerTitle: false,
+                  centerTitle: true,
                   expandedTitleScale: 1.0,
                 ),
                 elevation: 0.0,
@@ -168,6 +191,69 @@ class _CartWidgetState extends State<CartWidget> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 0.0, 0.0),
+                              child: Theme(
+                                data: ThemeData(
+                                  checkboxTheme: CheckboxThemeData(
+                                    visualDensity: VisualDensity.compact,
+                                    materialTapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4.0),
+                                    ),
+                                  ),
+                                  unselectedWidgetColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                ),
+                                child: Checkbox(
+                                  value: _model.checkboxValue1 ??= true,
+                                  onChanged: (newValue) async {
+                                    setState(() =>
+                                        _model.checkboxValue1 = newValue!);
+                                  },
+                                  side: BorderSide(
+                                    width: 2,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                  ),
+                                  activeColor: FlutterFlowTheme.of(context)
+                                      .electricBlue2,
+                                  checkColor: FlutterFlowTheme.of(context).info,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '모두 선택 (?개)',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'noto sans',
+                                    color: const Color(0xFF5D5F69),
+                                    fontSize: functions.setFontSize(10.0),
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                            ),
+                            Text(
+                              '선택삭제',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'noto sans',
+                                    color: const Color(0xFF5D5F69),
+                                    fontSize: functions.setFontSize(10.0),
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                            ),
+                          ],
+                        ),
                         Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Padding(
@@ -204,7 +290,7 @@ class _CartWidgetState extends State<CartWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   4.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'Hello World',
+                                            'category',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -227,17 +313,19 @@ class _CartWidgetState extends State<CartWidget> {
                                   ),
                                   Builder(
                                     builder: (context) {
-                                      final cartList = GetUserCartCall.cartId(
-                                            cartGetUserCartResponse.jsonBody,
-                                          )?.toList() ??
-                                          [];
+                                      final productList1 = _model.cartList
+                                          .map((e) => e)
+                                          .toList();
 
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: List.generate(cartList.length,
-                                            (cartListIndex) {
-                                          final cartListItem =
-                                              cartList[cartListIndex];
+                                      return ListView.builder(
+                                        padding: EdgeInsets.zero,
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: productList1.length,
+                                        itemBuilder:
+                                            (context, productList1Index) {
+                                          final productList1Item =
+                                              productList1[productList1Index];
                                           return Container(
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
@@ -258,14 +346,64 @@ class _CartWidgetState extends State<CartWidget> {
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  16.0,
                                                                   0.0,
-                                                                  16.0,
+                                                                  0.0,
+                                                                  8.0,
                                                                   0.0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
+                                                          Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                visualDensity:
+                                                                    VisualDensity
+                                                                        .compact,
+                                                                materialTapTargetSize:
+                                                                    MaterialTapTargetSize
+                                                                        .shrinkWrap,
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4.0),
+                                                                ),
+                                                              ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                            ),
+                                                            child: Checkbox(
+                                                              value: _model
+                                                                      .checkboxValueMap2[
+                                                                  productList1Item] ??= true,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxValueMap2[
+                                                                            productList1Item] =
+                                                                        newValue!);
+                                                              },
+                                                              side: BorderSide(
+                                                                width: 2,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .electricBlue2,
+                                                              checkColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                            ),
+                                                          ),
                                                           ClipRRect(
                                                             borderRadius:
                                                                 BorderRadius
@@ -297,11 +435,10 @@ class _CartWidgetState extends State<CartWidget> {
                                                                 child: Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    GetUserCartCall
-                                                                        .productName(
-                                                                      cartGetUserCartResponse
-                                                                          .jsonBody,
-                                                                    )?.first,
+                                                                    getJsonField(
+                                                                      productList1Item,
+                                                                      r'''$.product_name''',
+                                                                    )?.toString(),
                                                                     '1',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -349,6 +486,117 @@ class _CartWidgetState extends State<CartWidget> {
                                                                       ),
                                                                 ),
                                                               ),
+                                                              Container(
+                                                                width: 72.0,
+                                                                height: 27.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              2.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: const Color(
+                                                                        0xFF90929D),
+                                                                    width: 1.0,
+                                                                  ),
+                                                                ),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    FlutterFlowIconButton(
+                                                                      borderColor:
+                                                                          const Color(
+                                                                              0x00FFFFFF),
+                                                                      borderRadius:
+                                                                          30.0,
+                                                                      borderWidth:
+                                                                          1.0,
+                                                                      buttonSize:
+                                                                          24.0,
+                                                                      fillColor:
+                                                                          const Color(
+                                                                              0x00FFFFFF),
+                                                                      icon:
+                                                                          const FaIcon(
+                                                                        FontAwesomeIcons
+                                                                            .minus,
+                                                                        color: Color(
+                                                                            0xFFC6C7CD),
+                                                                        size:
+                                                                            10.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        print(
+                                                                            'IconButton pressed ...');
+                                                                      },
+                                                                    ),
+                                                                    Text(
+                                                                      getJsonField(
+                                                                        productList1Item,
+                                                                        r'''$.cart_quantity''',
+                                                                      ).toString(),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'noto sans',
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            useGoogleFonts:
+                                                                                false,
+                                                                          ),
+                                                                    ),
+                                                                    FlutterFlowIconButton(
+                                                                      borderColor:
+                                                                          const Color(
+                                                                              0x00FFFFFF),
+                                                                      borderRadius:
+                                                                          30.0,
+                                                                      borderWidth:
+                                                                          0.0,
+                                                                      buttonSize:
+                                                                          24.0,
+                                                                      fillColor:
+                                                                          const Color(
+                                                                              0x00FFFFFF),
+                                                                      icon:
+                                                                          FaIcon(
+                                                                        FontAwesomeIcons
+                                                                            .plus,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        size:
+                                                                            10.0,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        _model
+                                                                            .cartList = getJsonField(
+                                                                          productList1Item,
+                                                                          r'''$.cart_quantity''',
+                                                                          true,
+                                                                        )!
+                                                                            .toList()
+                                                                            .cast<dynamic>();
+                                                                        setState(
+                                                                            () {});
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
                                                             ],
                                                           ),
                                                         ],
@@ -379,10 +627,40 @@ class _CartWidgetState extends State<CartWidget> {
                                                                     .min,
                                                             children: [
                                                               Text(
-                                                                '${GetUserCartCall.productPrice(
-                                                                  cartGetUserCartResponse
-                                                                      .jsonBody,
-                                                                )?.first.toString()}원',
+                                                                formatNumber(
+                                                                  getJsonField(
+                                                                    productList1Item,
+                                                                    r'''$.product_price''',
+                                                                  ),
+                                                                  formatType:
+                                                                      FormatType
+                                                                          .decimal,
+                                                                  decimalType:
+                                                                      DecimalType
+                                                                          .automatic,
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'noto sans',
+                                                                      color: const Color(
+                                                                          0xFFABACB5),
+                                                                      fontSize:
+                                                                          functions
+                                                                              .setFontSize(10.0),
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      decoration:
+                                                                          TextDecoration
+                                                                              .lineThrough,
+                                                                      useGoogleFonts:
+                                                                          false,
+                                                                    ),
+                                                              ),
+                                                              Text(
+                                                                '원',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -416,17 +694,29 @@ class _CartWidgetState extends State<CartWidget> {
                                                                     .min,
                                                             children: [
                                                               Text(
-                                                                formatNumber(
-                                                                  GetUserCartCall
-                                                                          .productDiscount(
-                                                                    cartGetUserCartResponse
-                                                                        .jsonBody,
-                                                                  )!
-                                                                      .first,
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .percent,
-                                                                ),
+                                                                getJsonField(
+                                                                  productList1Item,
+                                                                  r'''$.product_discount''',
+                                                                ).toString(),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'noto sans',
+                                                                      color: const Color(
+                                                                          0xFF08CEED),
+                                                                      fontSize:
+                                                                          functions
+                                                                              .setFontSize(10.0),
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts:
+                                                                          false,
+                                                                    ),
+                                                              ),
+                                                              Text(
+                                                                '%',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -446,20 +736,18 @@ class _CartWidgetState extends State<CartWidget> {
                                                               ),
                                                               Text(
                                                                 formatNumber(
-                                                                  GetUserCartCall
-                                                                              .productPrice(
-                                                                        cartGetUserCartResponse
-                                                                            .jsonBody,
-                                                                      )!
-                                                                          .first -
-                                                                      (GetUserCartCall.productPrice(
-                                                                            cartGetUserCartResponse.jsonBody,
-                                                                          )!
-                                                                              .first *
-                                                                          (GetUserCartCall.productDiscount(
-                                                                                cartGetUserCartResponse.jsonBody,
-                                                                              )!
-                                                                                  .first /
+                                                                  getJsonField(
+                                                                        productList1Item,
+                                                                        r'''$.product_price''',
+                                                                      ) -
+                                                                      (getJsonField(
+                                                                            productList1Item,
+                                                                            r'''$.product_price''',
+                                                                          ) *
+                                                                          (getJsonField(
+                                                                                productList1Item,
+                                                                                r'''$.product_discount''',
+                                                                              ) /
                                                                               100)),
                                                                   formatType:
                                                                       FormatType
@@ -496,7 +784,7 @@ class _CartWidgetState extends State<CartWidget> {
                                               ],
                                             ),
                                           );
-                                        }),
+                                        },
                                       );
                                     },
                                   ),
@@ -509,7 +797,9 @@ class _CartWidgetState extends State<CartWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 16.0, 0.0, 16.0),
                                         child: Text(
-                                          '총 수량',
+                                          '총 수량 ${GetUserCartCall.cartProductUid(
+                                            cartGetUserCartResponse.jsonBody,
+                                          )?.length.toString()}개',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -526,7 +816,16 @@ class _CartWidgetState extends State<CartWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 18.0, 12.0),
                                         child: Text(
-                                          '합계',
+                                          formatNumber(
+                                            functions.calculateTotalPrice(
+                                                getJsonField(
+                                              cartGetUserCartResponse.jsonBody,
+                                              r'''$''',
+                                              true,
+                                            )),
+                                            formatType: FormatType.decimal,
+                                            decimalType: DecimalType.automatic,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -595,7 +894,15 @@ class _CartWidgetState extends State<CartWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 16.0, 8.0),
                               child: Text(
-                                'Hello World',
+                                '${formatNumber(
+                                  functions.calculateTotalPrice(getJsonField(
+                                    cartGetUserCartResponse.jsonBody,
+                                    r'''$''',
+                                    true,
+                                  )),
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.automatic,
+                                )}원',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -1420,6 +1727,7 @@ class _CartWidgetState extends State<CartWidget> {
                                         controller: _model.textController3,
                                         focusNode: _model.textFieldFocusNode3,
                                         autofocus: false,
+                                        readOnly: true,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           isDense: true,
@@ -1486,7 +1794,8 @@ class _CartWidgetState extends State<CartWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'noto sans',
-                                              fontSize: 14.0,
+                                              fontSize:
+                                                  functions.setFontSize(14.0),
                                               letterSpacing: 0.0,
                                               useGoogleFonts: false,
                                             ),
@@ -1716,8 +2025,8 @@ class _CartWidgetState extends State<CartWidget> {
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            child: SvgPicture.asset(
-                                              'assets/images/_1.svg',
+                                            child: Image.asset(
+                                              'assets/images/_1.png',
                                               width: 50.0,
                                               height: 20.0,
                                               fit: BoxFit.cover,
@@ -1736,8 +2045,8 @@ class _CartWidgetState extends State<CartWidget> {
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            child: SvgPicture.asset(
-                                              'assets/images/_2.svg',
+                                            child: Image.asset(
+                                              'assets/images/_2.png',
                                               width: 50.0,
                                               height: 20.0,
                                               fit: BoxFit.cover,
@@ -2032,10 +2341,10 @@ class _CartWidgetState extends State<CartWidget> {
                                   unselectedWidgetColor: const Color(0xFFC6C7CD),
                                 ),
                                 child: Checkbox(
-                                  value: _model.checkboxValue1 ??= false,
+                                  value: _model.checkboxValue3 ??= false,
                                   onChanged: (newValue) async {
                                     setState(() =>
-                                        _model.checkboxValue1 = newValue!);
+                                        _model.checkboxValue3 = newValue!);
                                   },
                                   side: const BorderSide(
                                     width: 2,
@@ -2089,10 +2398,10 @@ class _CartWidgetState extends State<CartWidget> {
                                       unselectedWidgetColor: const Color(0xFFC6C7CD),
                                     ),
                                     child: Checkbox(
-                                      value: _model.checkboxValue2 ??= false,
+                                      value: _model.checkboxValue4 ??= false,
                                       onChanged: (newValue) async {
                                         setState(() =>
-                                            _model.checkboxValue2 = newValue!);
+                                            _model.checkboxValue4 = newValue!);
                                       },
                                       side: const BorderSide(
                                         width: 2,

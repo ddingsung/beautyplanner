@@ -1,12 +1,45 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'cart_widget.dart' show CartWidget;
 import 'package:flutter/material.dart';
 
 class CartModel extends FlutterFlowModel<CartWidget> {
+  ///  Local state fields for this page.
+
+  double? totalDiscountedPrice;
+
+  List<int> count = [];
+  void addToCount(int item) => count.add(item);
+  void removeFromCount(int item) => count.remove(item);
+  void removeAtIndexFromCount(int index) => count.removeAt(index);
+  void insertAtIndexInCount(int index, int item) => count.insert(index, item);
+  void updateCountAtIndex(int index, Function(int) updateFn) =>
+      count[index] = updateFn(count[index]);
+
+  List<dynamic> cartList = [];
+  void addToCartList(dynamic item) => cartList.add(item);
+  void removeFromCartList(dynamic item) => cartList.remove(item);
+  void removeAtIndexFromCartList(int index) => cartList.removeAt(index);
+  void insertAtIndexInCartList(int index, dynamic item) =>
+      cartList.insert(index, item);
+  void updateCartListAtIndex(int index, Function(dynamic) updateFn) =>
+      cartList[index] = updateFn(cartList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Backend Call - API (GetUserCart)] action in cart widget.
+  ApiCallResponse? apiResulth7a;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue1;
+  // State field(s) for Checkbox widget.
+  Map<dynamic, bool> checkboxValueMap2 = {};
+  List<dynamic> get checkboxCheckedItems2 => checkboxValueMap2.entries
+      .where((e) => e.value)
+      .map((e) => e.key)
+      .toList();
+
   // State field(s) for addressSaveCheckBox widget.
   bool? addressSaveCheckBoxValue;
   // State field(s) for TextField widget.
@@ -24,9 +57,9 @@ class CartModel extends FlutterFlowModel<CartWidget> {
   // State field(s) for RadioButton widget.
   FormFieldController<String>? radioButtonValueController;
   // State field(s) for Checkbox widget.
-  bool? checkboxValue1;
+  bool? checkboxValue3;
   // State field(s) for Checkbox widget.
-  bool? checkboxValue2;
+  bool? checkboxValue4;
 
   @override
   void initState(BuildContext context) {}

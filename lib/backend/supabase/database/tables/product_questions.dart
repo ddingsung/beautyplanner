@@ -45,4 +45,7 @@ class ProductQuestionsRow extends SupabaseDataRow {
 
   String? get productUid => getField<String>('product_uid');
   set productUid(String? value) => setField<String>('product_uid', value);
+
+  String? get category => getField<String>('category');
+  set category(String? value) => setField<String>('category', value);
 }

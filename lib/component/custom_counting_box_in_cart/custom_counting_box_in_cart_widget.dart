@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'custom_counting_box_in_cart_model.dart';
 export 'custom_counting_box_in_cart_model.dart';
@@ -34,6 +34,12 @@ class _CustomCountingBoxInCartWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => CustomCountingBoxInCartModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.localCount = widget.count;
+      setState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -72,20 +78,20 @@ class _CustomCountingBoxInCartWidgetState
               color: Color(0xFFC6C7CD),
               size: 10.0,
             ),
-            onPressed: () {
-              print('IconButton pressed ...');
+            onPressed: () async {
+              if (_model.localCount >= 0) {
+                _model.localCount = _model.localCount + -1;
+                _model.updatePage(() {});
+              }
             },
           ),
           Text(
             valueOrDefault<String>(
-              widget.count.toString(),
+              _model.localCount.toString(),
               '0',
             ),
-            maxLines: 1,
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'noto sans',
-                  color: Colors.black,
-                  fontSize: functions.setFontSize(14.0),
                   letterSpacing: 0.0,
                   useGoogleFonts: false,
                 ),
@@ -101,8 +107,10 @@ class _CustomCountingBoxInCartWidgetState
               size: 10.0,
             ),
             onPressed: () async {
-              _model.localCount = _model.localCount + 1;
-              setState(() {});
+              if (_model.localCount <= 99) {
+                _model.localCount = _model.localCount + 1;
+                _model.updatePage(() {});
+              }
             },
           ),
         ],

@@ -1,5 +1,4 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -57,9 +56,9 @@ class _NavBar1WidgetState extends State<NavBar1Widget> {
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: 52.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                    boxShadow: const [
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
                       BoxShadow(
                         blurRadius: 10.0,
                         color: Color(0x1A57636C),
@@ -148,13 +147,22 @@ class _NavBar1WidgetState extends State<NavBar1Widget> {
                   ),
                 ],
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(0.0),
-                child: SvgPicture.asset(
-                  'assets/images/navigation_icon_consult.svg',
-                  width: 37.0,
-                  height: 40.0,
-                  fit: BoxFit.contain,
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed('customer_support');
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(0.0),
+                  child: SvgPicture.asset(
+                    'assets/images/navigation_icon_consult.svg',
+                    width: 37.0,
+                    height: 40.0,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               InkWell(

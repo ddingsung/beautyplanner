@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -45,6 +47,17 @@ class FFAppState extends ChangeNotifier {
   set searchBar(bool value) {
     _searchBar = value;
     prefs.setBool('ff_searchBar', value);
+  }
+
+  CartStruct _cart =
+      CartStruct.fromSerializableMap(jsonDecode('{\"products\":\"[]\"}'));
+  CartStruct get cart => _cart;
+  set cart(CartStruct value) {
+    _cart = value;
+  }
+
+  void updateCartStruct(Function(CartStruct) updateFn) {
+    updateFn(_cart);
   }
 }
 

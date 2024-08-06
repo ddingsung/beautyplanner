@@ -191,6 +191,543 @@ class GetProductInfoCall {
       ) as List?;
 }
 
+class GetProductToUidCall {
+  static Future<ApiCallResponse> call({
+    String? uid = '0',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetProductToUid',
+      apiUrl:
+          'https://mfrdiyqsjilugquaxyed.supabase.co/rest/v1/products?product_uid=eq.$uid',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+        'Authorization':
+            'Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List<int>? reviewId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productUid(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_uid''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productName(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productPrice(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_price''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productDiscount(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_discount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productImg(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_img''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productLike(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_like''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productMaker(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_maker''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewUserId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_user_uid''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewComment(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_comment''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? reviewImg(dynamic response) => getJsonField(
+        response,
+        r'''$[:].review_img''',
+        true,
+      ) as List?;
+  static List<int>? reviewRating(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_rating''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewCreatedAt(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_created_at''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? questionId(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_id''',
+        true,
+      ) as List?;
+  static List? questionsCreatedAt(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_created_at''',
+        true,
+      ) as List?;
+  static List? questionUserUid(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_user_uid''',
+        true,
+      ) as List?;
+  static List? questionDetail(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_detail''',
+        true,
+      ) as List?;
+  static List? answerUid(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_uid''',
+        true,
+      ) as List?;
+  static List? answerDate(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_date''',
+        true,
+      ) as List?;
+  static List? answerDetails(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_details''',
+        true,
+      ) as List?;
+  static List? answerStatus(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_status''',
+        true,
+      ) as List?;
+}
+
+class GetProductReviewsCall {
+  static Future<ApiCallResponse> call({
+    String? uid = '0',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetProductReviews',
+      apiUrl:
+          'https://mfrdiyqsjilugquaxyed.supabase.co/rest/v1/reviews?product_uid=eq.$uid',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+        'Authorization':
+            'Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List<int>? reviewId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productUid(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_uid''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productName(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productPrice(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_price''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productDiscount(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_discount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productImg(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_img''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productLike(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_like''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productMaker(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_maker''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewUserId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_user_uid''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewComment(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_comment''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? reviewImg(dynamic response) => getJsonField(
+        response,
+        r'''$[:].review_img''',
+        true,
+      ) as List?;
+  static List<int>? reviewRating(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_rating''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewCreatedAt(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_created_at''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? questionId(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_id''',
+        true,
+      ) as List?;
+  static List? questionsCreatedAt(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_created_at''',
+        true,
+      ) as List?;
+  static List? questionUserUid(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_user_uid''',
+        true,
+      ) as List?;
+  static List? questionDetail(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_detail''',
+        true,
+      ) as List?;
+  static List? answerUid(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_uid''',
+        true,
+      ) as List?;
+  static List? answerDate(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_date''',
+        true,
+      ) as List?;
+  static List? answerDetails(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_details''',
+        true,
+      ) as List?;
+  static List? answerStatus(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_status''',
+        true,
+      ) as List?;
+}
+
+class GetProductAllCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetProductAll',
+      apiUrl: 'https://mfrdiyqsjilugquaxyed.supabase.co/rest/v1/products',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+        'Authorization':
+            'Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List<int>? reviewId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productUid(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_uid''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productName(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productPrice(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_price''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productDiscount(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_discount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productImg(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_img''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productLike(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_like''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productMaker(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_maker''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewUserId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_user_uid''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewComment(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_comment''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? reviewImg(dynamic response) => getJsonField(
+        response,
+        r'''$[:].review_img''',
+        true,
+      ) as List?;
+  static List<int>? reviewRating(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_rating''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? reviewCreatedAt(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].review_created_at''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? questionId(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_id''',
+        true,
+      ) as List?;
+  static List? questionsCreatedAt(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_created_at''',
+        true,
+      ) as List?;
+  static List? questionUserUid(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_user_uid''',
+        true,
+      ) as List?;
+  static List? questionDetail(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questions_detail''',
+        true,
+      ) as List?;
+  static List? answerUid(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_uid''',
+        true,
+      ) as List?;
+  static List? answerDate(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_date''',
+        true,
+      ) as List?;
+  static List? answerDetails(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_details''',
+        true,
+      ) as List?;
+  static List? answerStatus(dynamic response) => getJsonField(
+        response,
+        r'''$[:].answer_status''',
+        true,
+      ) as List?;
+}
+
 class GetUserCartCall {
   static Future<ApiCallResponse> call({
     String? userUidInputParam = '0',
@@ -410,6 +947,38 @@ class GetOrderIdToProductListCallCall {
       callType: ApiCallType.GET,
       headers: {},
       params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SearchProductsCall {
+  static Future<ApiCallResponse> call({
+    String? searchWord = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "search_term": "$searchWord"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'searchProducts',
+      apiUrl:
+          'https://mfrdiyqsjilugquaxyed.supabase.co/rest/v1/rpc/search_products',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

@@ -1,13 +1,20 @@
+import '/component/nav_bar1/nav_bar1_widget.dart';
 import '/component/plan_card_component/plan_card_component_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'user_plan_result_model.dart';
 export 'user_plan_result_model.dart';
 
 class UserPlanResultWidget extends StatefulWidget {
-  const UserPlanResultWidget({super.key});
+  const UserPlanResultWidget({
+    super.key,
+    required this.userSelectedList,
+  });
+
+  final List<String>? userSelectedList;
 
   @override
   State<UserPlanResultWidget> createState() => _UserPlanResultWidgetState();
@@ -41,7 +48,7 @@ class _UserPlanResultWidgetState extends State<UserPlanResultWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(55.0),
           child: AppBar(
@@ -53,23 +60,51 @@ class _UserPlanResultWidgetState extends State<UserPlanResultWidget> {
               borderWidth: 1.0,
               buttonSize: 55.0,
               icon: const Icon(
-                Icons.search_sharp,
+                Icons.arrow_back_ios,
                 color: Colors.black,
-                size: 25.0,
+                size: 24.0,
               ),
               onPressed: () async {
                 context.pop();
               },
             ),
-            actions: const [],
+            actions: [
+              FlutterFlowIconButton(
+                borderRadius: 0.0,
+                borderWidth: 1.0,
+                buttonSize: 40.0,
+                icon: Icon(
+                  Icons.search_sharp,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
+                onPressed: () {
+                  print('IconButton pressed ...');
+                },
+              ),
+              FlutterFlowIconButton(
+                borderRadius: 0.0,
+                borderWidth: 1.0,
+                buttonSize: 40.0,
+                icon: Icon(
+                  Icons.notifications_none,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
+                onPressed: () {
+                  print('IconButton pressed ...');
+                },
+              ),
+            ],
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                'Page Title',
+                'AI 플래너',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'noto sans',
                       color: Colors.black,
-                      fontSize: 22.0,
+                      fontSize: functions.setFontSize(16.0),
                       letterSpacing: 0.0,
+                      fontWeight: FontWeight.w600,
                       useGoogleFonts: false,
                     ),
               ),
@@ -79,33 +114,50 @@ class _UserPlanResultWidgetState extends State<UserPlanResultWidget> {
             elevation: 3.0,
           ),
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
+        body: Stack(
           children: [
-            Row(
+            Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  '{name}님에게 딱 맞춘 플랜이에요!',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'noto sans',
-                        letterSpacing: 0.0,
-                        useGoogleFonts: false,
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
+                      child: Text(
+                        '{name}님에게 딱 맞춘 플랜이에요!',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'noto sans',
+                              fontSize: functions.setFontSize(18.0),
+                              letterSpacing: 0.0,
+                              useGoogleFonts: false,
+                            ),
                       ),
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    wrapWithModel(
+                      model: _model.planCardComponentModel,
+                      updateCallback: () => setState(() {}),
+                      child: const PlanCardComponentWidget(),
+                    ),
+                  ],
                 ),
               ],
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                wrapWithModel(
-                  model: _model.planCardComponentModel,
-                  updateCallback: () => setState(() {}),
-                  child: const PlanCardComponentWidget(),
-                ),
-              ],
+            Align(
+              alignment: const AlignmentDirectional(0.0, 1.0),
+              child: wrapWithModel(
+                model: _model.navBar1Model,
+                updateCallback: () => setState(() {}),
+                child: const NavBar1Widget(),
+              ),
             ),
           ],
         ),

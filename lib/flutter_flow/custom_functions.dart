@@ -12,7 +12,7 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
-double setFontSize(double fontSize) {
+double? setFontSize(double fontSize) {
   try {
     double textScale =
         WidgetsBinding.instance.platformDispatcher.textScaleFactor;
@@ -20,4 +20,34 @@ double setFontSize(double fontSize) {
   } catch (e) {
     return fontSize;
   }
+}
+
+double? reviewRatingAverage(List<ReviewsRow>? products) {
+  double totalReviewRating = 0.0;
+
+  for (var product in products ?? []) {
+    if (product.rating != null) {
+      double pRating = product.rating;
+      totalReviewRating += pRating;
+    } else {
+      return totalReviewRating = 0.0;
+    }
+  }
+
+  return totalReviewRating;
+}
+
+double calculateTotalPrice(List<dynamic>? products) {
+  double totalDiscountedPrice = 0.0;
+
+  for (var product in products ?? []) {
+    if (product['product_price'] != null &&
+        product['product_discount'] != null) {
+      double price = product['product_price'];
+      double discount = product['product_discount'];
+      double discountedPrice = price * (1 - (discount / 100));
+      totalDiscountedPrice += discountedPrice;
+    }
+  }
+  return totalDiscountedPrice;
 }

@@ -1,6 +1,5 @@
 import '/component/main_carousel/main_carousel_widget.dart';
 import '/component/nav_bar1/nav_bar1_widget.dart';
-import '/component/search_bar/search_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'test_practice_widget.dart' show TestPracticeWidget;
@@ -15,8 +14,6 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for search_bar component.
-  late SearchBarModel searchBarModel;
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   List<String>? get choiceChipsValues => choiceChipsValueController?.value;
@@ -37,7 +34,6 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
 
   @override
   void initState(BuildContext context) {
-    searchBarModel = createModel(context, () => SearchBarModel());
     mainCarouselModel = createModel(context, () => MainCarouselModel());
     navBar1Model = createModel(context, () => NavBar1Model());
   }
@@ -45,7 +41,6 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    searchBarModel.dispose();
     mainCarouselModel.dispose();
     navBar1Model.dispose();
   }
