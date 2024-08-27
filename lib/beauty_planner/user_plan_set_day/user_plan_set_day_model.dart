@@ -10,7 +10,6 @@ class UserPlanSetDayModel extends FlutterFlowModel<UserPlanSetDayWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -19,7 +18,5 @@ class UserPlanSetDayModel extends FlutterFlowModel<UserPlanSetDayWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class AllianceDetailModel extends FlutterFlowModel<AllianceDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for NavBar1 component.
   late NavBar1Model navBar1Model;
 
@@ -17,7 +16,6 @@ class AllianceDetailModel extends FlutterFlowModel<AllianceDetailWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     navBar1Model.dispose();
   }
 }

@@ -1,5 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/supabase/supabase.dart';
+import '/components/cart_product_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,7 +13,7 @@ import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'cart_model.dart';
 export 'cart_model.dart';
 
@@ -54,7 +56,7 @@ class _CartWidgetState extends State<CartWidget> {
         setState(() {});
         _model.count = getJsonField(
           (_model.apiResulth7a?.jsonBody ?? ''),
-          r'''$.cart_quantity''',
+          r'''$..cart_quantity''',
           true,
         )!
             .toList()
@@ -69,10 +71,12 @@ class _CartWidgetState extends State<CartWidget> {
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController(text: '0');
+    _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.textController3?.text = '0';
+        }));
   }
 
   @override
@@ -84,6 +88,8 @@ class _CartWidgetState extends State<CartWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<ApiCallResponse>(
       future: GetUserCartCall.call(
         userUidInputParam: currentUserUid,
@@ -109,9 +115,7 @@ class _CartWidgetState extends State<CartWidget> {
         final cartGetUserCartResponse = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -254,597 +258,246 @@ class _CartWidgetState extends State<CartWidget> {
                             ),
                           ],
                         ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 16.0, 0.0, 24.0),
-                            child: Container(
-                              width: MediaQuery.sizeOf(context).width * 0.92,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(16.0),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        const Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 0.0, 0.0),
-                                          child: Icon(
-                                            Icons.shopping_cart_outlined,
-                                            color: Color(0xFF5D5F69),
-                                            size: 16.0,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  4.0, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            'category',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'noto sans',
-                                                  color: const Color(0xFF5D5F69),
-                                                  fontSize: functions
-                                                      .setFontSize(14.0),
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: false,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const StyledDivider(
-                                    thickness: 1.0,
-                                    color: Color(0xFFABACB5),
-                                    lineStyle: DividerLineStyle.dashed,
-                                  ),
-                                  Builder(
-                                    builder: (context) {
-                                      final productList1 = _model.cartList
-                                          .map((e) => e)
-                                          .toList();
+                        Builder(
+                          builder: (context) {
+                            final category = getJsonField(
+                              cartGetUserCartResponse.jsonBody,
+                              r'''$''',
+                            ).toList();
 
-                                      return ListView.builder(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: productList1.length,
-                                        itemBuilder:
-                                            (context, productList1Index) {
-                                          final productList1Item =
-                                              productList1[productList1Index];
-                                          return Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: 127.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Stack(
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: category.length,
+                              itemBuilder: (context, categoryIndex) {
+                                final categoryItem = category[categoryIndex];
+                                return Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 16.0, 0.0, 24.0),
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.92,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                      ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 12.0, 0.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Theme(
-                                                            data: ThemeData(
-                                                              checkboxTheme:
-                                                                  CheckboxThemeData(
-                                                                visualDensity:
-                                                                    VisualDensity
-                                                                        .compact,
-                                                                materialTapTargetSize:
-                                                                    MaterialTapTargetSize
-                                                                        .shrinkWrap,
-                                                                shape:
-                                                                    RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4.0),
-                                                                ),
-                                                              ),
-                                                              unselectedWidgetColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                            ),
-                                                            child: Checkbox(
-                                                              value: _model
-                                                                      .checkboxValueMap2[
-                                                                  productList1Item] ??= true,
-                                                              onChanged:
-                                                                  (newValue) async {
-                                                                setState(() =>
-                                                                    _model.checkboxValueMap2[
-                                                                            productList1Item] =
-                                                                        newValue!);
-                                                              },
-                                                              side: BorderSide(
-                                                                width: 2,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                              ),
-                                                              activeColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .electricBlue2,
-                                                              checkColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                            ),
-                                                          ),
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                            child:
-                                                                Image.network(
-                                                              'https://picsum.photos/seed/356/600',
-                                                              width: 71.0,
-                                                              height: 67.0,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        16.0,
-                                                                        0.0,
-                                                                        12.0),
-                                                                child: Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    getJsonField(
-                                                                      productList1Item,
-                                                                      r'''$.product_name''',
-                                                                    )?.toString(),
-                                                                    '1',
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'noto sans',
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize:
-                                                                            functions.setFontSize(14.0),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            false,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0),
-                                                                child: Text(
-                                                                  '제품 설명',
-                                                                  maxLines: 1,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'noto sans',
-                                                                        color: const Color(
-                                                                            0xFFABACB5),
-                                                                        fontSize:
-                                                                            functions.setFontSize(12.0),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            false,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                width: 72.0,
-                                                                height: 27.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              2.0),
-                                                                  border: Border
-                                                                      .all(
-                                                                    color: const Color(
-                                                                        0xFF90929D),
-                                                                    width: 1.0,
-                                                                  ),
-                                                                ),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    FlutterFlowIconButton(
-                                                                      borderColor:
-                                                                          const Color(
-                                                                              0x00FFFFFF),
-                                                                      borderRadius:
-                                                                          30.0,
-                                                                      borderWidth:
-                                                                          1.0,
-                                                                      buttonSize:
-                                                                          24.0,
-                                                                      fillColor:
-                                                                          const Color(
-                                                                              0x00FFFFFF),
-                                                                      icon:
-                                                                          const FaIcon(
-                                                                        FontAwesomeIcons
-                                                                            .minus,
-                                                                        color: Color(
-                                                                            0xFFC6C7CD),
-                                                                        size:
-                                                                            10.0,
-                                                                      ),
-                                                                      onPressed:
-                                                                          () {
-                                                                        print(
-                                                                            'IconButton pressed ...');
-                                                                      },
-                                                                    ),
-                                                                    Text(
-                                                                      getJsonField(
-                                                                        productList1Item,
-                                                                        r'''$.cart_quantity''',
-                                                                      ).toString(),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'noto sans',
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            useGoogleFonts:
-                                                                                false,
-                                                                          ),
-                                                                    ),
-                                                                    FlutterFlowIconButton(
-                                                                      borderColor:
-                                                                          const Color(
-                                                                              0x00FFFFFF),
-                                                                      borderRadius:
-                                                                          30.0,
-                                                                      borderWidth:
-                                                                          0.0,
-                                                                      buttonSize:
-                                                                          24.0,
-                                                                      fillColor:
-                                                                          const Color(
-                                                                              0x00FFFFFF),
-                                                                      icon:
-                                                                          FaIcon(
-                                                                        FontAwesomeIcons
-                                                                            .plus,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            10.0,
-                                                                      ),
-                                                                      onPressed:
-                                                                          () async {
-                                                                        _model
-                                                                            .cartList = getJsonField(
-                                                                          productList1Item,
-                                                                          r'''$.cart_quantity''',
-                                                                          true,
-                                                                        )!
-                                                                            .toList()
-                                                                            .cast<dynamic>();
-                                                                        setState(
-                                                                            () {});
-                                                                      },
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
+                                                const Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          16.0, 0.0, 0.0, 0.0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .shopping_cart_outlined,
+                                                    color: Color(0xFF5D5F69),
+                                                    size: 16.0,
+                                                  ),
                                                 ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          1.0, 1.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                18.0, 18.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 1.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Text(
-                                                                formatNumber(
-                                                                  getJsonField(
-                                                                    productList1Item,
-                                                                    r'''$.product_price''',
-                                                                  ),
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .automatic,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'noto sans',
-                                                                      color: const Color(
-                                                                          0xFFABACB5),
-                                                                      fontSize:
-                                                                          functions
-                                                                              .setFontSize(10.0),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      decoration:
-                                                                          TextDecoration
-                                                                              .lineThrough,
-                                                                      useGoogleFonts:
-                                                                          false,
-                                                                    ),
-                                                              ),
-                                                              Text(
-                                                                '원',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'noto sans',
-                                                                      color: const Color(
-                                                                          0xFFABACB5),
-                                                                      fontSize:
-                                                                          functions
-                                                                              .setFontSize(10.0),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      decoration:
-                                                                          TextDecoration
-                                                                              .lineThrough,
-                                                                      useGoogleFonts:
-                                                                          false,
-                                                                    ),
-                                                              ),
-                                                            ],
-                                                          ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    getJsonField(
+                                                      categoryItem,
+                                                      r'''$.product_category''',
+                                                    ).toString(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'noto sans',
+                                                          color:
+                                                              const Color(0xFF5D5F69),
+                                                          fontSize: functions
+                                                              .setFontSize(
+                                                                  14.0),
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: false,
                                                         ),
-                                                        Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 1.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Text(
-                                                                getJsonField(
-                                                                  productList1Item,
-                                                                  r'''$.product_discount''',
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'noto sans',
-                                                                      color: const Color(
-                                                                          0xFF08CEED),
-                                                                      fontSize:
-                                                                          functions
-                                                                              .setFontSize(10.0),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts:
-                                                                          false,
-                                                                    ),
-                                                              ),
-                                                              Text(
-                                                                '%',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'noto sans',
-                                                                      color: const Color(
-                                                                          0xFF08CEED),
-                                                                      fontSize:
-                                                                          functions
-                                                                              .setFontSize(10.0),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts:
-                                                                          false,
-                                                                    ),
-                                                              ),
-                                                              Text(
-                                                                formatNumber(
-                                                                  getJsonField(
-                                                                        productList1Item,
-                                                                        r'''$.product_price''',
-                                                                      ) -
-                                                                      (getJsonField(
-                                                                            productList1Item,
-                                                                            r'''$.product_price''',
-                                                                          ) *
-                                                                          (getJsonField(
-                                                                                productList1Item,
-                                                                                r'''$.product_discount''',
-                                                                              ) /
-                                                                              100)),
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .automatic,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'noto sans',
-                                                                      fontSize:
-                                                                          functions
-                                                                              .setFontSize(16.0),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      useGoogleFonts:
-                                                                          false,
-                                                                    ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 16.0, 0.0, 16.0),
-                                        child: Text(
-                                          '총 수량 ${GetUserCartCall.cartProductUid(
-                                            cartGetUserCartResponse.jsonBody,
-                                          )?.length.toString()}개',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'noto sans',
-                                                color: const Color(0xFF5D5F69),
-                                                fontSize:
-                                                    functions.setFontSize(12.0),
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 12.0, 18.0, 12.0),
-                                        child: Text(
-                                          formatNumber(
-                                            functions.calculateTotalPrice(
-                                                getJsonField(
-                                              cartGetUserCartResponse.jsonBody,
-                                              r'''$''',
-                                              true,
-                                            )),
-                                            formatType: FormatType.decimal,
-                                            decimalType: DecimalType.automatic,
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'noto sans',
-                                                color: Colors.black,
-                                                fontSize:
-                                                    functions.setFontSize(16.0),
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                useGoogleFonts: false,
+                                          const StyledDivider(
+                                            thickness: 1.0,
+                                            color: Color(0xFFABACB5),
+                                            lineStyle: DividerLineStyle.dashed,
+                                          ),
+                                          Builder(
+                                            builder: (context) {
+                                              final productList1 =
+                                                  _model.cartList
+                                                      .where((e) =>
+                                                          getJsonField(
+                                                            categoryItem,
+                                                            r'''$.cart_category''',
+                                                          ) ==
+                                                          getJsonField(
+                                                            e,
+                                                            r'''$.cart_category''',
+                                                          ))
+                                                      .toList()
+                                                      .map((e) => e)
+                                                      .toList();
+
+                                              return ListView.builder(
+                                                padding: EdgeInsets.zero,
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount: productList1.length,
+                                                itemBuilder: (context,
+                                                    productList1Index) {
+                                                  final productList1Item =
+                                                      productList1[
+                                                          productList1Index];
+                                                  return wrapWithModel(
+                                                    model: _model
+                                                        .cartProductModels
+                                                        .getModel(
+                                                      productList1Index
+                                                          .toString(),
+                                                      productList1Index,
+                                                    ),
+                                                    updateCallback: () =>
+                                                        setState(() {}),
+                                                    child: CartProductWidget(
+                                                      key: Key(
+                                                        'Keylee_${productList1Index.toString()}',
+                                                      ),
+                                                      uid: getJsonField(
+                                                        productList1Item,
+                                                        r'''$.product_uid''',
+                                                      ).toString(),
+                                                      parameter2: getJsonField(
+                                                        productList1Item,
+                                                        r'''$.product_name''',
+                                                      ),
+                                                      parameter3:
+                                                          productList1Index,
+                                                      parameter4: getJsonField(
+                                                        productList1Item,
+                                                        r'''$.cart_quantity''',
+                                                      ),
+                                                      parameter5: getJsonField(
+                                                        productList1Item,
+                                                        r'''$.product_price''',
+                                                      ),
+                                                      parameter6: getJsonField(
+                                                        productList1Item,
+                                                        r'''$.product_discount''',
+                                                      ),
+                                                      callbackTest: () async {
+                                                        await CartTable()
+                                                            .update(
+                                                          data: {
+                                                            'quantity':
+                                                                (int var1) {
+                                                              return var1++;
+                                                            }(getJsonField(
+                                                              productList1Item,
+                                                              r'''$.cart_quantity''',
+                                                            )),
+                                                          },
+                                                          matchingRows:
+                                                              (rows) => rows.eq(
+                                                            'product_uid',
+                                                            getJsonField(
+                                                              productList1Item,
+                                                              r'''$.product_uid''',
+                                                            ).toString(),
+                                                          ),
+                                                        );
+
+                                                        setState(() {});
+                                                      },
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 16.0, 0.0, 16.0),
+                                                child: Text(
+                                                  '총 수량 ${GetUserCartCall.cartProductUid(
+                                                    cartGetUserCartResponse
+                                                        .jsonBody,
+                                                  )?.length.toString()}개',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'noto sans',
+                                                        color:
+                                                            const Color(0xFF5D5F69),
+                                                        fontSize: functions
+                                                            .setFontSize(12.0),
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
+                                                ),
                                               ),
-                                        ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 12.0, 18.0, 12.0),
+                                                child: Text(
+                                                  formatNumber(
+                                                    FFAppState().cartTotalPrice,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType:
+                                                        DecimalType.automatic,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'noto sans',
+                                                        color: Colors.black,
+                                                        fontSize: functions
+                                                            .setFontSize(16.0),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: false,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ],
-                              ),
-                            ),
-                          ),
+                                );
+                              },
+                            );
+                          },
                         ),
                         const Divider(
                           thickness: 1.0,
@@ -1759,7 +1412,7 @@ class _CartWidgetState extends State<CartWidget> {
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: const BorderSide(
-                                              color: Color(0x00000000),
+                                              color: Color(0xFFC6C7CD),
                                               width: 1.0,
                                             ),
                                             borderRadius:
@@ -2341,10 +1994,10 @@ class _CartWidgetState extends State<CartWidget> {
                                   unselectedWidgetColor: const Color(0xFFC6C7CD),
                                 ),
                                 child: Checkbox(
-                                  value: _model.checkboxValue3 ??= false,
+                                  value: _model.checkboxValue2 ??= false,
                                   onChanged: (newValue) async {
                                     setState(() =>
-                                        _model.checkboxValue3 = newValue!);
+                                        _model.checkboxValue2 = newValue!);
                                   },
                                   side: const BorderSide(
                                     width: 2,
@@ -2398,10 +2051,10 @@ class _CartWidgetState extends State<CartWidget> {
                                       unselectedWidgetColor: const Color(0xFFC6C7CD),
                                     ),
                                     child: Checkbox(
-                                      value: _model.checkboxValue4 ??= false,
+                                      value: _model.checkboxValue3 ??= false,
                                       onChanged: (newValue) async {
                                         setState(() =>
-                                            _model.checkboxValue4 = newValue!);
+                                            _model.checkboxValue3 = newValue!);
                                       },
                                       side: const BorderSide(
                                         width: 2,

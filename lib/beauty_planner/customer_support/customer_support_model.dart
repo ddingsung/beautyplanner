@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class CustomerSupportModel extends FlutterFlowModel<CustomerSupportWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -25,7 +24,6 @@ class CustomerSupportModel extends FlutterFlowModel<CustomerSupportWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     navBar1Model.dispose();
   }
 }

@@ -33,7 +33,6 @@ class ProductDetailModel extends FlutterFlowModel<ProductDetailWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for appBar1 component.
   late AppBar1Model appBar1Model;
   // Model for custom_carousel component.
@@ -83,7 +82,6 @@ class ProductDetailModel extends FlutterFlowModel<ProductDetailWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBar1Model.dispose();
     customCarouselModel.dispose();
     bannerCardModel.dispose();

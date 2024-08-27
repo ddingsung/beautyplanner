@@ -51,3 +51,12 @@ export '/product_qna_write/product_qna_write_widget.dart'
 export '/search_page/search_page_widget.dart' show SearchPageWidget;
 export '/product_qna_result/product_qna_result_widget.dart'
     show ProductQnaResultWidget;
+export '/create_account1/create_account1_widget.dart' show CreateAccount1Widget;
+export '/create_account2/create_account2_widget.dart' show CreateAccount2Widget;
+export '/create_account3/create_account3_widget.dart' show CreateAccount3Widget;
+export '/create_account4/create_account4_widget.dart' show CreateAccount4Widget;
+export '/auth_phone/auth_phone_widget.dart' show AuthPhoneWidget;
+export '/auth_phone2/auth_phone2_widget.dart' show AuthPhone2Widget;
+export '/auth_phone3/auth_phone3_widget.dart' show AuthPhone3Widget;
+export '/create_account2_copy/create_account2_copy_widget.dart'
+    show CreateAccount2CopyWidget;

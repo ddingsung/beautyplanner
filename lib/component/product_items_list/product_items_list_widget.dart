@@ -13,6 +13,7 @@ class ProductItemsListWidget extends StatefulWidget {
     required this.originalPrice,
     required this.price,
     required this.liked,
+    required this.productImg,
   }) : productName = productName ?? 'dd';
 
   final String productName;
@@ -20,6 +21,7 @@ class ProductItemsListWidget extends StatefulWidget {
   final int? originalPrice;
   final double? price;
   final int? liked;
+  final List<String>? productImg;
 
   @override
   State<ProductItemsListWidget> createState() => _ProductItemsListWidgetState();
@@ -71,7 +73,7 @@ class _ProductItemsListWidgetState extends State<ProductItemsListWidget> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(16.0),
                       child: Image.network(
-                        'https://picsum.photos/seed/232/600',
+                        widget.productImg!.first,
                         width: 144.0,
                         height: 179.0,
                         fit: BoxFit.cover,

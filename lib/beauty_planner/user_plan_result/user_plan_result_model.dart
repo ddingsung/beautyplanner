@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class UserPlanResultModel extends FlutterFlowModel<UserPlanResultWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for planCardComponent component.
   late PlanCardComponentModel planCardComponentModel;
   // Model for NavBar1 component.
@@ -22,7 +21,6 @@ class UserPlanResultModel extends FlutterFlowModel<UserPlanResultWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     planCardComponentModel.dispose();
     navBar1Model.dispose();
   }

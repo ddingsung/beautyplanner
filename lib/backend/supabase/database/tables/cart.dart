@@ -37,4 +37,7 @@ class CartRow extends SupabaseDataRow {
 
   int? get quantity => getField<int>('quantity');
   set quantity(int? value) => setField<int>('quantity', value);
+
+  String? get cartCategory => getField<String>('cart_category');
+  set cartCategory(String? value) => setField<String>('cart_category', value);
 }

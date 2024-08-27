@@ -24,7 +24,6 @@ class OnbordingCopyModel extends FlutterFlowModel<OnbordingCopyWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for beaury component.
   late BeauryModel beauryModel;
 
@@ -35,7 +34,6 @@ class OnbordingCopyModel extends FlutterFlowModel<OnbordingCopyWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     beauryModel.dispose();
   }
 }

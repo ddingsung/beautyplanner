@@ -1,6 +1,7 @@
 import '/component/main_beaury_chat/main_beaury_chat_widget.dart';
 import '/component/main_carousel/main_carousel_widget.dart';
 import '/component/nav_bar1/nav_bar1_widget.dart';
+import '/components/main_tutorial_bottom_sheet_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -45,9 +46,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
             alignment: const AlignmentDirectional(0.0, 1.0)
                 .resolve(Directionality.of(context)),
             child: GestureDetector(
-              onTap: () => _model.unfocusNode.canRequestFocus
-                  ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                  : FocusScope.of(context).unfocus(),
+              onTap: () => FocusScope.of(dialogContext).unfocus(),
               child: const SizedBox(
                 height: 120.0,
                 child: MainBeauryChatWidget(),
@@ -55,7 +54,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
             ),
           );
         },
-      ).then((value) => setState(() {}));
+      );
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -72,9 +71,7 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) => GestureDetector(
-        onTap: () => _model.unfocusNode.canRequestFocus
-            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-            : FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
           key: scaffoldKey,
           backgroundColor: const Color(0xFFF4F4F5),
@@ -401,8 +398,9 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 40.0, 0.0, 26.0),
                                             child: FFButtonWidget(
-                                              onPressed: () {
-                                                print('Button pressed ...');
+                                              onPressed: () async {
+                                                context.pushNamed(
+                                                    'recommended_plan_page');
                                               },
                                               text: '뷰티플랜 추천 받으러 가기',
                                               options: FFButtonOptions(
@@ -646,7 +644,36 @@ class _TestPracticeWidgetState extends State<TestPracticeWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              context.pushNamed('product_list');
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    const Color(0x00FFFFFF),
+                                                barrierColor: const Color(0x00FFFFFF),
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () =>
+                                                        FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.94,
+                                                        child:
+                                                            const MainTutorialBottomSheetWidget(),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
                                             },
                                             child: Container(
                                               width: 93.0,

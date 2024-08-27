@@ -43,9 +43,7 @@ class _OrderHistoryDetailWidgetState extends State<OrderHistoryDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
@@ -173,9 +171,11 @@ class _OrderHistoryDetailWidgetState extends State<OrderHistoryDetailWidget> {
                                             0.0, 12.0, 20.0, 12.0),
                                         child: Text(
                                           dateTimeFormat(
-                                              'M/d h:mm a',
-                                              containerOrderHistoryRow!
-                                                  .createdAt),
+                                            "M/d h:mm a",
+                                            containerOrderHistoryRow!.createdAt,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

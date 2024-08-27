@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class ProductQnaResultModel extends FlutterFlowModel<ProductQnaResultWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for NavBar1 component.
   late NavBar1Model navBar1Model;
 
@@ -17,7 +16,6 @@ class ProductQnaResultModel extends FlutterFlowModel<ProductQnaResultWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     navBar1Model.dispose();
   }
 }

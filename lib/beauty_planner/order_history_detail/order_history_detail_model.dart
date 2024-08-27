@@ -7,7 +7,6 @@ class OrderHistoryDetailModel
     extends FlutterFlowModel<OrderHistoryDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for appBar2 component.
   late AppBar2Model appBar2Model;
 
@@ -18,7 +17,6 @@ class OrderHistoryDetailModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBar2Model.dispose();
   }
 }

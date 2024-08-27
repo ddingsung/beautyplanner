@@ -303,8 +303,61 @@ class _ProductDetailBottomsheetWidgetState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        if ((containerCartRow?.productUid ==
+                                    widget.productUid) &&
+                                (containerCartRow?.status == '1')
+                            ? true
+                            : false) {
+                          await CartTable().update(
+                            data: {
+                              'updated_at':
+                                  supaSerialize<DateTime>(getCurrentTimestamp),
+                              'quantity': (containerCartRow!.quantity!) +
+                                  _model.customCountingBoxModel.count,
+                            },
+                            matchingRows: (rows) => rows.eq(
+                              'product_uid',
+                              widget.productUid,
+                            ),
+                          );
+                        } else {
+                          await CartTable().insert({
+                            'updated_at':
+                                supaSerialize<DateTime>(getCurrentTimestamp),
+                            'product_uid': widget.productUid,
+                            'quantity': _model.customCountingBoxModel.count,
+                            'total_price': widget.price?.toDouble(),
+                            'created_at':
+                                supaSerialize<DateTime>(getCurrentTimestamp),
+                            'status': '',
+                            'user_uid': currentUserUid,
+                          });
+                          FFAppState().updateCartStruct(
+                            (e) => e
+                              ..updateProducts(
+                                (e) => e.add(ProductAllStruct(
+                                  productName: widget.productName,
+                                  productPrice: widget.price,
+                                  productMaker: widget.maker,
+                                  discount: widget.discount,
+                                )),
+                              )
+                              ..cartId = containerCartRow?.cartId
+                              ..cartCreatedAt = getCurrentTimestamp,
+                          );
+                          setState(() {});
+                        }
+
+                        context.pushNamed(
+                          'cart',
+                          queryParameters: {
+                            'userUid': serializeParam(
+                              currentUserUid,
+                              ParamType.String,
+                            ),
+                          }.withoutNulls,
+                        );
                       },
                       text: '장바구니 담기',
                       options: FFButtonOptions(

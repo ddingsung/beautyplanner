@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class SearchPageModel extends FlutterFlowModel<SearchPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for search_bar component.
   late SearchBarModel searchBarModel;
 
@@ -17,7 +16,6 @@ class SearchPageModel extends FlutterFlowModel<SearchPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     searchBarModel.dispose();
   }
 }

@@ -21,6 +21,11 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _searchBar = prefs.getBool('ff_searchBar') ?? _searchBar;
     });
+    _safeInit(() {
+      _date = prefs.containsKey('ff_date')
+          ? DateTime.fromMillisecondsSinceEpoch(prefs.getInt('ff_date')!)
+          : _date;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -58,6 +63,56 @@ class FFAppState extends ChangeNotifier {
 
   void updateCartStruct(Function(CartStruct) updateFn) {
     updateFn(_cart);
+  }
+
+  double _cartTotalPrice = 0.0;
+  double get cartTotalPrice => _cartTotalPrice;
+  set cartTotalPrice(double value) {
+    _cartTotalPrice = value;
+  }
+
+  List<double> _cartLastPrice = [];
+  List<double> get cartLastPrice => _cartLastPrice;
+  set cartLastPrice(List<double> value) {
+    _cartLastPrice = value;
+  }
+
+  void addToCartLastPrice(double value) {
+    cartLastPrice.add(value);
+  }
+
+  void removeFromCartLastPrice(double value) {
+    cartLastPrice.remove(value);
+  }
+
+  void removeAtIndexFromCartLastPrice(int index) {
+    cartLastPrice.removeAt(index);
+  }
+
+  void updateCartLastPriceAtIndex(
+    int index,
+    double Function(double) updateFn,
+  ) {
+    cartLastPrice[index] = updateFn(_cartLastPrice[index]);
+  }
+
+  void insertAtIndexInCartLastPrice(int index, double value) {
+    cartLastPrice.insert(index, value);
+  }
+
+  int _cartProductCount = 0;
+  int get cartProductCount => _cartProductCount;
+  set cartProductCount(int value) {
+    _cartProductCount = value;
+  }
+
+  DateTime? _date;
+  DateTime? get date => _date;
+  set date(DateTime? value) {
+    _date = value;
+    value != null
+        ? prefs.setInt('ff_date', value.millisecondsSinceEpoch)
+        : prefs.remove('ff_date');
   }
 }
 

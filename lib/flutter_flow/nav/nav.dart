@@ -260,6 +260,88 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'product_qna_result',
           path: '/productQnaResult',
           builder: (context, params) => const ProductQnaResultWidget(),
+        ),
+        FFRoute(
+          name: 'createAccount1',
+          path: '/createAccount1',
+          builder: (context, params) => const CreateAccount1Widget(),
+        ),
+        FFRoute(
+          name: 'createAccount2',
+          path: '/createAccount2',
+          builder: (context, params) => const CreateAccount2Widget(),
+        ),
+        FFRoute(
+          name: 'createAccount3',
+          path: '/createAccount3',
+          builder: (context, params) => CreateAccount3Widget(
+            name: params.getParam(
+              'name',
+              ParamType.String,
+            ),
+            nickName: params.getParam(
+              'nickName',
+              ParamType.String,
+            ),
+            dateOfBirth: params.getParam(
+              'dateOfBirth',
+              ParamType.DateTime,
+            ),
+            gender: params.getParam(
+              'gender',
+              ParamType.String,
+            ),
+            profileImg: params.getParam(
+              'profileImg',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'createAccount4',
+          path: '/createAccount4',
+          builder: (context, params) => CreateAccount4Widget(
+            name: params.getParam(
+              'name',
+              ParamType.String,
+            ),
+            nickName: params.getParam(
+              'nickName',
+              ParamType.String,
+            ),
+            dateOfBirth: params.getParam(
+              'dateOfBirth',
+              ParamType.DateTime,
+            ),
+            gender: params.getParam(
+              'gender',
+              ParamType.String,
+            ),
+            profileImg: params.getParam(
+              'profileImg',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'auth_phone',
+          path: '/authPhone',
+          builder: (context, params) => const AuthPhoneWidget(),
+        ),
+        FFRoute(
+          name: 'auth_phone2',
+          path: '/authPhone2',
+          builder: (context, params) => const AuthPhone2Widget(),
+        ),
+        FFRoute(
+          name: 'auth_phone3',
+          path: '/authPhone3',
+          builder: (context, params) => const AuthPhone3Widget(),
+        ),
+        FFRoute(
+          name: 'createAccount2Copy',
+          path: '/createAccount2Copy',
+          builder: (context, params) => const CreateAccount2CopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

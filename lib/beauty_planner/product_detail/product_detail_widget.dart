@@ -89,9 +89,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
             : null;
 
         return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: Colors.white,
@@ -1213,12 +1211,8 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                 builder:
                                                                     (context) {
                                                                   return GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
+                                                                    onTap: () =>
+                                                                        FocusScope.of(context)
                                                                             .unfocus(),
                                                                     child:
                                                                         Padding(
@@ -1506,7 +1500,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                     () => setState(
                                                                         () {}),
                                                                 child:
-                                                                    const ProductItemsListWidget(
+                                                                    ProductItemsListWidget(
                                                                   productName:
                                                                       '1',
                                                                   discount: 1.0,
@@ -1514,6 +1508,9 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                       1,
                                                                   price: 1.0,
                                                                   liked: 1,
+                                                                  productImg:
+                                                                      productDetailProductsRow
+                                                                          .productImg,
                                                                 ),
                                                               ),
                                                             ],
@@ -1566,7 +1563,7 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                       () => setState(
                                                                           () {}),
                                                                   child:
-                                                                      const ProductItemsListWidget(
+                                                                      ProductItemsListWidget(
                                                                     productName:
                                                                         '1',
                                                                     discount:
@@ -1575,6 +1572,9 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                                                         1,
                                                                     price: 1.0,
                                                                     liked: 1,
+                                                                    productImg:
+                                                                        productDetailProductsRow
+                                                                            .productImg,
                                                                   ),
                                                                 ),
                                                               ],
@@ -2067,13 +2067,8 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                         context: context,
                                         builder: (context) {
                                           return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
+                                            onTap: () => FocusScope.of(context)
+                                                .unfocus(),
                                             child: Padding(
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
@@ -2135,13 +2130,8 @@ class _ProductDetailWidgetState extends State<ProductDetailWidget> {
                                         context: context,
                                         builder: (context) {
                                           return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
+                                            onTap: () => FocusScope.of(context)
+                                                .unfocus(),
                                             child: Padding(
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),

@@ -884,6 +884,162 @@ class GetUserCartCall {
           .toList();
 }
 
+class GetUserCartCopyCall {
+  static Future<ApiCallResponse> call({
+    String? userUidInputParam = '0',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "user_uid_input_param": "$userUidInputParam"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetUserCart Copy',
+      apiUrl:
+          'https://mfrdiyqsjilugquaxyed.supabase.co/rest/v1/rpc/get_user_cart_object',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+        'Authorization':
+            'Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcmRpeXFzamlsdWdxdWF4eWVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk0NTAyNjAsImV4cCI6MjAzNTAyNjI2MH0.GHgXSTy8pu_aOu4B89pR6E_aeR5qeKa3UNs3UC9lMYc',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List? uesrAddress(dynamic response) => getJsonField(
+        response,
+        r'''$[:].user_address''',
+        true,
+      ) as List?;
+  static List? userPhone(dynamic response) => getJsonField(
+        response,
+        r'''$[:].user_phone''',
+        true,
+      ) as List?;
+  static List<String>? cartStatus(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].cart_status''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List? userZipcode(dynamic response) => getJsonField(
+        response,
+        r'''$[:].user_zipcode''',
+        true,
+      ) as List?;
+  static List<String>? userUidInput(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].user_uid_input''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? userName(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].user_name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? cartId(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].cart_id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? cartCreatedAt(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].cart_crated_at''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? cartUpdatedAt(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].cart_updated_at''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? cartProductUid(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].cart_product_uid''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<double>? cartTotalPrice(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].cart_total_price''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? cartQuantity(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].cart_quantity''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? productName(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<int>? productPrice(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_price''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  static List<double>? productDiscount(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].product_discount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+}
+
 class GetItemCall {
   static Future<ApiCallResponse> call({
     int? id,

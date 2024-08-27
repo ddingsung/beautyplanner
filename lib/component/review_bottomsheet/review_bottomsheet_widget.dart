@@ -627,7 +627,7 @@ class _ReviewBottomsheetWidgetState extends State<ReviewBottomsheetWidget> {
                                     child: const ReviewSuccessCardWidget(),
                                   );
                                 },
-                              ).then((value) => setState(() {}));
+                              );
                             }
                           }
 

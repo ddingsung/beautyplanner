@@ -83,7 +83,12 @@ class _OrderHistoryWidgetWidgetState extends State<OrderHistoryWidgetWidget> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Text(
-                              dateTimeFormat('M/d H:mm', widget.day),
+                              dateTimeFormat(
+                                "M/d H:mm",
+                                widget.day,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

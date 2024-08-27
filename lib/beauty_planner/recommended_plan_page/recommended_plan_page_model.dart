@@ -42,7 +42,6 @@ class RecommendedPlanPageModel
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for planCheck component.
   late PlanCheckModel planCheckModel1;
   // Model for planCheck component.
@@ -71,7 +70,6 @@ class RecommendedPlanPageModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     planCheckModel1.dispose();
     planCheckModel2.dispose();
     planCheckModel3.dispose();

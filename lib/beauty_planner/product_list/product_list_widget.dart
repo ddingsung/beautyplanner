@@ -53,9 +53,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
@@ -482,6 +480,8 @@ class _ProductListWidgetState extends State<ProductListWidget> {
                                                                 .discount!) /
                                                             100)),
                                                 liked: rowProductsRow.like!,
+                                                productImg:
+                                                    rowProductsRow.productImg,
                                               ),
                                             ),
                                           );
@@ -576,6 +576,8 @@ class _ProductListWidgetState extends State<ProductListWidget> {
                                                             .discount!) /
                                                         100)),
                                             liked: gridViewProductsRow.like!,
+                                            productImg:
+                                                gridViewProductsRow.productImg,
                                           );
                                         },
                                       );

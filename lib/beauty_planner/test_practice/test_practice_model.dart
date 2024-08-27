@@ -13,7 +13,6 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   List<String>? get choiceChipsValues => choiceChipsValueController?.value;
@@ -40,7 +39,6 @@ class TestPracticeModel extends FlutterFlowModel<TestPracticeWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainCarouselModel.dispose();
     navBar1Model.dispose();
   }

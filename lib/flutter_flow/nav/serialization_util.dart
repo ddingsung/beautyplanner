@@ -230,8 +230,6 @@ dynamic deserializeParam<T>(
             return RecommendedProductsRow(data);
           case UesrPreferenceRow:
             return UesrPreferenceRow(data);
-          case CategoryRow:
-            return CategoryRow(data);
           case UserInteractionsRow:
             return UserInteractionsRow(data);
           case ReturnsExchangesRow:
@@ -260,6 +258,8 @@ dynamic deserializeParam<T>(
             return UsersRow(data);
           case ProductQuestionsRow:
             return ProductQuestionsRow(data);
+          case CategoriesRow:
+            return CategoriesRow(data);
           case ReviewsRow:
             return ReviewsRow(data);
           case NotificationsRow:

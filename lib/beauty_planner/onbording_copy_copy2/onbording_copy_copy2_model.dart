@@ -24,15 +24,9 @@ class OnbordingCopyCopy2Model
 
   Color? bgColor = const Color(0xff61e5fa);
 
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

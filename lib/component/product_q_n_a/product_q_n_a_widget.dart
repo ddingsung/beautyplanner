@@ -124,7 +124,11 @@ class _ProductQNAWidgetState extends State<ProductQNAWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        dateTimeFormat('d/M/y', widget.createdAt),
+                        dateTimeFormat(
+                          "d/M/y",
+                          widget.createdAt,
+                          locale: FFLocalizations.of(context).languageCode,
+                        ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'noto sans',
                               color: const Color(0xFF757884),

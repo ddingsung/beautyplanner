@@ -1,18 +1,18 @@
 import '../database.dart';
 
-class CategoryTable extends SupabaseTable<CategoryRow> {
+class CategoriesTable extends SupabaseTable<CategoriesRow> {
   @override
-  String get tableName => 'category';
+  String get tableName => 'categories';
 
   @override
-  CategoryRow createRow(Map<String, dynamic> data) => CategoryRow(data);
+  CategoriesRow createRow(Map<String, dynamic> data) => CategoriesRow(data);
 }
 
-class CategoryRow extends SupabaseDataRow {
-  CategoryRow(super.data);
+class CategoriesRow extends SupabaseDataRow {
+  CategoriesRow(super.data);
 
   @override
-  SupabaseTable get table => CategoryTable();
+  SupabaseTable get table => CategoriesTable();
 
   int get categoryId => getField<int>('category_id')!;
   set categoryId(int value) => setField<int>('category_id', value);

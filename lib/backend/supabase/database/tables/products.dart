@@ -56,12 +56,12 @@ class ProductsRow extends SupabaseDataRow {
   String? get description => getField<String>('description');
   set description(String? value) => setField<String>('description', value);
 
-  List<String> get categories => getListField<String>('categories');
-  set categories(List<String>? value) =>
-      setListField<String>('categories', value);
+  String? get category => getField<String>('category');
+  set category(String? value) => setField<String>('category', value);
 
-  String? get subcategory => getField<String>('subcategory');
-  set subcategory(String? value) => setField<String>('subcategory', value);
+  List<String> get subcategories => getListField<String>('subcategories');
+  set subcategories(List<String>? value) =>
+      setListField<String>('subcategories', value);
 
   List<String> get ingredients => getListField<String>('ingredients');
   set ingredients(List<String>? value) =>
