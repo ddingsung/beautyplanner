@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class OrderHistoryModel extends FlutterFlowModel<OrderHistoryWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for appBar2 component.
   late AppBar2Model appBar2Model;
   // Model for NavBar1 component.

@@ -1,3 +1,5 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -32,45 +34,50 @@ class _OnbordingCopyCopy2CopyWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 1400));
-      _model.firstText = FlutterFlowTheme.of(context).electricBlue2;
-      setState(() {});
-      await Future.delayed(const Duration(milliseconds: 300));
-      _model.firstImg = !_model.firstImg;
-      setState(() {});
-      await Future.delayed(const Duration(milliseconds: 100));
-      _model.firstText = Colors.white;
-      _model.secondText = FlutterFlowTheme.of(context).electricBlue2;
-      setState(() {});
-      await Future.delayed(const Duration(milliseconds: 50));
-      if (animationsMap['imageOnActionTriggerAnimation'] != null) {
-        animationsMap['imageOnActionTriggerAnimation']!
-            .controller
-            .forward(from: 0.0);
-      }
-      await Future.delayed(const Duration(milliseconds: 485));
-      _model.secondText = Colors.white;
-      _model.thirdText = FlutterFlowTheme.of(context).electricBlue2;
-      setState(() {});
-      await Future.delayed(const Duration(milliseconds: 1100));
-      _model.firstViewText = !_model.firstViewText;
-      setState(() {});
-      _model.secondViewText = !_model.secondViewText;
-      setState(() {});
-      await Future.delayed(const Duration(milliseconds: 500));
-      _model.secondViewText = !_model.secondViewText;
-      setState(() {});
-      _model.viewLogo = !_model.viewLogo;
-      setState(() {});
-      await Future.delayed(const Duration(milliseconds: 800));
-      _model.viewLogo = !_model.viewLogo;
-      setState(() {});
-      _model.bgColor = Colors.white;
-      setState(() {});
-      if (animationsMap['stackOnActionTriggerAnimation'] != null) {
-        await animationsMap['stackOnActionTriggerAnimation']!
-            .controller
-            .forward(from: 0.0);
+      if (loggedIn &&
+          (currentPhoneNumber == '')) {
+        context.goNamed('auth_phone');
+      } else {
+        await Future.delayed(const Duration(milliseconds: 1400));
+        _model.firstText = FlutterFlowTheme.of(context).electricBlue2;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 300));
+        _model.firstImg = !_model.firstImg;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 100));
+        _model.firstText = Colors.white;
+        _model.secondText = FlutterFlowTheme.of(context).electricBlue2;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 50));
+        if (animationsMap['imageOnActionTriggerAnimation'] != null) {
+          animationsMap['imageOnActionTriggerAnimation']!
+              .controller
+              .forward(from: 0.0);
+        }
+        await Future.delayed(const Duration(milliseconds: 485));
+        _model.secondText = Colors.white;
+        _model.thirdText = FlutterFlowTheme.of(context).electricBlue2;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 1100));
+        _model.firstViewText = !_model.firstViewText;
+        setState(() {});
+        _model.secondViewText = !_model.secondViewText;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 500));
+        _model.secondViewText = !_model.secondViewText;
+        setState(() {});
+        _model.viewLogo = !_model.viewLogo;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 800));
+        _model.viewLogo = !_model.viewLogo;
+        setState(() {});
+        _model.bgColor = Colors.white;
+        setState(() {});
+        if (animationsMap['stackOnActionTriggerAnimation'] != null) {
+          await animationsMap['stackOnActionTriggerAnimation']!
+              .controller
+              .forward(from: 0.0);
+        }
       }
     });
 
@@ -502,7 +509,34 @@ class _OnbordingCopyCopy2CopyWidgetState
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            await actions.signInWithGoogle();
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
+                                            final user = await authManager
+                                                .signInWithGoogle(context);
+                                            if (user == null) {
+                                              return;
+                                            }
+                                            await UsersTable().insert({
+                                              'created_at':
+                                                  supaSerialize<DateTime>(
+                                                      getCurrentTimestamp),
+                                              'updated_at':
+                                                  supaSerialize<DateTime>(
+                                                      getCurrentTimestamp),
+                                              'email': currentUserEmail,
+                                              'user_id': currentUserUid,
+                                            });
+
+                                            context.pushNamedAuth(
+                                              'createAccount1',
+                                              context.mounted,
+                                              queryParameters: {
+                                                'email': serializeParam(
+                                                  currentUserEmail,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
                                           },
                                           child: ClipRRect(
                                             borderRadius:
@@ -525,7 +559,7 @@ class _OnbordingCopyCopy2CopyWidgetState
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.goNamed('createID');
+                                            context.goNamed('email_login');
                                           },
                                           child: Text(
                                             '이메일로 로그인',

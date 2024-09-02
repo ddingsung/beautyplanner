@@ -1,7 +1,10 @@
+import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -26,22 +29,38 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
     super.initState();
     _model = createModel(context, () => CreateAccount2Model());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.nameTFTextController ??= TextEditingController();
+    _model.nameTFFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.nickTFTextController ??= TextEditingController();
+    _model.nickTFFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.yearTFTextController ??= TextEditingController();
+    _model.yearTFFocusNode ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.monthTFTextController ??= TextEditingController();
+    _model.monthTFFocusNode ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
+    _model.dayTFTextController ??= TextEditingController();
+    _model.dayTFFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.yearTFTextController?.text = dateTimeFormat(
+            "y",
+            _model.birth,
+            locale: FFLocalizations.of(context).languageCode,
+          );
+          _model.monthTFTextController?.text = dateTimeFormat(
+            "MM",
+            _model.birth,
+            locale: FFLocalizations.of(context).languageCode,
+          );
+          _model.dayTFTextController?.text = dateTimeFormat(
+            "d",
+            _model.birth,
+            locale: FFLocalizations.of(context).languageCode,
+          );
+        }));
   }
 
   @override
@@ -290,24 +309,66 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 0.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: SvgPicture.asset(
-                            'assets/images/Group_6984.svg',
-                            width: 91.0,
-                            height: 91.0,
-                            fit: BoxFit.cover,
-                          ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 28.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(0.0),
+                              child: SvgPicture.asset(
+                                'assets/images/Group_6984.svg',
+                                width: 91.0,
+                                height: 91.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            if (_model.avatarUrl != null &&
+                                _model.avatarUrl != '')
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: FlutterFlowExpandedImageView(
+                                        image: Image.network(
+                                          _model.avatarUrl!,
+                                          fit: BoxFit.contain,
+                                        ),
+                                        allowRotation: false,
+                                        tag: _model.avatarUrl!,
+                                        useHeroAnimation: true,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: _model.avatarUrl!,
+                                  transitionOnUserGestures: true,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(24.0),
+                                    child: Image.network(
+                                      _model.avatarUrl!,
+                                      width: 91.0,
+                                      height: 91.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -316,18 +377,75 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 12.0, 0.0, 12.0),
-                        child: Text(
-                          '프로필 사진 등록',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'noto sans',
-                                    color: const Color(0xFFABACB5),
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    decoration: TextDecoration.underline,
-                                    useGoogleFonts: false,
-                                  ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            final selectedMedia =
+                                await selectMediaWithSourceBottomSheet(
+                              context: context,
+                              storageFolderPath: 'img',
+                              allowPhoto: true,
+                              pickerFontFamily: 'Roboto',
+                            );
+                            if (selectedMedia != null &&
+                                selectedMedia.every((m) => validateFileFormat(
+                                    m.storagePath, context))) {
+                              setState(() => _model.isDataUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
+
+                              var downloadUrls = <String>[];
+                              try {
+                                selectedUploadedFiles = selectedMedia
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                          height: m.dimensions?.height,
+                                          width: m.dimensions?.width,
+                                          blurHash: m.blurHash,
+                                        ))
+                                    .toList();
+
+                                downloadUrls = await uploadSupabaseStorageFiles(
+                                  bucketName: 'users',
+                                  selectedFiles: selectedMedia,
+                                );
+                              } finally {
+                                _model.isDataUploading = false;
+                              }
+                              if (selectedUploadedFiles.length ==
+                                      selectedMedia.length &&
+                                  downloadUrls.length == selectedMedia.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                  _model.uploadedFileUrl = downloadUrls.first;
+                                });
+                              } else {
+                                setState(() {});
+                                return;
+                              }
+                            }
+
+                            _model.avatarUrl = _model.uploadedFileUrl;
+                            setState(() {});
+                          },
+                          child: Text(
+                            '프로필 사진 등록',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'noto sans',
+                                  color: const Color(0xFFABACB5),
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.underline,
+                                  useGoogleFonts: false,
+                                ),
+                          ),
                         ),
                       ),
                     ],
@@ -344,7 +462,7 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                               0.0, 12.0, 0.0, 0.0),
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * 0.88,
-                            height: 21.0,
+                            height: 25.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4.0),
                             ),
@@ -379,8 +497,9 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
-                                          controller: _model.textController1,
-                                          focusNode: _model.textFieldFocusNode1,
+                                          controller:
+                                              _model.nameTFTextController,
+                                          focusNode: _model.nameTFFocusNode,
                                           autofocus: false,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -454,7 +573,7 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                                 useGoogleFonts: false,
                                               ),
                                           validator: _model
-                                              .textController1Validator
+                                              .nameTFTextControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -511,8 +630,8 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         18.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
-                                      controller: _model.textController2,
-                                      focusNode: _model.textFieldFocusNode2,
+                                      controller: _model.nickTFTextController,
+                                      focusNode: _model.nickTFFocusNode,
                                       autofocus: false,
                                       obscureText: false,
                                       decoration: InputDecoration(
@@ -582,7 +701,8 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                             letterSpacing: 0.0,
                                             useGoogleFonts: false,
                                           ),
-                                      validator: _model.textController2Validator
+                                      validator: _model
+                                          .nickTFTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -687,6 +807,8 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                         ),
                                       );
                                     });
+                                _model.birth = _model.datePicked;
+                                setState(() {});
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -713,14 +835,21 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 8.0, 0.0),
+                                          5.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController3,
-                                        focusNode: _model.textFieldFocusNode3,
+                                        controller: _model.yearTFTextController,
+                                        focusNode: _model.yearTFFocusNode,
                                         autofocus: false,
+                                        readOnly: true,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           isDense: true,
+                                          labelText: dateTimeFormat(
+                                            "y",
+                                            _model.birth,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
@@ -790,7 +919,7 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                               useGoogleFonts: false,
                                             ),
                                         validator: _model
-                                            .textController3Validator
+                                            .yearTFTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -812,12 +941,20 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController4,
-                                        focusNode: _model.textFieldFocusNode4,
+                                        controller:
+                                            _model.monthTFTextController,
+                                        focusNode: _model.monthTFFocusNode,
                                         autofocus: false,
+                                        readOnly: true,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           isDense: true,
+                                          labelText: dateTimeFormat(
+                                            "MMMM",
+                                            _model.birth,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
@@ -887,7 +1024,7 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                               useGoogleFonts: false,
                                             ),
                                         validator: _model
-                                            .textController4Validator
+                                            .monthTFTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -909,12 +1046,19 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 8.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController5,
-                                        focusNode: _model.textFieldFocusNode5,
+                                        controller: _model.dayTFTextController,
+                                        focusNode: _model.dayTFFocusNode,
                                         autofocus: false,
+                                        readOnly: true,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           isDense: true,
+                                          labelText: dateTimeFormat(
+                                            "d",
+                                            _model.birth,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
@@ -984,7 +1128,7 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                               useGoogleFonts: false,
                                             ),
                                         validator: _model
-                                            .textController5Validator
+                                            .dayTFTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -1045,8 +1189,9 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   33.0, 0.0, 0.0, 0.0),
                               child: FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  _model.gender = '남자';
+                                  setState(() {});
                                 },
                                 text: '남',
                                 options: FFButtonOptions(
@@ -1056,12 +1201,17 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                       0.0, 0.0, 0.0, 0.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Colors.white,
+                                  color: _model.gender == '남자'
+                                      ? FlutterFlowTheme.of(context)
+                                          .electricBlue2
+                                      : Colors.white,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
                                         fontFamily: 'noto sans',
-                                        color: const Color(0xFF757884),
+                                        color: _model.gender == '남자'
+                                            ? Colors.white
+                                            : const Color(0xFF757884),
                                         fontSize: 12.0,
                                         letterSpacing: 0.0,
                                         useGoogleFonts: false,
@@ -1080,8 +1230,9 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 0.0, 0.0),
                               child: FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  _model.gender = '여자';
+                                  setState(() {});
                                 },
                                 text: '여',
                                 options: FFButtonOptions(
@@ -1091,12 +1242,17 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
                                       0.0, 0.0, 0.0, 0.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: Colors.white,
+                                  color: _model.gender == '여자'
+                                      ? FlutterFlowTheme.of(context)
+                                          .electricBlue2
+                                      : Colors.white,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
                                         fontFamily: 'noto sans',
-                                        color: const Color(0xFF757884),
+                                        color: _model.gender == '여자'
+                                            ? Colors.white
+                                            : const Color(0xFF757884),
                                         fontSize: 12.0,
                                         letterSpacing: 0.0,
                                         useGoogleFonts: false,
@@ -1121,8 +1277,32 @@ class _CreateAccount2WidgetState extends State<CreateAccount2Widget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    context.pushNamed(
+                      'createAccount3',
+                      queryParameters: {
+                        'name': serializeParam(
+                          _model.nameTFTextController.text,
+                          ParamType.String,
+                        ),
+                        'nickName': serializeParam(
+                          _model.nickTFTextController.text,
+                          ParamType.String,
+                        ),
+                        'dateOfBirth': serializeParam(
+                          _model.birth,
+                          ParamType.DateTime,
+                        ),
+                        'gender': serializeParam(
+                          _model.gender,
+                          ParamType.String,
+                        ),
+                        'profileImg': serializeParam(
+                          _model.uploadedFileUrl,
+                          ParamType.String,
+                        ),
+                      }.withoutNulls,
+                    );
                   },
                   text: '다음',
                   options: FFButtonOptions(

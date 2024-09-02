@@ -7,7 +7,12 @@ import 'create_account1_model.dart';
 export 'create_account1_model.dart';
 
 class CreateAccount1Widget extends StatefulWidget {
-  const CreateAccount1Widget({super.key});
+  const CreateAccount1Widget({
+    super.key,
+    this.email,
+  });
+
+  final String? email;
 
   @override
   State<CreateAccount1Widget> createState() => _CreateAccount1WidgetState();
@@ -871,7 +876,7 @@ class _CreateAccount1WidgetState extends State<CreateAccount1Widget> {
                           _model.checkbox4Value!)
                       ? null
                       : () async {
-                          context.pushNamed('createAccount2Copy');
+                          context.pushNamed('createAccountToEmail');
                         },
                   text: '이메일 로그인 테스트',
                   options: FFButtonOptions(

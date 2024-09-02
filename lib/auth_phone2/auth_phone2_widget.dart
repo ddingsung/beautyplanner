@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'auth_phone2_model.dart';
@@ -403,8 +404,10 @@ class _AuthPhone2WidgetState extends State<AuthPhone2Widget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 40.0, 0.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              await actions.getPhoneOtp(
+                                _model.textController1.text,
+                              );
                             },
                             text: '인증요청',
                             options: FFButtonOptions(
@@ -548,8 +551,48 @@ class _AuthPhone2WidgetState extends State<AuthPhone2Widget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 40.0, 0.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              _model.isConfirm = await actions.confirmOtp(
+                                _model.textController2.text,
+                                _model.textController1.text,
+                              );
+                              if (_model.isConfirm!) {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text('success'),
+                                      content: const Text('인증 되었습니다'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text('fail'),
+                                      content: const Text('실패'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+
+                              setState(() {});
                             },
                             text: '확인',
                             options: FFButtonOptions(
@@ -684,11 +727,7 @@ class _AuthPhone2WidgetState extends State<AuthPhone2Widget> {
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
                   child: FFButtonWidget(
-                    onPressed: !_model.checkboxValue!
-                        ? null
-                        : () {
-                            print('Button pressed ...');
-                          },
+                    onPressed: !_model.checkboxValue! ? null : () async {},
                     text: '다음',
                     options: FFButtonOptions(
                       width: MediaQuery.sizeOf(context).width * 0.94,

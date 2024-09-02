@@ -278,8 +278,8 @@ class _AuthPhoneWidgetState extends State<AuthPhoneWidget> {
                   child: FFButtonWidget(
                     onPressed: !_model.checkboxValue!
                         ? null
-                        : () {
-                            print('Button pressed ...');
+                        : () async {
+                            context.pushNamed('auth_phone2');
                           },
                     text: '다음',
                     options: FFButtonOptions(

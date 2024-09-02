@@ -4,48 +4,62 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccount2Model extends FlutterFlowModel<CreateAccount2Widget> {
+  ///  Local state fields for this page.
+
+  String? avatarUrl;
+
+  DateTime? birth;
+
+  String? gender;
+
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
+  final unfocusNode = FocusNode();
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
+  // State field(s) for nameTF widget.
+  FocusNode? nameTFFocusNode;
+  TextEditingController? nameTFTextController;
+  String? Function(BuildContext, String?)? nameTFTextControllerValidator;
+  // State field(s) for nickTF widget.
+  FocusNode? nickTFFocusNode;
+  TextEditingController? nickTFTextController;
+  String? Function(BuildContext, String?)? nickTFTextControllerValidator;
   DateTime? datePicked;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
+  // State field(s) for yearTF widget.
+  FocusNode? yearTFFocusNode;
+  TextEditingController? yearTFTextController;
+  String? Function(BuildContext, String?)? yearTFTextControllerValidator;
+  // State field(s) for monthTF widget.
+  FocusNode? monthTFFocusNode;
+  TextEditingController? monthTFTextController;
+  String? Function(BuildContext, String?)? monthTFTextControllerValidator;
+  // State field(s) for dayTF widget.
+  FocusNode? dayTFFocusNode;
+  TextEditingController? dayTFTextController;
+  String? Function(BuildContext, String?)? dayTFTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    nameTFFocusNode?.dispose();
+    nameTFTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    nickTFFocusNode?.dispose();
+    nickTFTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    yearTFFocusNode?.dispose();
+    yearTFTextController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    monthTFFocusNode?.dispose();
+    monthTFTextController?.dispose();
 
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
+    dayTFFocusNode?.dispose();
+    dayTFTextController?.dispose();
   }
 }

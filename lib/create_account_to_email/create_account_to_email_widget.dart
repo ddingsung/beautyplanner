@@ -1,55 +1,60 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'create_account2_copy_model.dart';
-export 'create_account2_copy_model.dart';
+import 'create_account_to_email_model.dart';
+export 'create_account_to_email_model.dart';
 
-class CreateAccount2CopyWidget extends StatefulWidget {
-  const CreateAccount2CopyWidget({super.key});
+class CreateAccountToEmailWidget extends StatefulWidget {
+  const CreateAccountToEmailWidget({super.key});
 
   @override
-  State<CreateAccount2CopyWidget> createState() =>
-      _CreateAccount2CopyWidgetState();
+  State<CreateAccountToEmailWidget> createState() =>
+      _CreateAccountToEmailWidgetState();
 }
 
-class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
-  late CreateAccount2CopyModel _model;
+class _CreateAccountToEmailWidgetState
+    extends State<CreateAccountToEmailWidget> {
+  late CreateAccountToEmailModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CreateAccount2CopyModel());
+    _model = createModel(context, () => CreateAccountToEmailModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.emailTFTextController ??= TextEditingController();
+    _model.emailTFFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.passTFTextController ??= TextEditingController();
+    _model.passTFFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.passConfirmTFTextController ??= TextEditingController();
+    _model.passConfirmTFFocusNode ??= FocusNode();
+
+    _model.nameTFTextController ??= TextEditingController();
+    _model.nameTFFocusNode ??= FocusNode();
+
+    _model.nicknameTFTextController ??= TextEditingController();
+    _model.nicknameTFFocusNode ??= FocusNode();
 
     _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
+    _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.textController6 ??= TextEditingController();
-    _model.textFieldFocusNode6 ??= FocusNode();
-
-    _model.textController7 ??= TextEditingController();
-    _model.textFieldFocusNode7 ??= FocusNode();
-
-    _model.textController8 ??= TextEditingController();
-    _model.textFieldFocusNode8 ??= FocusNode();
+    _model.textFieldFocusNode3 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -306,18 +311,56 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 28.0, 0.0, 0.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(0.0),
-                            child: SvgPicture.asset(
-                              'assets/images/Group_6984.svg',
-                              width: 91.0,
-                              height: 91.0,
-                              fit: BoxFit.cover,
+                        Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(0.0),
+                              child: SvgPicture.asset(
+                                'assets/images/Group_6984.svg',
+                                width: 91.0,
+                                height: 91.0,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
+                            if (_model.avatarUrl != null &&
+                                _model.avatarUrl != '')
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: FlutterFlowExpandedImageView(
+                                        image: Image.network(
+                                          _model.avatarUrl!,
+                                          fit: BoxFit.contain,
+                                        ),
+                                        allowRotation: false,
+                                        tag: _model.avatarUrl!,
+                                        useHeroAnimation: true,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: _model.avatarUrl!,
+                                  transitionOnUserGestures: true,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(24.0),
+                                    child: Image.network(
+                                      _model.avatarUrl!,
+                                      width: 91.0,
+                                      height: 91.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
                       ],
                     ),
@@ -328,19 +371,77 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 12.0),
-                          child: Text(
-                            '프로필 사진 등록',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'noto sans',
-                                  color: const Color(0xFFABACB5),
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.underline,
-                                  useGoogleFonts: false,
-                                ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                context: context,
+                                storageFolderPath: 'img',
+                                allowPhoto: true,
+                                pickerFontFamily: 'Roboto',
+                              );
+                              if (selectedMedia != null &&
+                                  selectedMedia.every((m) => validateFileFormat(
+                                      m.storagePath, context))) {
+                                setState(() => _model.isDataUploading = true);
+                                var selectedUploadedFiles = <FFUploadedFile>[];
+
+                                var downloadUrls = <String>[];
+                                try {
+                                  selectedUploadedFiles = selectedMedia
+                                      .map((m) => FFUploadedFile(
+                                            name: m.storagePath.split('/').last,
+                                            bytes: m.bytes,
+                                            height: m.dimensions?.height,
+                                            width: m.dimensions?.width,
+                                            blurHash: m.blurHash,
+                                          ))
+                                      .toList();
+
+                                  downloadUrls =
+                                      await uploadSupabaseStorageFiles(
+                                    bucketName: 'users',
+                                    selectedFiles: selectedMedia,
+                                  );
+                                } finally {
+                                  _model.isDataUploading = false;
+                                }
+                                if (selectedUploadedFiles.length ==
+                                        selectedMedia.length &&
+                                    downloadUrls.length ==
+                                        selectedMedia.length) {
+                                  setState(() {
+                                    _model.uploadedLocalFile =
+                                        selectedUploadedFiles.first;
+                                    _model.uploadedFileUrl = downloadUrls.first;
+                                  });
+                                } else {
+                                  setState(() {});
+                                  return;
+                                }
+                              }
+
+                              _model.avatarUrl = _model.uploadedFileUrl;
+                              setState(() {});
+                            },
+                            child: Text(
+                              '프로필 사진 등록',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'noto sans',
+                                    color: const Color(0xFFABACB5),
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    decoration: TextDecoration.underline,
+                                    useGoogleFonts: false,
+                                  ),
+                            ),
                           ),
                         ),
                       ],
@@ -397,9 +498,9 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 16.0, 24.0, 0.0),
                                           child: TextFormField(
-                                            controller: _model.textController1,
-                                            focusNode:
-                                                _model.textFieldFocusNode1,
+                                            controller:
+                                                _model.emailTFTextController,
+                                            focusNode: _model.emailTFFocusNode,
                                             autofocus: false,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -478,7 +579,7 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                                   useGoogleFonts: false,
                                                 ),
                                             validator: _model
-                                                .textController1Validator
+                                                .emailTFTextControllerValidator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -544,12 +645,12 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 16.0, 24.0, 0.0),
                                           child: TextFormField(
-                                            controller: _model.textController2,
-                                            focusNode:
-                                                _model.textFieldFocusNode2,
+                                            controller:
+                                                _model.passTFTextController,
+                                            focusNode: _model.passTFFocusNode,
                                             autofocus: false,
                                             obscureText:
-                                                !_model.passwordVisibility1,
+                                                !_model.passTFVisibility,
                                             decoration: InputDecoration(
                                               isDense: true,
                                               labelStyle:
@@ -620,14 +721,13 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                               suffixIcon: InkWell(
                                                 onTap: () => setState(
                                                   () => _model
-                                                          .passwordVisibility1 =
-                                                      !_model
-                                                          .passwordVisibility1,
+                                                          .passTFVisibility =
+                                                      !_model.passTFVisibility,
                                                 ),
                                                 focusNode: FocusNode(
                                                     skipTraversal: true),
                                                 child: Icon(
-                                                  _model.passwordVisibility1
+                                                  _model.passTFVisibility
                                                       ? Icons
                                                           .visibility_outlined
                                                       : Icons
@@ -645,7 +745,7 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                                   useGoogleFonts: false,
                                                 ),
                                             validator: _model
-                                                .textController2Validator
+                                                .passTFTextControllerValidator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -711,12 +811,13 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 12.0, 24.0, 0.0),
                                           child: TextFormField(
-                                            controller: _model.textController3,
+                                            controller: _model
+                                                .passConfirmTFTextController,
                                             focusNode:
-                                                _model.textFieldFocusNode3,
+                                                _model.passConfirmTFFocusNode,
                                             autofocus: false,
                                             obscureText:
-                                                !_model.passwordVisibility2,
+                                                !_model.passConfirmTFVisibility,
                                             decoration: InputDecoration(
                                               isDense: true,
                                               labelStyle:
@@ -786,14 +887,14 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                               suffixIcon: InkWell(
                                                 onTap: () => setState(
                                                   () => _model
-                                                          .passwordVisibility2 =
+                                                          .passConfirmTFVisibility =
                                                       !_model
-                                                          .passwordVisibility2,
+                                                          .passConfirmTFVisibility,
                                                 ),
                                                 focusNode: FocusNode(
                                                     skipTraversal: true),
                                                 child: Icon(
-                                                  _model.passwordVisibility2
+                                                  _model.passConfirmTFVisibility
                                                       ? Icons
                                                           .visibility_outlined
                                                       : Icons
@@ -811,7 +912,7 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                                   useGoogleFonts: false,
                                                 ),
                                             validator: _model
-                                                .textController3Validator
+                                                .passConfirmTFTextControllerValidator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -877,9 +978,9 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 12.0, 24.0, 0.0),
                                           child: TextFormField(
-                                            controller: _model.textController4,
-                                            focusNode:
-                                                _model.textFieldFocusNode4,
+                                            controller:
+                                                _model.nameTFTextController,
+                                            focusNode: _model.nameTFFocusNode,
                                             autofocus: false,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -958,7 +1059,7 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                                   useGoogleFonts: false,
                                                 ),
                                             validator: _model
-                                                .textController4Validator
+                                                .nameTFTextControllerValidator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -1015,8 +1116,9 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           18.0, 0.0, 24.0, 0.0),
                                       child: TextFormField(
-                                        controller: _model.textController5,
-                                        focusNode: _model.textFieldFocusNode5,
+                                        controller:
+                                            _model.nicknameTFTextController,
+                                        focusNode: _model.nicknameTFFocusNode,
                                         autofocus: false,
                                         obscureText: false,
                                         decoration: InputDecoration(
@@ -1090,7 +1192,7 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                               useGoogleFonts: false,
                                             ),
                                         validator: _model
-                                            .textController5Validator
+                                            .nicknameTFTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -1229,8 +1331,198 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 8.0, 0.0),
                                         child: TextFormField(
+                                          controller: _model.textController4,
+                                          focusNode: _model.textFieldFocusNode1,
+                                          autofocus: false,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            isDense: true,
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'noto sans',
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: false,
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'noto sans',
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: false,
+                                                    ),
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xFFE2E3E6),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xFFE2E3E6),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                            ),
+                                            errorBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                            ),
+                                            contentPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 4.0),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'noto sans',
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: false,
+                                              ),
+                                          validator: _model
+                                              .textController4Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      '년',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'noto sans',
+                                            color: const Color(0xFF45474E),
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: TextFormField(
+                                          controller: _model.textController5,
+                                          focusNode: _model.textFieldFocusNode2,
+                                          autofocus: false,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            isDense: true,
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'noto sans',
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: false,
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'noto sans',
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: false,
+                                                    ),
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xFFE2E3E6),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xFFE2E3E6),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                            ),
+                                            errorBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                            ),
+                                            contentPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 4.0),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'noto sans',
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: false,
+                                              ),
+                                          validator: _model
+                                              .textController5Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      '월',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'noto sans',
+                                            color: const Color(0xFF45474E),
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: false,
+                                          ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 8.0, 0.0),
+                                        child: TextFormField(
                                           controller: _model.textController6,
-                                          focusNode: _model.textFieldFocusNode6,
+                                          focusNode: _model.textFieldFocusNode3,
                                           autofocus: false,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -1303,196 +1595,6 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                                               ),
                                           validator: _model
                                               .textController6Validator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      '년',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'noto sans',
-                                            color: const Color(0xFF45474E),
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                        child: TextFormField(
-                                          controller: _model.textController7,
-                                          focusNode: _model.textFieldFocusNode7,
-                                          autofocus: false,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            isDense: true,
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'noto sans',
-                                                      fontSize: 16.0,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: false,
-                                                    ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'noto sans',
-                                                      fontSize: 16.0,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: false,
-                                                    ),
-                                            enabledBorder: UnderlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                color: Color(0xFFE2E3E6),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
-                                            ),
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                color: Color(0xFFE2E3E6),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
-                                            ),
-                                            errorBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
-                                            ),
-                                            contentPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 0.0, 4.0),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'noto sans',
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: false,
-                                              ),
-                                          validator: _model
-                                              .textController7Validator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      '월',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'noto sans',
-                                            color: const Color(0xFF45474E),
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                        child: TextFormField(
-                                          controller: _model.textController8,
-                                          focusNode: _model.textFieldFocusNode8,
-                                          autofocus: false,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            isDense: true,
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'noto sans',
-                                                      fontSize: 16.0,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: false,
-                                                    ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily: 'noto sans',
-                                                      fontSize: 16.0,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: false,
-                                                    ),
-                                            enabledBorder: UnderlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                color: Color(0xFFE2E3E6),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
-                                            ),
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                color: Color(0xFFE2E3E6),
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
-                                            ),
-                                            errorBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
-                                            ),
-                                            contentPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 0.0, 4.0),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'noto sans',
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: false,
-                                              ),
-                                          validator: _model
-                                              .textController8Validator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -1628,8 +1730,79 @@ class _CreateAccount2CopyWidgetState extends State<CreateAccount2CopyWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          context.pushNamed('auth_phone2');
+                        },
+                        text: '번호인증',
+                        options: FFButtonOptions(
+                          width: MediaQuery.sizeOf(context).width * 0.94,
+                          height: 56.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).electricBlue2,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'noto sans',
+                                    color: Colors.white,
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: false,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).electricBlue2,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          GoRouter.of(context).prepareAuthEvent();
+                          if (_model.passTFTextController.text !=
+                              _model.passConfirmTFTextController.text) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Passwords don\'t match!',
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+
+                          final user = await authManager.createAccountWithEmail(
+                            context,
+                            _model.emailTFTextController.text,
+                            _model.passTFTextController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
+
+                          await UsersTable().insert({
+                            'created_at':
+                                supaSerialize<DateTime>(getCurrentTimestamp),
+                            'updated_at':
+                                supaSerialize<DateTime>(getCurrentTimestamp),
+                            'date_of_birth':
+                                supaSerialize<DateTime>(_model.birth),
+                            'name': _model.nameTFTextController.text,
+                            'gender': _model.gender,
+                            'email': _model.emailTFTextController.text,
+                            'user_id': currentUserUid,
+                            'nickname': _model.nicknameTFTextController.text,
+                            'img': _model.avatarUrl,
+                          });
+
+                          context.pushNamedAuth('auth_phone', context.mounted);
                         },
                         text: '다음',
                         options: FFButtonOptions(

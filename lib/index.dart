@@ -58,5 +58,6 @@ export '/create_account4/create_account4_widget.dart' show CreateAccount4Widget;
 export '/auth_phone/auth_phone_widget.dart' show AuthPhoneWidget;
 export '/auth_phone2/auth_phone2_widget.dart' show AuthPhone2Widget;
 export '/auth_phone3/auth_phone3_widget.dart' show AuthPhone3Widget;
-export '/create_account2_copy/create_account2_copy_widget.dart'
-    show CreateAccount2CopyWidget;
+export '/create_account_to_email/create_account_to_email_widget.dart'
+    show CreateAccountToEmailWidget;
+export '/email_login/email_login_widget.dart' show EmailLoginWidget;

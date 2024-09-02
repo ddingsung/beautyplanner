@@ -11,6 +11,7 @@ class UserPlanResultDetailModel
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for recommend_plan_List component.
   late RecommendPlanListModel recommendPlanListModel;
 

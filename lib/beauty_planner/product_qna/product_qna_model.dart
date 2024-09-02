@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class ProductQnaModel extends FlutterFlowModel<ProductQnaWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for product_QNA component.
   late ProductQNAModel productQNAModel;
 

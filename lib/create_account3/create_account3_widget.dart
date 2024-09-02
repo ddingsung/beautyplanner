@@ -1,3 +1,5 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,11 +11,11 @@ export 'create_account3_model.dart';
 class CreateAccount3Widget extends StatefulWidget {
   const CreateAccount3Widget({
     super.key,
-    required this.name,
-    required this.nickName,
-    required this.dateOfBirth,
-    required this.gender,
-    required this.profileImg,
+    this.name,
+    this.nickName,
+    this.dateOfBirth,
+    this.gender,
+    this.profileImg,
   });
 
   final String? name;
@@ -621,8 +623,24 @@ class _CreateAccount3WidgetState extends State<CreateAccount3Widget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    await UsersTable().insert({
+                      'created_at':
+                          supaSerialize<DateTime>(getCurrentTimestamp),
+                      'updated_at':
+                          supaSerialize<DateTime>(getCurrentTimestamp),
+                      'date_of_birth':
+                          supaSerialize<DateTime>(widget.dateOfBirth),
+                      'name': widget.name,
+                      'gender': widget.gender,
+                      'email': currentUserEmail,
+                      'height': double.tryParse(_model.textController1.text),
+                      'weight': double.tryParse(_model.textController2.text),
+                      'phone': '',
+                      'img': widget.profileImg,
+                      'user_id': currentUserUid,
+                      'nickname': widget.nickName,
+                    });
                   },
                   text: '다음',
                   options: FFButtonOptions(

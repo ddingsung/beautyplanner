@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class AuthPhone2Model extends FlutterFlowModel<AuthPhone2Widget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -15,6 +16,8 @@ class AuthPhone2Model extends FlutterFlowModel<AuthPhone2Widget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Custom Action - confirmOtp] action in Button widget.
+  bool? isConfirm;
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 300000;
   int timerMilliseconds = 300000;

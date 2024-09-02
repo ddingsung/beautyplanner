@@ -9,17 +9,25 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'dart:html' as html;
-
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-final supabase = SupaFlow.client;
+Future getPhoneOtp(String phone) async {
+// Add your function code here!
 
-const bool kIsWeb = bool.fromEnvironment('dart.library.js_util');
+  // Get a reference your Supabase client
+  final supabase = Supabase.instance.client;
+  final user = supabase.auth.currentUser;
 
-Future signInWithGoogle() async {
-  await supabase.auth.signInWithOAuth(
-    Provider.google,
-    redirectTo: kIsWeb ? null : 'figmatest://figmatest.com/createAccount1',
+  if (user != null) {
+    await supabase.auth.updateUser(
+      UserAttributes(
+        phone: phone,
+      ),
+    );
+  }
+
+  await supabase.auth.signInWithOtp(
+    phone: phone,
+    shouldCreateUser: false,
   );
 }

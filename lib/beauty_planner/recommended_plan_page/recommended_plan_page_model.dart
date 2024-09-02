@@ -42,6 +42,7 @@ class RecommendedPlanPageModel
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for planCheck component.
   late PlanCheckModel planCheckModel1;
   // Model for planCheck component.

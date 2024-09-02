@@ -264,7 +264,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'createAccount1',
           path: '/createAccount1',
-          builder: (context, params) => const CreateAccount1Widget(),
+          builder: (context, params) => CreateAccount1Widget(
+            email: params.getParam(
+              'email',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'createAccount2',
@@ -339,9 +344,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const AuthPhone3Widget(),
         ),
         FFRoute(
-          name: 'createAccount2Copy',
-          path: '/createAccount2Copy',
-          builder: (context, params) => const CreateAccount2CopyWidget(),
+          name: 'createAccountToEmail',
+          path: '/createAccountToEmail',
+          builder: (context, params) => const CreateAccountToEmailWidget(),
+        ),
+        FFRoute(
+          name: 'email_login',
+          path: '/emailLogin',
+          builder: (context, params) => const EmailLoginWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -47,6 +47,7 @@ class CartModel extends FlutterFlowModel<CartWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (GetUserCart)] action in cart widget.
   ApiCallResponse? apiResulth7a;
   // State field(s) for Checkbox widget.

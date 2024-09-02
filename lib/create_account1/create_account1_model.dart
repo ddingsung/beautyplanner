@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class CreateAccount1Model extends FlutterFlowModel<CreateAccount1Widget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for Checkbox1 widget.
   bool? checkbox1Value;
   // State field(s) for Checkbox2 widget.
